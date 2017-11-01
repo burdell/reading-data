@@ -9,9 +9,10 @@ function formatResult(data) {
     return _.transform(columns, (accumulator, columnName, index) => {
       let value = book[index];
 
-      if (value && columnName === 'ISBN' && value.length < 10) {
-        value = `0${value}`;
-      }
+      if (value && columnName === 'ISBN') {
+        const parsedISBN = value.match(/="(\d+.)"/);
+        value = parsedISBN ? parsedISBN[1] : "";        
+      }      
 
       return accumulator[columnName] = value;
     }, {})
@@ -79,7 +80,6 @@ export default class DataService {
   filter(options) {
     _.each(options, (value, key) => {
         if (_.isUndefined(value) || _.isNull(value) || value.length === 0) return;
-
         const filterFn = this[key];
         if (filterFn) this[key](value);
       })

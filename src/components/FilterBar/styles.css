@@ -1,4 +1,5 @@
 .FilterBar {
     flex: 2;
-    background-color: green;
+    background-color: #fff;
+    border-right: 1px solid #e1e1e1
 }

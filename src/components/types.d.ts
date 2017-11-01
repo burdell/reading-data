@@ -1,5 +1,5 @@
 export interface AppState {
-    bookList: Book[];  
+    books: Book[];  
     stats: Stats;
     filterOptions: FilterOptions;
 }
@@ -46,6 +46,7 @@ export interface Stats {
 
 export interface FilterOptions {
     read: boolean;
+    year: number[];
 }
 
 export interface BookDataService {

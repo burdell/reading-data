@@ -17,7 +17,7 @@ export default ({ books }: ListProps): JSX.Element => {
     return (
         <div className="BookList">
             {books.map((book, i) => (
-                <div key={i}>
+                <div key={i} className="Booklist--Book">
                     <Book book={book} />
                 </div>
             ))};

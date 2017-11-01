@@ -1,3 +1,37 @@
 .Book {
-    background-color: blue;
+    border: 1px solid #dbdbdb;
+    line-height: 1;
+    display: flex;
+    padding: 1rem;
+    height: 100;
+}
+
+.Book--cover {
+    display: inline-block;
+}
+
+.Book--cover img {
+    width: 7rem;
+    box-shadow: 0px 0px 5px 0px rgba(180,180,180,1);
+}
+
+.Book--title {
+    font-size: 1.1rem;
+}
+
+.Book--details {
+    padding-left: 1rem;
+}
+
+.Book--info {
+    margin-bottom: .3rem;
+}
+
+.Book--reading-info {
+    line-height: 1.5;
+}
+
+.Book--author {
+    font-size: .8rem;
+    color: rgb(160, 160, 160);
 }

@@ -1,4 +1,17 @@
 .BookList {
     flex: 8;
-    background-color: red;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.Booklist--Book {
+    width: 32%;
+    margin: 1rem 0;
+    height: 20rem;
+}
+
+.Booklist--Book:hover {
+    cursor: default;
 }
