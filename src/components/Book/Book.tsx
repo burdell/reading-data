@@ -1,4 +1,5 @@
 import React from 'react';
+import { Date } from 'react-format';
 
 import { Book } from '../types';
 import Rating from '../Rating';
@@ -8,31 +9,24 @@ import './styles.css';
 
 interface BookProps {
     book: Book;
-}
-
-interface BookState {
     reviewShown: boolean;
+    onSelect(bookId: number): void;
 }
 
-export default class BookElement extends React.Component<BookProps, BookState> {
-    constructor(props: BookProps) {
-        super(props);
-
-        this.state = {
-            reviewShown: false
-        };
-    }
-
-    render() {
-        const book = this.props.book;        
-        return (
-            <div className="Book">
+export default ({ book, reviewShown, onSelect }: BookProps) => {
+    return (
+        <div className={`Book ${reviewShown ? 'Book--review-shown' : ''}`}>
+            <div className="Book--top">
                 <div className="Book--cover">
                     <img src={`http://images.amazon.com/images/P/${book.ISBN}`} />
-                    { book['My Review'] && 
+                    <div className="Book--read-date">
+                        <span>Finished on </span>
+                        <Date locale="en-us">{book['Date Read']}</Date>
+                    </div>
+                    {book['My Review'] && 
                         <div>
-                            <Button onClick={() => this.setState({ reviewShown: !this.state.reviewShown })}>
-                                {this.state.reviewShown ? 'Hide' : 'Show'} Review
+                            <Button onClick={() => onSelect(book['Book Id'])}>
+                                {reviewShown ? 'Hide' : 'Show'} Review
                             </Button>
                         </div>
                     }
@@ -42,15 +36,14 @@ export default class BookElement extends React.Component<BookProps, BookState> {
                         <div className="Book--title">{book.Title}</div>
                         <span className="Book--author">{book.Author}</span>
                     </div>
-                    <div className="Book--reading-info">
-                        <div><Rating rating={book['My Rating']} /></div>
-                        <div>
-                            <span>Read on {book['Date Read']}</span>
-                        </div>
-                        {this.state.reviewShown && <div>{book['My Review']}</div>}
-                    </div>
+                    <div><Rating rating={book['My Rating']} /></div>
                 </div>
-            </div>
-        );   
-    }
-}
+            </div> 
+            {reviewShown &&
+                <div className="Book--review">
+                    <div dangerouslySetInnerHTML={{__html: book['My Review']}} />
+                </div>
+            }
+        </div>
+    );   
+};

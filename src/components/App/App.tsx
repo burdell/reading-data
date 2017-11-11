@@ -1,46 +1,33 @@
 import React, { Component } from 'react';
 
-import { AppState, BookDataService } from '../types';
-import DataService from '../../data/data-service';
+import { AppState, Book } from '../types';
 import BookList from '../BookList';
-import FilterBar from '../FilterBar';
+import Sidebar from '../Sidebar';
 
 import './reset.css';
 import './styles.css';
 
 export default class App extends Component<{}, AppState> {
-  private dataService: BookDataService;
-
   constructor() {
     super();
 
-    this.dataService = new DataService() as BookDataService;
+    this.receiveBooks = this.receiveBooks.bind(this);
     
     this.state = {
-      books: [],
-      stats: {
-        bookCount: null,
-        pageCount: null,
-        ratingCount: null
-      },
-      filterOptions: {
-        read: true,
-        year: [2017]
-      }
+      books: []
     };
-  }
-
-  public componentDidMount() {
-    const { books, stats } = this.dataService.filter(this.state.filterOptions);
-    this.setState({ books, stats });
   }
 
   public render(): JSX.Element {
     return (
       <div className="App">
-        <FilterBar />
+        <Sidebar onChange={this.receiveBooks}/>
         <BookList books={this.state.books} />
       </div>
     );
+  }
+
+  public receiveBooks(books: Book[]) {
+    this.setState({ books });
   }
 }
