@@ -1,13 +1,13 @@
 .Button {
     width: 100%;
-    padding: .3rem .5rem;
-    background-color: rgb(69, 121, 170);
+    padding: .3rem .6rem;
+    background-color: rgb(17, 50, 78);
     color: white;
     border-radius: 0;
     border: none;
     cursor: pointer;
     font-family: inherit;
-    font-size: .8rem;
+    font-size: .5rem;
 }
 
 .Button:focus {

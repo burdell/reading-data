@@ -1,9 +1,21 @@
 import React from 'react';
+import { FlatButton as Button } from 'material-ui';
 
-import './styles.css';
+import { buttonColor } from '../../../shared/colors';
 
-export default ({ children, ...props }) => {
+interface ButtonProps {
+    children: JSX.Element | string[] | string;
+    onClick(e: any): void;
+}
+
+export default ({ children, ...props }: ButtonProps) => {
     return (
-        <button className="Button" {...props}>{children}</button>
+        <Button
+            backgroundColor={buttonColor}
+            className="Button"
+            {...props}
+        >
+            {children}
+        </Button>
     );
 };

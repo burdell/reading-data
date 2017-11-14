@@ -27,6 +27,7 @@ export default class Filter extends React.Component<FilterProps, FilterState> {
     }
 
     public render() {
+        console.log(this.state.filterOptions);
         return (
             <div className="Sidebar--section">
                 <h1 className="Sidebar--header">Filter</h1>

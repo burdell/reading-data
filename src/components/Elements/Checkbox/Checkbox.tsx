@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox } from 'semantic-ui-react';
+import { Checkbox } from 'material-ui';
 import { CheckboxSelection } from './';
 
 interface CheckboxProps {
@@ -15,10 +15,10 @@ export default ({ label, isChecked, onSelect, name, value }: CheckboxProps) => {
         <Checkbox
             name={name}
             checked={isChecked}
-            onClick={(e, data) => onSelect({
-                field: data.name,
-                selected: data.checked,
-                value: data.value
+            onCheck={(event: any, checked: boolean) => onSelect({
+                field: event.target.name,
+                selected: checked,
+                value: Number(event.target.value)
             })}
             label={label}
             value={value || label}
