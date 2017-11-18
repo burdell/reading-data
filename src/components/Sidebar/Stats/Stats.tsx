@@ -1,8 +1,8 @@
 import React from 'react';
 import NumberFormat from 'react-number-format';
 
-import { Stats } from '../types';
-import './styles.css';
+import { Stats } from '../../types';
+import { SidebarSection, SidebarHeader, SidebarContent } from '../styles';
 
 interface StatsProps {
     stats: Stats;
@@ -10,9 +10,9 @@ interface StatsProps {
 
 export default ({ stats }: StatsProps) => {
     return( 
-        <div className="Sidebar--section">
-            <div className="Sidebar--header">Stats</div>
-            <div className="Sidebar--content">
+        <SidebarSection>
+            <SidebarHeader>Stats</SidebarHeader>
+            <SidebarContent>
                 <div>
                     <span>{stats.bookCount}</span><span className="Stats--type"> books</span>
                 </div>
@@ -22,7 +22,7 @@ export default ({ stats }: StatsProps) => {
                         value={stats.pageCount || 0}
                         thousandSeparator={true}
                     />
-                    <span className="Stats--type"> pages</span>
+                    <span> pages</span>
                 </div>
                 { stats.ratingCount && stats.bookCount &&
                     <div>
@@ -33,10 +33,10 @@ export default ({ stats }: StatsProps) => {
                                 decimalScale={2}
                             />
                         </span>
-                        <span className="Stats--type"> avg rating</span>
+                        <span> avg rating</span>
                     </div>
                 }
-            </div>
-        </div>
+            </SidebarContent>
+        </SidebarSection>
     );
 };

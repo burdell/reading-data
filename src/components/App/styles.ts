@@ -1,5 +1,5 @@
-import glamorous from 'glamorous';
+import styled from 'react-emotion';
 
-export const AppContainer = glamorous.div({
-    display: 'flex'
-});
+export const AppContainer = styled('div')`
+    display: flex;
+`;

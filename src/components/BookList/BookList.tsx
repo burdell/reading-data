@@ -3,7 +3,7 @@ import React from 'react';
 import { Book as IBook } from '../types';
 import Book from '../Book';
 
-import { BookList } from './styles';
+import { BookList, Book as BooklistBook } from './styles';
 
 interface ListProps {
     books: IBook[];
@@ -31,16 +31,13 @@ export default class BookListComponent extends React.Component<ListProps, ListSt
         return (
             <BookList>
                 {books.map((book, i) => (
-                    <div
-                        key={i}                        
-                        className={`Booklist--Book ${this.isBookSelected(book) ? 'Booklist--selected' : ''}`}
-                    >
+                    <BooklistBook key={i}>
                         <Book 
                             book={book}
                             onSelect={this.setSelectedBook}
                             reviewShown={this.isBookSelected(book)}
                         />
-                    </div>
+                    </BooklistBook>
                 ))};
             </BookList>
         );

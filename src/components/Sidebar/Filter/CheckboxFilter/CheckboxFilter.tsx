@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { FilterOptions } from '../../types';
-import Checkbox, { CheckboxSelection } from '../../Elements/Checkbox';
+import { FilterOptions } from '../../../types';
+import Checkbox, { CheckboxSelection } from '../../../Elements/Checkbox';
 
 interface CheckboxFilterProps {
     field: string;

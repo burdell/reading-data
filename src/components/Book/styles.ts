@@ -1,53 +1,53 @@
-import glamorous from 'glamorous';
+import styled from 'react-emotion';
 
-export const Book = glamorous.div({
-    lineHeight: 1,
-    padding: '1rem'
-});
+export const Book = styled('div')`
+    line-height: 1;
+    padding: 1rem;
+`;
 
-export const CoverContainer = glamorous.div({
-    display: 'flex',
-    alignItems: 'center'
-});
+export const CoverContainer = styled('div')`
+    display: flex;
+    align-items: center;
+`;
 
-export const Cover = glamorous.div({
-    'display': 'inline-block'
-});
+export const Cover = styled('div')`
+    display: inline-block;
+`;
 
-export const CoverImage = glamorous.img({
-    width: '7rem',
-    boxShadow: '0px 0px 5px 0px rgba(180,180,180,1)'
-});
+export const CoverImage = styled('img')`
+    width: 7rem;
+    box-shadow: 0px 0px 5px 0px rgba(180,180,180,1);
+`;
 
-export const ReadDate = glamorous.div({
-    fontSize: '.5rem',
-    color: 'rgb(165, 165, 165)',
-    fontStyle: 'italic',
-    marginBottom: '.4rem'
-});
+export const ReadDate = styled('div')`
+    font-size: .5rem;
+    color: rgb(165, 165, 165);
+    font-style: italic;
+    margin-bottom: .4rem;
+`;
 
-export const BookDetails = glamorous.div({
-    paddingLeft: '1rem',
-    lineHeight: '1.2rem'
-});
+export const BookDetails = styled('div')`
+    padding-left: 1rem;
+    line-height: 1.2rem;
+`;
 
-export const BookInfo = glamorous.div({
-    width: '100%',
-    marginBottom: '.3rem'
-});
+export const BookInfo = styled('div')`
+    width: 100%;
+    margin-bottom: .3rem;
+`;
 
-export const BookReview = glamorous.div({
-    marginTop: '1rem',
-    fontSize: '.8rem',
-    color: 'rgb(90, 90, 90)',
-    lineHeight: '1.2'
-});
+export const BookReview = styled('div')`
+    margin-top: 1rem;
+    font-Size: .8rem;
+    color: rgb(90, 90, 90);
+    line-height: 1.5;
+`;
 
-export const BookAuthor = glamorous.span({
-    fontSize: '.8rem',
-    color: 'rgb(160, 160, 160)'
-});
+export const BookAuthor = styled('span')`
+    font-size: .8rem;
+    color: rgb(160, 160, 160);
+`;
 
-export const BookTitle = glamorous.div({
-    fontSize: '1rem' 
-});
+export const BookTitle = styled('div')`
+    font-size: 1rem;
+`;

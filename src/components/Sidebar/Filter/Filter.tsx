@@ -1,11 +1,14 @@
 import React from 'react';
 
-import { FilterOptions } from '../types';
+import { FilterOptions } from '../../types';
 import FilterSection from './FilterSection';
-import { CheckboxSelection } from '../Elements/Checkbox';
-import CheckboxFilter from './CheckboxFilter/CheckboxFilter';
 import { possibleMonths, possibleRatings, possibleYears, emptyFilter, monthMap } from './filters';
-import { ratingGenerator } from '../Rating';
+
+import { CheckboxSelection } from '../../Elements/Checkbox';
+import CheckboxFilter from './CheckboxFilter/CheckboxFilter';
+import { ratingGenerator } from '../../Rating';
+
+import { SidebarSection, SidebarHeader } from '../styles';
 
 interface FilterProps {
     defaultFilters: FilterOptions;
@@ -27,10 +30,9 @@ export default class Filter extends React.Component<FilterProps, FilterState> {
     }
 
     public render() {
-        console.log(this.state.filterOptions);
         return (
-            <div className="Sidebar--section">
-                <h1 className="Sidebar--header">Filter</h1>
+            <SidebarSection>
+                <SidebarHeader>Filter</SidebarHeader>
                 <FilterSection title="Year">                    
                     <CheckboxFilter
                         field="year"
@@ -59,7 +61,7 @@ export default class Filter extends React.Component<FilterProps, FilterState> {
                         renderOption={(month: string) => monthMap[month]}                        
                     />
                 </FilterSection>
-            </div>
+            </SidebarSection>
         );
     }
 

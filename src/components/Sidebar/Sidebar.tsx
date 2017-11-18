@@ -2,10 +2,9 @@ import React from 'react';
 
 import { Book, BookDataService, FilterOptions, Stats as IStats } from '../types';
 
-import Stats from '../Stats';
-import Filter from '../Filter';
+import Stats from './Stats';
+import Filter from './Filter';
 import DataService from '../../data/data-service';
-import './styles.css';
 
 interface SidebarProps {
     onChange(books: Book[]);
@@ -15,7 +14,7 @@ interface SidebarState {
     stats: IStats;
 }
 
-export default class Sidebar extends React.Component<SidebarProps, SidebarState> {
+export default class SidebarComponent extends React.Component<SidebarProps, SidebarState> {
     private dataService: BookDataService;
     private defaultFilter: FilterOptions;
 
