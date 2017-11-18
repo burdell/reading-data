@@ -5,13 +5,9 @@ import { AppState, Book } from '../types';
 import BookList from '../BookList';
 import Sidebar from '../Sidebar';
 
-import 'semantic-ui-css/semantic.min.css';
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-import '../../index.css';
 import './reset.css';
-import './styles.css';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { AppContainer } from './styles';
 
 export default class App extends Component<{}, AppState> {
   constructor() {
@@ -29,10 +25,10 @@ export default class App extends Component<{}, AppState> {
       <MuiThemeProvider>
         <div>
           <AppBar title="What Nathan Read" style={{backgroundColor: '#0d3c87'}} />
-          <div className="App">
+          <AppContainer>
             <Sidebar onChange={this.receiveBooks}/>
             <BookList books={this.state.books} />
-          </div>
+          </AppContainer>
         </div>
       </MuiThemeProvider>
     );

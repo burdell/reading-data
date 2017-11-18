@@ -1,49 +1,58 @@
 import React from 'react';
 import { Date } from 'react-format';
 
-import { Book } from '../types';
+import { Book as IBook } from '../types';
 import Rating from '../Rating';
 import Button from '../Elements/Button';
 
-import './styles.css';
+import {
+    Book,
+    CoverContainer,
+    Cover,
+    CoverImage,
+    ReadDate,
+    BookDetails,
+    BookInfo,
+    BookReview,
+    BookAuthor,
+    BookTitle
+} from './styles';
 
 interface BookProps {
-    book: Book;
+    book: IBook;
     reviewShown: boolean;
     onSelect(bookId: number): void;
 }
 
 export default ({ book, reviewShown, onSelect }: BookProps) => {
     return (
-        <div className={`Book ${reviewShown ? 'Book--review-shown' : ''}`}>
-            <div className="Book--top">
-                <div className="Book--cover">
-                    <img src={`http://images.amazon.com/images/P/${book.ISBN}`} />
-                    <div className="Book--read-date">
+        <Book>
+            <CoverContainer>
+                <Cover>
+                    <CoverImage src={`http://images.amazon.com/images/P/${book.ISBN}`} />
+                    <ReadDate className="Book--read-date">
                         <span>Finished on </span>
                         <Date locale="en-us">{book['Date Read']}</Date>
-                    </div>
+                    </ReadDate>
                     {book['My Review'] && 
-                        <div>
-                            <Button onClick={() => onSelect(book['Book Id'])}>
-                                {reviewShown ? 'Hide' : 'Show'} Review
-                            </Button>
-                        </div>
+                        <Button onClick={() => onSelect(book['Book Id'])}>
+                            {reviewShown ? 'Hide' : 'Show'} Review
+                        </Button>
                     }
-                </div>
-                <div className="Book--details">
-                    <div className="Book--info">
-                        <div className="Book--title">{book.Title}</div>
-                        <span className="Book--author">{book.Author}</span>
-                    </div>
+                </Cover>
+                <BookDetails>
+                    <BookInfo>
+                        <BookTitle className="Book--title">{book.Title}</BookTitle>
+                        <BookAuthor className="Book--author">{book.Author}</BookAuthor>
+                    </BookInfo>
                     <div><Rating rating={book['My Rating']} /></div>
-                </div>
-            </div> 
+                </BookDetails>
+            </CoverContainer> 
             {reviewShown &&
-                <div className="Book--review">
+                <BookReview>
                     <div dangerouslySetInnerHTML={{__html: book['My Review']}} />
-                </div>
+                </BookReview>
             }
-        </div>
+        </Book>
     );   
 };

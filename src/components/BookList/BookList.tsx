@@ -3,7 +3,7 @@ import React from 'react';
 import { Book as IBook } from '../types';
 import Book from '../Book';
 
-import './styles.css';
+import { BookList } from './styles';
 
 interface ListProps {
     books: IBook[];
@@ -13,7 +13,7 @@ interface ListState {
     selectedBookId: number;
 }
 
-export default class BookList extends React.Component<ListProps, ListState> {
+export default class BookListComponent extends React.Component<ListProps, ListState> {
     constructor(props: ListProps) {
         super(props);
         this.setSelectedBook = this.setSelectedBook.bind(this);
@@ -29,7 +29,7 @@ export default class BookList extends React.Component<ListProps, ListState> {
         }
     
         return (
-            <div className="BookList">
+            <BookList>
                 {books.map((book, i) => (
                     <div
                         key={i}                        
@@ -42,7 +42,7 @@ export default class BookList extends React.Component<ListProps, ListState> {
                         />
                     </div>
                 ))};
-            </div>
+            </BookList>
         );
     }
 
