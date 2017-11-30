@@ -1,8 +1,9 @@
 import React from 'react';
+import Drawer from 'material-ui/Drawer';
+import Button from 'material-ui/FloatingActionButton';
 
 import { Book, BookDataService, FilterOptions, Stats as IStats } from '../types';
 
-import Stats from './Stats';
 import Filter from './Filter';
 import DataService from '../../data/data-service';
 
@@ -12,6 +13,7 @@ interface SidebarProps {
 
 interface SidebarState {
     stats: IStats;
+    open: boolean;
 }
 
 export default class SidebarComponent extends React.Component<SidebarProps, SidebarState> {
@@ -26,7 +28,8 @@ export default class SidebarComponent extends React.Component<SidebarProps, Side
                 bookCount: null,
                 pageCount: null,
                 ratingCount: null
-            }
+            },
+            open: false
         };
 
         this.dataService = new DataService() as BookDataService;
@@ -38,6 +41,7 @@ export default class SidebarComponent extends React.Component<SidebarProps, Side
         };
 
         this.filter = this.filter.bind(this);
+        this.toggleVisbility = this.toggleVisbility.bind(this);
     }
 
     componentDidMount() {
@@ -46,13 +50,19 @@ export default class SidebarComponent extends React.Component<SidebarProps, Side
 
     render() {
         return (
-            <div className="FilterBar">
-                <Stats stats={this.state.stats} />
-                <Filter
-                    defaultFilters={this.defaultFilter}
-                    onFilter={this.filter}
-                />
-            </div>
+            <Drawer open={this.state.open}>
+                <Button
+                    onClick={this.toggleVisbility}
+                >
+                    {this.state.open ? '<' : '>'}
+                </Button>
+                <div className="FilterBar">
+                    <Filter
+                        defaultFilters={this.defaultFilter}
+                        onFilter={this.filter}
+                    />
+                </div>
+            </Drawer>
         );
     }
 
@@ -61,5 +71,9 @@ export default class SidebarComponent extends React.Component<SidebarProps, Side
         
         this.setState({ stats });
         this.props.onChange(books);
+    }
+
+    toggleVisbility() {
+        this.setState({ open: !this.state.open });
     }
 }

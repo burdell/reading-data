@@ -5,6 +5,7 @@ import { Book as IBook } from '../types';
 import Rating from '../Rating';
 
 import {
+    ActionsContainer,
     Book,
     CoverContainer,
     Cover,
@@ -31,28 +32,25 @@ export default ({ book, reviewShown, onSelect }: BookProps) => {
                 <CoverContainer>
                     <Cover>
                         <CoverImage src={`http://images.amazon.com/images/P/${book.ISBN}`} />
-                    </Cover>
+                    </Cover>                    
                     <BookDetails>
-                        <div>
-                            <BookInfo>
-                                <BookTitle className="Book--title">{book.Title}</BookTitle>
-                                <BookAuthor className="Book--author">{book.Author}</BookAuthor>
-                            </BookInfo>
-                            <Rating rating={book['My Rating']} />
-                        </div>
-                        {book['My Review'] && 
-                            <div style={{position: 'absolute', bottom: 7}}>
-                                <ReviewToggle onClick={() => onSelect(book['Book Id'])}>
-                                    {reviewShown ? 'Hide' : 'Show'} Review
-                                </ReviewToggle>
-                            </div>
-                        }
+                        <BookInfo>
+                            <ReadDate className="Book--read-date">
+                                <Date locale="en-us">{book['Date Read']}</Date>
+                            </ReadDate>
+                            <BookTitle className="Book--title">{book.Title}</BookTitle>
+                            <BookAuthor className="Book--author">{book.Author}</BookAuthor>
+                        </BookInfo>
+                        <Rating rating={book['My Rating']} />
                     </BookDetails>
-                </CoverContainer> 
-                <ReadDate className="Book--read-date">
-                    <span>Finished on </span>
-                    <Date locale="en-us">{book['Date Read']}</Date>
-                </ReadDate>
+                </CoverContainer>
+                <ActionsContainer>
+                    {book['My Review'] && 
+                        <ReviewToggle onClick={() => onSelect(book['Book Id'])}>
+                            {reviewShown ? 'Hide' : 'Show'} Review
+                        </ReviewToggle>
+                    }
+                </ActionsContainer>
             </div>
             {reviewShown &&
                 <BookReview>

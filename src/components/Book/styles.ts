@@ -1,5 +1,7 @@
 import styled from 'react-emotion';
 
+const coverImageWidth = '7rem';
+
 export const Book = styled('div')`
     line-height: 1;
     padding: 1rem;
@@ -7,8 +9,7 @@ export const Book = styled('div')`
 
 export const CoverContainer = styled('div')`
     display: flex;
-    align-items: center;
-    position: relative;
+    align-items: center; 
 `;
 
 export const Cover = styled('div')`
@@ -16,7 +17,7 @@ export const Cover = styled('div')`
 `;
 
 export const CoverImage = styled('img')`
-    width: 7rem;
+    width: ${coverImageWidth};
     box-shadow: 0px 0px 5px 0px rgba(180,180,180,1);
     max-height: 12rem;
 `;
@@ -25,7 +26,7 @@ export const ReadDate = styled('div')`
     font-size: .5rem;
     color: rgb(165, 165, 165);
     font-style: italic;
-    margin-bottom: .4rem;
+    margin-bottom: .2rem;
 `;
 
 export const BookDetails = styled('div')`
@@ -57,11 +58,19 @@ export const BookTitle = styled('div')`
     font-size: 1rem;
 `;
 
+export const ActionsContainer = styled('div')`
+    width: 6rem;
+    text-align: center;
+    margin-top: .2rem;
+`;
+
 export const ReviewToggle = styled('a')`
     cursor: pointer;
     font-size: .8rem;
-    padding: .5rem;
     background-color: #f2f2f2;
+    padding: .5rem .5rem;
+    display: inline-block;
+    width: 100%;
 
     :hover {
         color: #376bbf;
