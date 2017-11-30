@@ -8,6 +8,7 @@ export const Book = styled('div')`
 export const CoverContainer = styled('div')`
     display: flex;
     align-items: center;
+    position: relative;
 `;
 
 export const Cover = styled('div')`
@@ -17,6 +18,7 @@ export const Cover = styled('div')`
 export const CoverImage = styled('img')`
     width: 7rem;
     box-shadow: 0px 0px 5px 0px rgba(180,180,180,1);
+    max-height: 12rem;
 `;
 
 export const ReadDate = styled('div')`
@@ -29,6 +31,9 @@ export const ReadDate = styled('div')`
 export const BookDetails = styled('div')`
     padding-left: 1rem;
     line-height: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 `;
 
 export const BookInfo = styled('div')`
@@ -50,4 +55,16 @@ export const BookAuthor = styled('span')`
 
 export const BookTitle = styled('div')`
     font-size: 1rem;
+`;
+
+export const ReviewToggle = styled('a')`
+    cursor: pointer;
+    font-size: .8rem;
+    padding: .5rem;
+    background-color: #f2f2f2;
+
+    :hover {
+        color: #376bbf;
+        box-shadow: 0px 0px 1px -3px rgba(0,0,0,0.3);;
+    }
 `;

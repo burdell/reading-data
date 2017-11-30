@@ -1,1 +1,1 @@
-export const buttonColor = '#5897fc';
+export const buttonColor = '#4CAF50';

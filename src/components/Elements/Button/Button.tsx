@@ -1,18 +1,22 @@
 import React from 'react';
-import { FlatButton as Button } from 'material-ui';
+import { RaisedButton as Button } from 'material-ui';
 
-import { buttonColor } from '../../../shared/colors';
+// import { buttonColor } from '../../../shared/colors';
 
 interface ButtonProps {
     children: JSX.Element | string[] | string;
     onClick(e: any): void;
 }
 
+const styleOverrides = {
+    fontSize: '.8rem'
+};
+
 export default ({ children, ...props }: ButtonProps) => {
     return (
         <Button
-            backgroundColor={buttonColor}
-            className="Button"
+            style={styleOverrides}
+            fullWidth={true}
             {...props}
         >
             {children}
