@@ -41,7 +41,7 @@ export default ({ book, reviewShown, onSelect }: BookProps) => {
                             <Rating rating={book['My Rating']} />
                         </div>
                         {book['My Review'] && 
-                            <div style={{position: 'absolute', bottom: 0}}>
+                            <div style={{position: 'absolute', bottom: 7}}>
                                 <ReviewToggle onClick={() => onSelect(book['Book Id'])}>
                                     {reviewShown ? 'Hide' : 'Show'} Review
                                 </ReviewToggle>
