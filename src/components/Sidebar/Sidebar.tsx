@@ -2,17 +2,18 @@ import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import Button from 'material-ui/FloatingActionButton';
 
-import { Book, BookDataService, FilterOptions, Stats as IStats } from '../types';
+import { Book, BookDataService, FilterOptions, Stats } from '../types';
+import { CloseAction } from './styles';
 
 import Filter from './Filter';
 import DataService from '../../data/data-service';
 
 interface SidebarProps {
-    onChange(books: Book[]);
+    open: boolean;
+    onChange(books: Book[], stats: Stats, filterOptions: FilterOptions);
 }
 
 interface SidebarState {
-    stats: IStats;
     open: boolean;
 }
 
@@ -24,12 +25,7 @@ export default class SidebarComponent extends React.Component<SidebarProps, Side
         super(props);
 
         this.state = {
-            stats: {
-                bookCount: null,
-                pageCount: null,
-                ratingCount: null
-            },
-            open: false
+            open: props.open
         };
 
         this.dataService = new DataService() as BookDataService;
@@ -41,7 +37,13 @@ export default class SidebarComponent extends React.Component<SidebarProps, Side
         };
 
         this.filter = this.filter.bind(this);
-        this.toggleVisbility = this.toggleVisbility.bind(this);
+        this.close = this.close.bind(this);
+    }
+
+    componentWillReceiveProps(newProps: SidebarProps, oldProps: SidebarProps) {
+        if (oldProps.open !== newProps.open) {
+            this.setState({ open: newProps.open });
+        }
     }
 
     componentDidMount() {
@@ -51,11 +53,9 @@ export default class SidebarComponent extends React.Component<SidebarProps, Side
     render() {
         return (
             <Drawer open={this.state.open}>
-                <Button
-                    onClick={this.toggleVisbility}
-                >
-                    {this.state.open ? '<' : '>'}
-                </Button>
+                <CloseAction>
+                    <Button mini={true} onClick={this.close}>X</Button>
+                </CloseAction>
                 <div className="FilterBar">
                     <Filter
                         defaultFilters={this.defaultFilter}
@@ -68,12 +68,10 @@ export default class SidebarComponent extends React.Component<SidebarProps, Side
 
     filter(filterOptions: FilterOptions) {
         const { books, stats } = this.dataService.filter(filterOptions);
-        
-        this.setState({ stats });
-        this.props.onChange(books);
+        this.props.onChange(books, stats, filterOptions);
     }
 
-    toggleVisbility() {
-        this.setState({ open: !this.state.open });
+    close() {
+        this.setState({ open: false });
     }
 }

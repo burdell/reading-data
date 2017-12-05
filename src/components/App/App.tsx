@@ -3,9 +3,10 @@ import { AppBar } from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import { AppState, Book } from '../types';
+import { AppState, Book, Stats as IStats, FilterOptions } from '../types';
 import BookList from '../BookList';
 import Sidebar from '../Sidebar';
+import FilterDisplay from '../FilterOptionsDisplay';
 
 import './reset.css';
 import { AppContainer, appFont } from './styles';
@@ -19,9 +20,13 @@ export default class App extends Component<{}, AppState> {
     super();
 
     this.receiveBooks = this.receiveBooks.bind(this);
+    this.toggleSidebar = this.toggleSidebar.bind(this);
     
     this.state = {
-      books: []
+      books: [],
+      filterShown: false,
+      stats: null,
+      filterOptions: null
     };
   }
 
@@ -29,17 +34,28 @@ export default class App extends Component<{}, AppState> {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
-          <AppBar title="What Nathan Read" style={{backgroundColor: '#0d3c87'}} />
+          <AppBar
+            title="What Nathan Read"
+            style={{backgroundColor: '#0d3c87'}}
+            onLeftIconButtonTouchTap={this.toggleSidebar}
+          />
           <AppContainer>
-            <Sidebar onChange={this.receiveBooks}/>
-            <BookList books={this.state.books} />
+            <Sidebar onChange={this.receiveBooks} open={this.state.filterShown} />
+            <div>
+              <FilterDisplay filterOptions={this.state.filterOptions} />
+              <BookList books={this.state.books} />
+            </div>
           </AppContainer>
         </div>
       </MuiThemeProvider>
     );
   }
 
-  public receiveBooks(books: Book[]) {
-    this.setState({ books });
+  public receiveBooks(books: Book[], stats: IStats, filterOptions: FilterOptions) {
+    this.setState({ books, stats, filterOptions });
+  }
+
+  private toggleSidebar() {
+    this.setState({ filterShown: true });
   }
 }

@@ -1,5 +1,8 @@
 export interface AppState {
-    books: Book[];    
+    books: Book[];
+    filterShown: boolean;
+    stats: Stats,
+    filterOptions: FilterOptions
 }
   
 export interface Book {

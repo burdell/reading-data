@@ -25,3 +25,9 @@ export const SidebarContent = styled('div')`
 export const SidebarType = styled('div')`
     color: rgb(136, 136, 136);s
 `;
+
+export const CloseAction = styled('div')`
+    position: absolute;
+    right: 10px;
+    top: 5px;
+`;

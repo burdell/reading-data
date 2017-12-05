@@ -22,5 +22,9 @@ export const monthMap = {
     9: 'September',
     10: 'October',
     11: 'November',
-    12: 'Decemebr',
+    12: 'December',
+};
+
+export const translateMonth = (month: number) => {
+    return monthMap[month];
 };
