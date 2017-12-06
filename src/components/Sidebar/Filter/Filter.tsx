@@ -67,10 +67,16 @@ export default class Filter extends React.Component<FilterProps, FilterState> {
 
     private checkboxSelected({ field, value, selected }: CheckboxSelection) {
         const filterOptions = this.state.filterOptions;
-        const filter = filterOptions[field];
-        const valueIndex = filter.indexOf(value);
+        
+        if (value === null) {
+            // clear filter
+            filterOptions[field] = [];
+        } else {
+            const filter = filterOptions[field];
+            const valueIndex = filter.indexOf(value);
+            if (valueIndex < 0) { filter.push(value); } else { filter.splice(valueIndex, 1); }
+        }
 
-        if (valueIndex < 0) { filter.push(value); } else { filter.splice(valueIndex, 1); }
         this.props.onFilter(filterOptions);
     }
 }

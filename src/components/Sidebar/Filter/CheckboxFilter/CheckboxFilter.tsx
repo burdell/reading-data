@@ -2,6 +2,7 @@ import React from 'react';
 
 import { FilterOptions } from '../../../types';
 import Checkbox, { CheckboxSelection } from '../../../Elements/Checkbox';
+import { CheckboxFilter, ClearFilter } from './styles';
 
 interface CheckboxFilterProps {
     field: string;
@@ -13,7 +14,7 @@ interface CheckboxFilterProps {
 
 export default ({ options, field, currentFilter, onSelect, renderOption }: CheckboxFilterProps) => {
     return (
-        <div>
+        <CheckboxFilter>
             {options.map(option => (
                 <div key={option}>
                     <Checkbox
@@ -25,6 +26,7 @@ export default ({ options, field, currentFilter, onSelect, renderOption }: Check
                     />
                 </div>
             ))}
-        </div>
+            <ClearFilter onClick={() => onSelect({ field, value: null, selected: false })} />            
+        </CheckboxFilter>
     );
 };

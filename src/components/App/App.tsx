@@ -7,6 +7,7 @@ import { AppState, Book, Stats as IStats, FilterOptions } from '../types';
 import BookList from '../BookList';
 import Sidebar from '../Sidebar';
 import FilterDisplay from '../FilterOptionsDisplay';
+import Stats from '../Stats';
 
 import './reset.css';
 import { AppContainer, appFont } from './styles';
@@ -38,7 +39,9 @@ export default class App extends Component<{}, AppState> {
             title="What Nathan Read"
             style={{backgroundColor: '#0d3c87'}}
             onLeftIconButtonTouchTap={this.toggleSidebar}
-          />
+          >
+            <Stats stats={this.state.stats} />
+          </AppBar>          
           <AppContainer>
             <Sidebar onChange={this.receiveBooks} open={this.state.filterShown} />
             <div>

@@ -1,19 +1,17 @@
 import React from 'react';
 
-interface FilterSection {
+import { FilterSection, FilterSectionContent, FilterSectionTitle } from './styles';
+
+interface FilterSectionProps {
     children: any;
     title: string;
 }
 
-import './styles.css';
-
-export default ({ children, title }: FilterSection) => {
+export default ({ children, title }: FilterSectionProps) => {
     return (
-        <div className="FilterSection">
-            <div className="FilterSection--title">{title}</div>
-            <div className="FilterSection--content">
-                {children}
-            </div>
-        </div>
+        <FilterSection>
+            <FilterSectionTitle>{title}</FilterSectionTitle>
+            <FilterSectionContent>{children}</FilterSectionContent>
+        </FilterSection>
     );
 };

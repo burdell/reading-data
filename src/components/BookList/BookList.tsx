@@ -22,6 +22,7 @@ export default class BookListComponent extends React.Component<ListProps, ListSt
             selectedBookId: null
         };
     }
+    
     render() {
         const books = this.props.books;
         if (!books || books.length === 0) {
@@ -38,7 +39,7 @@ export default class BookListComponent extends React.Component<ListProps, ListSt
                             reviewShown={this.isBookSelected(book)}
                         />
                     </BooklistBook>
-                ))};
+                ))}
             </BookList>
         );
     }

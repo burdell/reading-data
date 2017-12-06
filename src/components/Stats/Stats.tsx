@@ -9,6 +9,8 @@ interface StatsProps {
 }
 
 export default ({ stats }: StatsProps) => {
+    if (!stats) { return null; }
+
     return( 
         <StatsContainer>
             <div>

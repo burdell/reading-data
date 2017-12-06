@@ -25,6 +25,6 @@ export const monthMap = {
     12: 'December',
 };
 
-export const translateMonth = (month: number) => {
-    return monthMap[month];
+export const translateMonth = (month: string) => {
+    return monthMap[Number(month)];
 };
