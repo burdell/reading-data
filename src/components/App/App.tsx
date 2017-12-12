@@ -37,17 +37,15 @@ export default class App extends Component<{}, AppState> {
         <div>
           <AppBar
             title="What Nathan Read"
-            style={{backgroundColor: '#0d3c87'}}
+            style={{backgroundColor: '#0d3c87', position: 'fixed'}}
             onLeftIconButtonTouchTap={this.toggleSidebar}
           >
+            <FilterDisplay filterOptions={this.state.filterOptions} />
             <Stats stats={this.state.stats} />
           </AppBar>          
           <AppContainer>
-            <Sidebar onChange={this.receiveBooks} open={this.state.filterShown} />
-            <div>
-              <FilterDisplay filterOptions={this.state.filterOptions} />
-              <BookList books={this.state.books} />
-            </div>
+            <Sidebar onChange={this.receiveBooks} open={this.state.filterShown} /> 
+            <BookList books={this.state.books} />
           </AppContainer>
         </div>
       </MuiThemeProvider>
