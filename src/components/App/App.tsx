@@ -10,7 +10,7 @@ import FilterDisplay from '../FilterOptionsDisplay';
 import Stats from '../Stats';
 
 import './reset.css';
-import { AppContainer, appFont } from './styles';
+import { AppContainer, appFont, FullSizeStats } from './styles';
 
 const muiTheme = getMuiTheme({
   fontFamily: appFont
@@ -40,12 +40,16 @@ export default class App extends Component<{}, AppState> {
             style={{backgroundColor: '#0d3c87', position: 'fixed'}}
             onLeftIconButtonTouchTap={this.toggleSidebar}
           >
-            <FilterDisplay filterOptions={this.state.filterOptions} />
-            <Stats stats={this.state.stats} />
+            <FullSizeStats>
+              <Stats stats={this.state.stats} />
+            </FullSizeStats>
           </AppBar>          
           <AppContainer>
-            <Sidebar onChange={this.receiveBooks} open={this.state.filterShown} /> 
-            <BookList books={this.state.books} />
+            <Sidebar onChange={this.receiveBooks} open={this.state.filterShown} />
+            <div>
+              <FilterDisplay filterOptions={this.state.filterOptions} />
+              <BookList books={this.state.books} />
+            </div>
           </AppContainer>
         </div>
       </MuiThemeProvider>

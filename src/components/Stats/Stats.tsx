@@ -2,7 +2,7 @@ import React from 'react';
 import NumberFormat from 'react-number-format';
 
 import { Stats } from '../types';
-import { StatsContainer } from './styles';
+import { StatsContainer, Stat } from './styles';
 
 interface StatsProps {
     stats: Stats;
@@ -13,19 +13,19 @@ export default ({ stats }: StatsProps) => {
 
     return( 
         <StatsContainer>
-            <div>
+            <Stat>
                 <span>{stats.bookCount}</span><span className="Stats--type"> books</span>
-            </div>
-            <div>
+            </Stat>
+            <Stat>
                 <NumberFormat
                     displayType={'text'}
                     value={stats.pageCount || 0}
                     thousandSeparator={true}
                 />
                 <span> pages</span>
-            </div>
+            </Stat>
             { stats.ratingCount && stats.bookCount &&
-                <div>
+                <Stat>
                     <span>
                         <NumberFormat
                             displayType={'text'}
@@ -34,7 +34,7 @@ export default ({ stats }: StatsProps) => {
                         />
                     </span>
                     <span> avg rating</span>
-                </div>
+                </Stat>
             }
         </StatsContainer>
     );

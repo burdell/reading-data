@@ -4,8 +4,9 @@ export const FilterDisplay = styled('div')`
     font-style: italic;
     margin-left: 2rem;
     margin-top: 1rem;
-    color: #7c7c7c;
+    color: #c1c1c1;
     font-size: .8rem;
+    padding-top: .5rem;
 `;
 
 export const FilterRating = styled('span')`
