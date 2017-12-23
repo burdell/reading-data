@@ -3,7 +3,6 @@ import styled from 'react-emotion';
 export const Sidebar = styled('div')`
     flex: 2;
     background-color: #fff;
-    border-right: 1px solid #e1e1e1;
     padding: 0 1rem;
 `;
 

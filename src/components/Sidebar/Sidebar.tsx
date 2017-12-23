@@ -1,4 +1,6 @@
 import React from 'react';
+import { Menu } from 'antd';
+import 'antd/lib/menu/style/css';
 
 import { Book, BookDataService, FilterOptions, Stats } from '../types';
 import { Sidebar } from './styles';
@@ -50,10 +52,12 @@ export default class SidebarComponent extends React.Component<SidebarProps, Side
     render() {
         return (
             <Sidebar>
-                <Filter
-                    defaultFilters={this.defaultFilter}
-                    onFilter={this.filter}
-                />
+                <Menu mode="vertical">
+                    <Filter
+                        defaultFilters={this.defaultFilter}
+                        onFilter={this.filter}
+                    />
+                </Menu>
             </Sidebar>
         );
     }

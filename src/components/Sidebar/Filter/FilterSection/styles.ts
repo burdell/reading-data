@@ -11,6 +11,6 @@ export const FilterSectionContent = styled('div')`
 
 export const FilterSectionTitle = styled('div')`
     font-size: 1.3rem;
-    border-bottom: 1px solid #cecece;
     margin-bottom: .3rem;
+    border-bottom: 1px solid #e8e8e8;
 `;

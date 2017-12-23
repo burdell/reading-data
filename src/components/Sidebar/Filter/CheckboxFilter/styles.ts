@@ -7,7 +7,7 @@ export const CheckboxFilter = styled('div')`
 export const ClearFilter = styled('div')`
     position: absolute;
     top: -35px;
-    right: 5px;
+    right: 10px;
 
     :before {
         content: 'Clear';
