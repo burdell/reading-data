@@ -3,11 +3,11 @@ import styled from 'react-emotion';
 export const Sidebar = styled('div')`
     flex: 2;
     background-color: #fff;
-    border-right: 1px solid #e1e1e1
+    border-right: 1px solid #e1e1e1;
+    padding: 0 1rem;
 `;
 
 export const SidebarSection = styled('div')`
-    padding: 1.5rem;
     line-height: 1.5;
     font-size: 1.2rem;
     font-weight: 100;

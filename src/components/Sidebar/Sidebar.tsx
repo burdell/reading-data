@@ -1,10 +1,7 @@
 import React from 'react';
-import Drawer from 'material-ui/Drawer';
-import Button from 'material-ui/FloatingActionButton';
 
 import { Book, BookDataService, FilterOptions, Stats } from '../types';
-import { CloseAction } from './styles';
-
+import { Sidebar } from './styles';
 import Filter from './Filter';
 import DataService from '../../data/data-service';
 
@@ -52,17 +49,12 @@ export default class SidebarComponent extends React.Component<SidebarProps, Side
 
     render() {
         return (
-            <Drawer open={this.state.open}>
-                <CloseAction>
-                    <Button mini={true} onClick={this.close}>X</Button>
-                </CloseAction>
-                <div className="FilterBar">
-                    <Filter
-                        defaultFilters={this.defaultFilter}
-                        onFilter={this.filter}
-                    />
-                </div>
-            </Drawer>
+            <Sidebar>
+                <Filter
+                    defaultFilters={this.defaultFilter}
+                    onFilter={this.filter}
+                />
+            </Sidebar>
         );
     }
 

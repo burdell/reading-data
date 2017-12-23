@@ -3,7 +3,7 @@ import styled from 'react-emotion';
 import { queries } from '../../shared/breakpoints';
 
 export const BookList = styled('div')`
-    flex: 8;
+    flex: 10;
     background-color: #fff;
     display: flex;
     justify-content: space-between;

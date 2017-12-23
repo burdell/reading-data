@@ -1,22 +1,16 @@
 import React from 'react';
-import { RaisedButton as Button } from 'material-ui';
-
-// import { buttonColor } from '../../../shared/colors';
+import { Button } from 'antd';
+import 'antd/lib/button/style/css';
 
 interface ButtonProps {
     children: JSX.Element | string[] | string;
+    shape?: 'circle';
     onClick(e: any): void;
 }
-
-const styleOverrides = {
-    fontSize: '.8rem'
-};
 
 export default ({ children, ...props }: ButtonProps) => {
     return (
         <Button
-            style={styleOverrides}
-            fullWidth={true}
             {...props}
         >
             {children}

@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/material-ui": "^0.18.4",
     "@types/papaparse": "^4.1.31",
+    "antd": "^3.0.3",
     "babel-plugin-emotion": "^8.0.10",
     "emotion": "^8.0.10",
     "lodash": "^4.17.4",
-    "material-ui": "^0.19.4",
     "papaparse": "^4.3.6",
     "raw-loader": "^0.5.1",
     "react": "^16.0.0",

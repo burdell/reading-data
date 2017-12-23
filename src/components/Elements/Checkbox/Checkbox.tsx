@@ -1,6 +1,9 @@
 import React from 'react';
-import { Checkbox } from 'material-ui';
+import { Checkbox } from 'antd';
+import 'antd/lib/checkbox/style/css';
+
 import { CheckboxSelection } from './';
+import { Label, LabelDisplay } from './styles';
 
 interface CheckboxProps {
     isChecked: boolean;
@@ -12,16 +15,20 @@ interface CheckboxProps {
 
 export default ({ label, isChecked, onSelect, name, value }: CheckboxProps) => {
     return(
-        <Checkbox
-            name={name}
-            checked={isChecked}
-            onCheck={(event: any, checked: boolean) => onSelect({
-                field: event.target.name,
-                selected: checked,
-                value: Number(event.target.value)
-            })}
-            label={label}
-            value={value || label}
-        />
+        <Label>
+            <Checkbox
+                name={name}
+                checked={isChecked}
+                onChange={(e) => {
+                    onSelect({
+                        field: e.target.name,
+                        selected: e.target.checked,
+                        value: Number(e.target.value)
+                    });
+                }}
+                value={value || label}
+            />
+            <LabelDisplay>{label}</LabelDisplay>
+        </Label>
     );
 };

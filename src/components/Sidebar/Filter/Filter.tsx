@@ -8,7 +8,7 @@ import { CheckboxSelection } from '../../Elements/Checkbox';
 import CheckboxFilter from './CheckboxFilter/CheckboxFilter';
 import { ratingGenerator } from '../../Rating';
 
-import { SidebarSection, SidebarHeader } from '../styles';
+import { SidebarSection } from '../styles';
 
 interface FilterProps {
     defaultFilters: FilterOptions;
@@ -32,7 +32,6 @@ export default class Filter extends React.Component<FilterProps, FilterState> {
     public render() {
         return (
             <SidebarSection>
-                <SidebarHeader>Filter</SidebarHeader>
                 <FilterSection title="Year">                    
                     <CheckboxFilter
                         field="year"
