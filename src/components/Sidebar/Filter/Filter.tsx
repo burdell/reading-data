@@ -1,17 +1,17 @@
 import React from 'react';
 
-import { FilterOptions } from '../../types';
+import { FilterOptions, Stats as IStats } from '../../types';
 import FilterSection from './FilterSection';
 import { possibleMonths, possibleRatings, possibleYears, emptyFilter, monthMap } from './filters';
-
 import { CheckboxSelection } from '../../Elements/Checkbox';
 import CheckboxFilter from './CheckboxFilter/CheckboxFilter';
 import { ratingGenerator } from '../../Rating';
-
 import { SidebarSection } from '../styles';
+import Stats from '../../Stats';
 
 interface FilterProps {
     defaultFilters: FilterOptions;
+    stats: IStats;
     onFilter(f: FilterOptions);
 }
 
@@ -32,6 +32,9 @@ export default class Filter extends React.Component<FilterProps, FilterState> {
     public render() {
         return (
             <SidebarSection>
+                <FilterSection title="Stats">
+                    <Stats stats={this.props.stats} />
+                </FilterSection>
                 <FilterSection title="Year">                    
                     <CheckboxFilter
                         field="year"

@@ -14,6 +14,7 @@ interface SidebarProps {
 
 interface SidebarState {
     open: boolean;
+    stats: Stats;
 }
 
 export default class SidebarComponent extends React.Component<SidebarProps, SidebarState> {
@@ -24,7 +25,8 @@ export default class SidebarComponent extends React.Component<SidebarProps, Side
         super(props);
 
         this.state = {
-            open: props.open
+            open: props.open,
+            stats: null
         };
 
         this.dataService = new DataService() as BookDataService;
@@ -56,6 +58,7 @@ export default class SidebarComponent extends React.Component<SidebarProps, Side
                     <Filter
                         defaultFilters={this.defaultFilter}
                         onFilter={this.filter}
+                        stats={this.state.stats}
                     />
                 </Menu>
             </Sidebar>
@@ -64,6 +67,7 @@ export default class SidebarComponent extends React.Component<SidebarProps, Side
 
     filter(filterOptions: FilterOptions) {
         const { books, stats } = this.dataService.filter(filterOptions);
+        this.setState({ stats });
         this.props.onChange(books, stats, filterOptions);
     }
 
