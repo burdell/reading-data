@@ -1,5 +1,7 @@
 import styled from 'react-emotion';
 
+import { queries } from '../../shared/breakpoints';
+
 export const Sidebar = styled('div')`
     background-color: #fff;
 `;
@@ -29,4 +31,17 @@ export const CloseAction = styled('div')`
     position: absolute;
     right: 10px;
     top: 5px;
+    z-index: 10000
+    display: none;
+    cursor: pointer;
+
+    background-color: #5b6c87;
+    padding: .3rem .5rem;
+    color: #fff;
+    border-radius: 50%;
+
+    ${queries.small`
+        display: inline-block;
+    `}
+
 `;

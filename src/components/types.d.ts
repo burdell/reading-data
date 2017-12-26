@@ -1,6 +1,5 @@
 export interface AppState {
     books: Book[];
-    filterShown: boolean;
     stats: Stats;
     filterOptions: FilterOptions;
     mql: any;

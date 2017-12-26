@@ -53,16 +53,12 @@ export const BookInfo = styled('div')`
 `;
 
 export const BookAuthor = styled('span')`
-    font-size: .8rem;
+    font-size: .7rem;
     color: rgb(160, 160, 160);
 `;
 
 export const BookTitle = styled('div')`
     font-size: .9rem;
-
-    ${queries.small`
-        font-size: .8rem;
-    `}
 
     ${queries.small`
         font-size: 1rem;

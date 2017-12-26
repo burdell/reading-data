@@ -35,11 +35,11 @@ export default ({ book, reviewShown, onSelect }: BookProps) => {
                     </Cover>                    
                     <BookDetails>
                         <BookInfo>
-                            <ReadDate className="Book--read-date">
+                            <ReadDate>
                                 <Date locale="en-us">{book['Date Read']}</Date>
                             </ReadDate>
-                            <BookTitle className="Book--title">{book.Title}</BookTitle>
-                            <BookAuthor className="Book--author">{book.Author}</BookAuthor>
+                            <BookTitle>{book.Title}</BookTitle>
+                            <BookAuthor>{book.Author}</BookAuthor>
                         </BookInfo>
                         <Rating rating={book['My Rating']} />
                     </BookDetails>

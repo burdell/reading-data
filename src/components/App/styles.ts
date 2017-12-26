@@ -5,20 +5,13 @@ import { queries } from '../../shared/breakpoints';
 export const appFont = 'Montserrat';
 
 export const AppContainer = styled('div')`
-    display: flex;
     font-family: ${appFont}
 `;
 
-export const FullSizeStats = styled('div')`
-    ${queries.small`
-        display: none;
-    `}
-`;
-
-export const SmallSizeStats = styled('div')`
-    display: none;
+export const BodyContainer = styled('div')`
+    display: flex;
 
     ${queries.small`
-        display: inline-block;
+        margin-top: 3rem;
     `}
 `;

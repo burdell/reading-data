@@ -4,9 +4,10 @@ import ReactSidebar from 'react-sidebar';
 import { AppState, Book, Stats as IStats, FilterOptions } from '../types';
 import BookList from '../BookList';
 import Sidebar from '../Sidebar';
+import Header from '../Header';
 import { breakpoints } from '../../shared/breakpoints';
 import './reset.css';
-import { AppContainer } from './styles';
+import { AppContainer, BodyContainer } from './styles';
 
 const mql = window.matchMedia(`(min-width: ${breakpoints.small}rem)`);
 export default class App extends Component<{}, AppState> {
@@ -18,7 +19,6 @@ export default class App extends Component<{}, AppState> {
     
     this.state = {
       books: [],
-      filterShown: false,
       stats: null,
       filterOptions: null,
       mql,
@@ -32,18 +32,24 @@ export default class App extends Component<{}, AppState> {
 
   public render(): JSX.Element {
     return (
-        <div>
+        <AppContainer>
           <ReactSidebar
-            sidebar={<Sidebar onChange={this.receiveBooks} open={this.state.filterShown} />}
+            sidebar={
+              <Sidebar
+                onChange={this.receiveBooks}
+                open={this.state.sidebarOpen}
+                toggleSidebar={this.toggleSidebar} 
+              />}
             docked={this.state.sidebarDocked}
             open={this.state.sidebarOpen}
             onSetOpen={this.onSetSidebarOpen}
           >
-            <AppContainer>
+            <Header toggleSidebar={this.toggleSidebar}/>
+            <BodyContainer>
               <BookList books={this.state.books} />
-            </AppContainer>
+            </BodyContainer>
           </ReactSidebar>
-        </div>
+        </AppContainer>
     );
   }
 
@@ -61,7 +67,8 @@ export default class App extends Component<{}, AppState> {
   }
 
   private toggleSidebar() {
-    this.setState({ filterShown: true });
+    console.log('toggleSidebar');
+    this.setState({ sidebarOpen: !this.state.sidebarOpen });
   }
 
   private mediaQueryChanged() {

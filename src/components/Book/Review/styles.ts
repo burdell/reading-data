@@ -1,10 +1,19 @@
 import styled from 'react-emotion';
+import { queries } from '../../../shared/breakpoints';
 
 export const BookReview = styled('div')`
     margin-top: 1rem;
-    font-Size: .8rem;
+    font-size: .8rem;
     color: rgb(90, 90, 90);
     line-height: 1.5;
+
+    ${queries.medium`
+        font-size: .7rem;
+    `}
+
+    ${queries.small`
+        font-size: .8rem;
+    `}
 
     .book-review {
         max-height: 0;
@@ -14,6 +23,6 @@ export const BookReview = styled('div')`
 
     .book-review.shown {
         max-height: 50rem;
-        transition: max-height .2s ease-in-out;
+        transition: max-height .3s ease-in-out;
     }
 `;
