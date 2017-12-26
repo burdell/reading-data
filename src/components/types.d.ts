@@ -1,8 +1,11 @@
 export interface AppState {
     books: Book[];
     filterShown: boolean;
-    stats: Stats,
-    filterOptions: FilterOptions
+    stats: Stats;
+    filterOptions: FilterOptions;
+    mql: any;
+    sidebarOpen: boolean;
+    sidebarDocked: boolean;
 }
   
 export interface Book {

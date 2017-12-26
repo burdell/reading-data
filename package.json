@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/papaparse": "^4.1.31",
+    "@types/react-sidebar": "^2.2.2",
     "antd": "^3.0.3",
     "babel-plugin-emotion": "^8.0.10",
     "emotion": "^8.0.10",
@@ -16,6 +17,8 @@
     "react-format": "^1.2.0",
     "react-number-format": "^3.0.1",
     "react-scripts-ts": "2.8.0",
+    "react-sidebar": "^2.3.2",
+    "react-transition-group": "^2.2.1",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.76.0"
   },

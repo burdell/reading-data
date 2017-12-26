@@ -1,15 +1,15 @@
 import styled from 'react-emotion';
 
 export const Sidebar = styled('div')`
-    flex: 2;
     background-color: #fff;
-    padding: 0 1rem;
 `;
 
 export const SidebarSection = styled('div')`
     line-height: 1.5;
     font-size: 1.2rem;
     font-weight: 100;
+    width: 10.5rem;
+    padding-left: .5rem;
 `;
 
 export const SidebarHeader = styled('div')`
@@ -22,7 +22,7 @@ export const SidebarContent = styled('div')`
 `;
 
 export const SidebarType = styled('div')`
-    color: rgb(136, 136, 136);s
+    color: rgb(136, 136, 136);
 `;
 
 export const CloseAction = styled('div')`

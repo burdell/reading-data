@@ -5,9 +5,9 @@ interface Breakpoints {
     small(s: TemplateStringsArray): string;
 }
 
-const breakpoints = {
-    medium: 59.75,
-    small: 40
+export const breakpoints = {
+    medium: 68,
+    small: 46
   };
   
 export const queries = Object.keys(breakpoints).reduce((accumulator, label) => {

@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 
-const coverImageWidth = '7rem';
+import { queries } from '../../shared/breakpoints';
 
 export const Book = styled('div')`
     line-height: 1;
@@ -17,9 +17,19 @@ export const Cover = styled('div')`
 `;
 
 export const CoverImage = styled('img')`
-    width: ${coverImageWidth};
+    width: 7rem;
     box-shadow: 0px 0px 5px 0px rgba(180,180,180,1);
     max-height: 12rem;
+
+    transition: width .3s;
+
+    ${queries.medium`
+        width: 6rem;
+    `}
+
+    ${queries.small`
+        width: 7.5rem;
+    `}
 `;
 
 export const ReadDate = styled('div')`
@@ -55,7 +65,15 @@ export const BookAuthor = styled('span')`
 `;
 
 export const BookTitle = styled('div')`
-    font-size: 1rem;
+    font-size: .9rem;
+
+    ${queries.small`
+        font-size: .8rem;
+    `}
+
+    ${queries.small`
+        font-size: 1rem;
+    `}
 `;
 
 export const ActionsContainer = styled('div')`
@@ -64,16 +82,24 @@ export const ActionsContainer = styled('div')`
     margin-top: .2rem;
 `;
 
-export const ReviewToggle = styled('a')`
+export const ReviewToggle = styled('div')`
     cursor: pointer;
-    font-size: .8rem;
+    font-size: .6rem;
     background-color: #f2f2f2;
     padding: .5rem .5rem;
     display: inline-block;
-    width: 100%;
+    min-width: 7rem;
 
     :hover {
         color: #376bbf;
-        box-shadow: 0px 0px 1px -3px rgba(0,0,0,0.3);;
+        box-shadow: 0px 0px 1px -3px rgba(0,0,0,0.3);
     }
+
+    ${queries.medium`
+        min-width: 6rem;
+    `}
+
+    ${queries.small`
+        min-width: 7.5rem;
+    `}
 `;
