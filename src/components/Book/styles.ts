@@ -21,7 +21,7 @@ export const CoverImage = styled('img')`
     box-shadow: 0px 0px 5px 0px rgba(180,180,180,1);
     max-height: 12rem;
 
-    transition: width .3s;
+    transition: all .3s ease-in-out;
 
     ${queries.medium`
         width: 6rem;

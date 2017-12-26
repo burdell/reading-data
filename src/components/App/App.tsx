@@ -67,7 +67,6 @@ export default class App extends Component<{}, AppState> {
   }
 
   private toggleSidebar() {
-    console.log('toggleSidebar');
     this.setState({ sidebarOpen: !this.state.sidebarOpen });
   }
 

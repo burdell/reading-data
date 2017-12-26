@@ -9,32 +9,35 @@ interface StatsProps {
 }
 
 export default ({ stats }: StatsProps) => {
-    if (!stats) { return null; }
-
     return( 
         <StatsContainer>
-            <Stat>
-                <span>{stats.bookCount}</span><span className="Stats--type"> books</span>
-            </Stat>
-            <Stat>
-                <NumberFormat
-                    displayType={'text'}
-                    value={stats.pageCount || 0}
-                    thousandSeparator={true}
-                />
-                <span> pages</span>
-            </Stat>
-            { stats.ratingCount && stats.bookCount &&
-                <Stat>
-                    <span>
+            {(stats && stats.bookCount !== 0) &&
+                <span>
+                    <Stat>
+                        <span>{stats.bookCount}</span><span className="Stats--type"> books</span>
+                    </Stat>
+                    <Stat>
                         <NumberFormat
                             displayType={'text'}
-                            value={stats.ratingCount / stats.bookCount}
-                            decimalScale={2}
+                            value={stats.pageCount}
+                            thousandSeparator={true}
                         />
-                    </span>
-                    <span> avg rating</span>
-                </Stat>
+                        <span> pages</span>
+                    </Stat>
+                    <Stat>
+                        <span>
+                            <NumberFormat
+                                displayType={'text'}
+                                value={stats.ratingCount / stats.bookCount}
+                                decimalScale={2}
+                            />
+                        </span>
+                        <span> avg rating</span>
+                    </Stat>
+                </span>
+            }
+            {(!stats || stats.bookCount === 0) &&
+                <div>No books</div>
             }
         </StatsContainer>
     );

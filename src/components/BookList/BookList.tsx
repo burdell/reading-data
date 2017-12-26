@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Book as IBook } from '../types';
 import Book from '../Book';
+import NoBooks from './NoBooks';
 
 import { BookList, Book as BooklistBook } from './styles';
 
@@ -26,7 +27,7 @@ export default class BookListComponent extends React.Component<ListProps, ListSt
     render() {
         const books = this.props.books;
         if (!books || books.length === 0) {
-            return <h1>No books :(</h1>;
+            return <NoBooks />;
         }
     
         return (
