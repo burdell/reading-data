@@ -52,13 +52,6 @@ export const BookInfo = styled('div')`
     margin-bottom: .3rem;
 `;
 
-export const BookReview = styled('div')`
-    margin-top: 1rem;
-    font-Size: .8rem;
-    color: rgb(90, 90, 90);
-    line-height: 1.5;
-`;
-
 export const BookAuthor = styled('span')`
     font-size: .8rem;
     color: rgb(160, 160, 160);

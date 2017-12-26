@@ -3,6 +3,7 @@ import { Date } from 'react-format';
 
 import { Book as IBook } from '../types';
 import Rating from '../Rating';
+import Review from './Review';
 
 import {
     ActionsContainer,
@@ -13,10 +14,9 @@ import {
     ReadDate,
     BookDetails,
     BookInfo,
-    BookReview,
     BookAuthor,
     BookTitle,
-    ReviewToggle
+    ReviewToggle,
 } from './styles';
 
 interface BookProps {
@@ -52,11 +52,7 @@ export default ({ book, reviewShown, onSelect }: BookProps) => {
                     }
                 </ActionsContainer>
             </div>
-            {reviewShown &&
-                <BookReview>
-                    <div dangerouslySetInnerHTML={{__html: book['My Review']}} />
-                </BookReview>
-            }
+            <Review review={book['My Review']} isShown={reviewShown} />
         </Book>
     );   
 };
