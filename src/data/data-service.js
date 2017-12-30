@@ -1,21 +1,19 @@
 import Papa from 'papaparse';
 import _ from 'lodash';
 
-import readingData from './raw_data';
+import readingData from './data';
 
 function formatResult(data) {
   const columns = data.shift(); 
   return _.map(data, (book) => {
-    return _.transform(columns, (accumulator, columnName, index) => {
-      let value = book[index];
+    const isbn = book.ISBN;
+    const parsedISBN = isbn.match(/="(.+)"/);
+    book.ISBN = parsedISBN ? parsedISBN[1] : isbn;
+    if (book.Title === "Growing in Christ") {
+      console.log(isbn, parsedISBN);
+    }
 
-      if (value && columnName === 'ISBN') {
-        const parsedISBN = value.match(/="(\d+.)"/);
-        value = parsedISBN ? parsedISBN[1] : "";        
-      }      
-
-      return accumulator[columnName] = value;
-    }, {})
+    return book;
   });
 }
 
@@ -25,14 +23,7 @@ export default class DataService {
     this.chainValue = null;
 
     this.filterFns = [];
-    Papa.parse(readingData, {
-      complete: (result) => {
-        if (result.errors.length > 0) return null;
-        if (!result.data[0][0]) result.data.shift();
-
-        this.readingData = formatResult(result.data);
-      }
-    });
+    this.readingData = formatResult(readingData);
   }
 
   read(read = true) {
@@ -100,7 +91,7 @@ export default class DataService {
         });
 
         if (bookIsValid) {
-            pageCount += Number(book['Number of Pages']);
+            pageCount += Number(book['Number of Pages']) || 0;
             ratingCount += Number(book['My Rating']);
         }
 

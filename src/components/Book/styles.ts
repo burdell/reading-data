@@ -17,18 +17,18 @@ export const Cover = styled('div')`
 `;
 
 export const CoverImage = styled('img')`
-    width: 7rem;
+    width: 8rem;
     box-shadow: 0px 0px 5px 0px rgba(180,180,180,1);
     max-height: 12rem;
 
     transition: all .3s ease-in-out;
 
     ${queries.medium`
-        width: 6rem;
+        width: 6.5rem;
     `}
 
     ${queries.small`
-        width: 7.5rem;
+        width: 8rem;
     `}
 `;
 
@@ -55,10 +55,22 @@ export const BookInfo = styled('div')`
 export const BookAuthor = styled('span')`
     font-size: .7rem;
     color: rgb(160, 160, 160);
+
+    ${queries.medium`
+        font-size: .5rem;
+    `}
+
+    ${queries.small`
+        font-size: .7rem;
+    `}
 `;
 
 export const BookTitle = styled('div')`
     font-size: .9rem;
+
+    ${queries.medium`
+        font-size: .75rem;
+    `}
 
     ${queries.small`
         font-size: 1rem;
@@ -77,7 +89,7 @@ export const ReviewToggle = styled('div')`
     background-color: #f2f2f2;
     padding: .5rem .5rem;
     display: inline-block;
-    min-width: 7rem;
+    min-width: 8rem;
 
     :hover {
         color: #376bbf;
@@ -85,10 +97,10 @@ export const ReviewToggle = styled('div')`
     }
 
     ${queries.medium`
-        min-width: 6rem;
+        min-width: 6.5rem;
     `}
 
     ${queries.small`
-        min-width: 7.5rem;
+        min-width: 8rem;
     `}
 `;
