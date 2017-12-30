@@ -8,7 +8,7 @@ function formatResult(data) {
     const isbn = book.ISBN;
     const parsedISBN = isbn.match(/="(.+)"/);
     book.ISBN = parsedISBN ? parsedISBN[1] : isbn;
-    console.log(book);
+     
     return book;
   });
 }
