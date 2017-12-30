@@ -3,16 +3,12 @@ import _ from 'lodash';
 
 import readingData from './data';
 
-function formatResult(data) {
-  const columns = data.shift(); 
+function formatResult(data) {  
   return _.map(data, (book) => {
     const isbn = book.ISBN;
     const parsedISBN = isbn.match(/="(.+)"/);
     book.ISBN = parsedISBN ? parsedISBN[1] : isbn;
-    if (book.Title === "Growing in Christ") {
-      console.log(isbn, parsedISBN);
-    }
-
+    console.log(book);
     return book;
   });
 }
