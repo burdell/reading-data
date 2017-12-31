@@ -8,6 +8,8 @@ import Header from '../Header';
 import { breakpoints } from '../../shared/breakpoints';
 import './reset.css';
 import { AppContainer, BodyContainer } from './styles';
+import ScrollToTop from '../ScrollToTop';
+import scroll from '../ScrollToTop/scroll';
 
 const mql = window.matchMedia(`(min-width: ${breakpoints.small}rem)`);
 export default class App extends Component<{}, AppState> {
@@ -45,8 +47,9 @@ export default class App extends Component<{}, AppState> {
             onSetOpen={this.onSetSidebarOpen}
           >
             <Header toggleSidebar={this.toggleSidebar}/>
-            <BodyContainer>
+            <BodyContainer id="body-container">
               <BookList books={this.state.books} />
+              <ScrollToTop />
             </BodyContainer>
           </ReactSidebar>
         </AppContainer>
@@ -63,8 +66,7 @@ export default class App extends Component<{}, AppState> {
   }
 
   public receiveBooks(books: Book[], stats: IStats, filterOptions: FilterOptions) {
-    window.scrollTo(0, 0);
-    
+    scroll();
     this.setState({ books, stats, filterOptions });
   }
 
