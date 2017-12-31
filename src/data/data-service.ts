@@ -1,22 +1,25 @@
-import Papa from 'papaparse';
-import _ from 'lodash';
+// tslint:disable:typedef
+
+import { map, indexOf, each, chain, isUndefined, isNull } from 'lodash';
 
 import readingData from './data';
 
 function formatResult(data) {  
-  return _.map(data, (book) => {
+  return map(data, (book) => {
     const isbn = book.ISBN;
     const parsedISBN = isbn.match(/="(.+)"/);
     book.ISBN = parsedISBN ? parsedISBN[1] : isbn;
-     
+
     return book;
   });
 }
 
 export default class DataService {
+  private readingData: any[];
+  private filterFns: any[];
+
   constructor() {
     this.readingData = [];
-    this.chainValue = null;
 
     this.filterFns = [];
     this.readingData = formatResult(readingData);
@@ -34,10 +37,10 @@ export default class DataService {
   year(desiredYears, dateAttribute = 'Date Read') {
     this.filterFns.push((book) => {
       const date = book[dateAttribute];
-      if (!date) return false;
+      if (!date) { return false; }
 
       const year = date.split('/').shift();
-      return (_.indexOf(desiredYears, Number(year)) >= 0);
+      return (indexOf(desiredYears, Number(year)) >= 0);
     });
 
     return this;
@@ -46,11 +49,11 @@ export default class DataService {
   month(desiredMonths, dateAttribute = 'Date Read') {
     this.filterFns.push((book) => {
       const date = book[dateAttribute];
-      if (!date) return false;
+      if (!date) { return false; }
 
       const month = date.split('/')[1];
-      return _.indexOf(desiredMonths, Number(month)) >= 0;
-    })
+      return indexOf(desiredMonths, Number(month)) >= 0;
+    });
 
     return this;
   }
@@ -58,32 +61,32 @@ export default class DataService {
   rating(desiredRatings) {
     this.filterFns.push((book) => {
       const bookRating = Number(book['My Rating']);
-      return _.indexOf(desiredRatings, bookRating) >= 0;
+      return indexOf(desiredRatings, bookRating) >= 0;
     });
 
     return this;
   }
 
   filter(options) {
-    _.each(options, (value, key) => {
-        if (_.isUndefined(value) || _.isNull(value) || value.length === 0) return;
+    each(options, (value, key) => {
+        if (isUndefined(value) || isNull(value) || value.length === 0) { return; }
         const filterFn = this[key];
-        if (filterFn) this[key](value);
-      })
+        if (filterFn) { this[key](value); }
+      });
 
-      return this.value();
+    return this.value();
   }
 
   value() {
     let pageCount = 0;
     let ratingCount = 0;
     
-    const books = _.chain(this.readingData)
+    const books = chain(this.readingData)
       .filter((book) => {
         let bookIsValid = true;
-        _.each(this.filterFns, (fn) => {
+        each(this.filterFns, (fn) => {
             let valid = fn(book);
-            if (!valid) bookIsValid = false;
+            if (!valid) { bookIsValid = false; }
         });
 
         if (bookIsValid) {
@@ -105,6 +108,6 @@ export default class DataService {
         pageCount,
         ratingCount
       }
-    }
+    };
   }
 }

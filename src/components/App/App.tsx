@@ -63,7 +63,8 @@ export default class App extends Component<{}, AppState> {
   }
 
   public receiveBooks(books: Book[], stats: IStats, filterOptions: FilterOptions) {
-    document.getElementsByTagName('body')[0].scrollTop = 0;
+    window.scrollTo(0, 0);
+    
     this.setState({ books, stats, filterOptions });
   }
 
