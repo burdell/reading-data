@@ -13,7 +13,6 @@ export const BookList = styled('div')`
 
 export const Book = styled('div')`
     width: 32%;
-    margin: 1rem 0;
 
     ${queries.medium`
         width: 49%;
@@ -21,6 +20,5 @@ export const Book = styled('div')`
 
     ${queries.small`
         width: 100%;
-        margin: 1rem auto;
     `}
 `;

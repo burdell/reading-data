@@ -79,6 +79,7 @@ export default class App extends Component<{}, AppState> {
   }
 
   private onSetSidebarOpen() {
-    this.setState({ sidebarOpen: true });
+    const sidebarOpen = arguments[0];
+    this.setState({ sidebarOpen });
   }
 }

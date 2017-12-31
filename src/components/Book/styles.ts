@@ -45,6 +45,12 @@ export const BookDetails = styled('div')`
     display: flex;
     flex-direction: column;
     width: 100%;
+
+    ${queries.medium`
+        .rating-display {
+            font-size: .8rem;
+        }
+    `}
 `;
 
 export const BookInfo = styled('div')`
@@ -57,7 +63,7 @@ export const BookAuthor = styled('span')`
     color: rgb(160, 160, 160);
 
     ${queries.medium`
-        font-size: .5rem;
+        font-size: .6rem;
     `}
 
     ${queries.small`
@@ -69,7 +75,7 @@ export const BookTitle = styled('div')`
     font-size: .9rem;
 
     ${queries.medium`
-        font-size: .75rem;
+        font-size: .8rem;
     `}
 
     ${queries.small`

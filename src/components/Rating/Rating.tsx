@@ -10,7 +10,9 @@ interface RatingProps {
 export default ({ rating }: RatingProps): JSX.Element => {
     const ratingNum = Number(rating);
     return (
-        <Rating>{ratingGenerator(ratingNum)}</Rating>
+        <Rating>
+            <div className="rating-display">{ratingGenerator(ratingNum)}</div>
+        </Rating>
     );
 };
  

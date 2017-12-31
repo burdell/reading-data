@@ -10,6 +10,7 @@ export const Header = styled('div')`
     position: fixed;
     top: 0;
     padding: 0 .8rem;
+    z-index: 1;
 
     -webkit-box-shadow: 0px 2px 5px 0px rgba(204,204,204,1);
     -moz-box-shadow: 0px 2px 5px 0px rgba(204,204,204,1);
@@ -24,7 +25,7 @@ export const Header = styled('div')`
 
 export const HeaderText = styled('div')`
     font-weight: 800;
-    font-size: 1.2rem;
+    font-size: 1rem;
 `;
 
 export const FilterToggle = styled('div')`
