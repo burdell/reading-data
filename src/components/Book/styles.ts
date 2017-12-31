@@ -51,6 +51,12 @@ export const BookDetails = styled('div')`
             font-size: .8rem;
         }
     `}
+
+    ${queries.small`
+        .rating-display {
+            font-size: 1rem;
+        }
+    `}
 `;
 
 export const BookInfo = styled('div')`
