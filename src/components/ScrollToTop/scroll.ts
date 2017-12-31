@@ -1,4 +1,4 @@
 export default function scrollToTop() {
-    const parent = document.getElementById('body-container').parentNode as any;
-    parent.scrollTop = 0;
+    const parent = document.getElementById('body-container').parentElement as any;
+    parent.scroll({ top: 0, behavior: 'smooth' });
 }

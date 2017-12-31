@@ -34,4 +34,5 @@ export const FilterToggle = styled('div')`
     color: white;
     float: right;
     font-size: .8rem;
+    cursor: pointer;
 `;
