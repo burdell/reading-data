@@ -1,13 +1,13 @@
-import styled from 'react-emotion';
+import styled from 'react-emotion'
 
-import { queries } from '../../shared/breakpoints';
+import { queries } from '../../shared/breakpoints'
 
-export const appFont = 'Montserrat';
+export const appFont = 'Montserrat'
 
 export const AppContainer = styled('div')`
     font-family: ${appFont};
     display: relative;
-`;
+`
 
 export const BodyContainer = styled('div')`
     display: flex;
@@ -15,4 +15,4 @@ export const BodyContainer = styled('div')`
     ${queries.small`
         margin-top: 3rem;
     `}
-`;
+`

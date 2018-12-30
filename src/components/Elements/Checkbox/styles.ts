@@ -1,10 +1,10 @@
-import styled from 'react-emotion';
+import styled from 'react-emotion'
 
 export const Label = styled('label')`
-    font-size: .9rem;
-`;
+    font-size: 0.9rem;
+`
 
 export const LabelDisplay = styled('span')`
-    margin-left: .2rem;
+    margin-left: 0.2rem;
     cursor: pointer;
-`;
+`

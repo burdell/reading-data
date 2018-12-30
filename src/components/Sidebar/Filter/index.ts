@@ -1,4 +1,4 @@
-import { translateMonth } from './filters';
-import FilterComponent from './Filter';
+import { translateMonth } from './filters'
+import FilterComponent from './Filter'
 
-export { FilterComponent as default, translateMonth };
+export { FilterComponent as default, translateMonth }

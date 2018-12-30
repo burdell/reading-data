@@ -1,6 +1,6 @@
-import styled from 'react-emotion';
+import styled from 'react-emotion'
 
-import { queries } from '../../shared/breakpoints';
+import { queries } from '../../shared/breakpoints'
 
 export const BookList = styled('div')`
     flex: 10;
@@ -9,7 +9,7 @@ export const BookList = styled('div')`
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 0 1rem;
-`;
+`
 
 export const Book = styled('div')`
     width: 32%;
@@ -21,4 +21,4 @@ export const Book = styled('div')`
     ${queries.small`
         width: 100%;
     `}
-`;
+`

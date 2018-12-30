@@ -1,10 +1,14 @@
-import React from 'react';
+import React from 'react'
 
-import { FilterSection, FilterSectionContent, FilterSectionTitle } from './styles';
+import {
+    FilterSection,
+    FilterSectionContent,
+    FilterSectionTitle
+} from './styles'
 
 interface FilterSectionProps {
-    children: any;
-    title: string;
+    children: any
+    title: string
 }
 
 export default ({ children, title }: FilterSectionProps) => {
@@ -13,5 +17,5 @@ export default ({ children, title }: FilterSectionProps) => {
             <FilterSectionTitle>{title}</FilterSectionTitle>
             <FilterSectionContent>{children}</FilterSectionContent>
         </FilterSection>
-    );
-};
+    )
+}

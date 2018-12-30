@@ -1,8 +1,8 @@
-import styled from 'react-emotion';
+import styled from 'react-emotion'
 
 export const CheckboxFilter = styled('div')`
     position: relative;
-`;
+`
 
 export const ClearFilter = styled('div')`
     position: absolute;
@@ -12,11 +12,11 @@ export const ClearFilter = styled('div')`
     :before {
         content: 'Clear';
         color: #cecece;
-        font-size: .7rem;
+        font-size: 0.7rem;
         cursor: pointer;
     }
 
     :before :hover {
         color: red;
     }
-`;
+`

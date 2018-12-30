@@ -1,20 +1,21 @@
-import React from 'react';
-import NumberFormat from 'react-number-format';
+import React from 'react'
+import NumberFormat from 'react-number-format'
 
-import { Stats } from '../types';
-import { StatsContainer, Stat } from './styles';
+import { Stats } from '../types'
+import { StatsContainer, Stat } from './styles'
 
 interface StatsProps {
-    stats: Stats;
+    stats: Stats
 }
 
 export default ({ stats }: StatsProps) => {
-    return( 
+    return (
         <StatsContainer>
-            {(stats && stats.bookCount !== 0) &&
+            {stats && stats.bookCount !== 0 && (
                 <span>
                     <Stat>
-                        <span>{stats.bookCount}</span><span className="Stats--type"> books</span>
+                        <span>{stats.bookCount}</span>
+                        <span className="Stats--type"> books</span>
                     </Stat>
                     <Stat>
                         <NumberFormat
@@ -35,10 +36,8 @@ export default ({ stats }: StatsProps) => {
                         <span> avg rating</span>
                     </Stat>
                 </span>
-            }
-            {(!stats || stats.bookCount === 0) &&
-                <div>No books</div>
-            }
+            )}
+            {(!stats || stats.bookCount === 0) && <div>No books</div>}
         </StatsContainer>
-    );
-};
+    )
+}

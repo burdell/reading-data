@@ -1,9 +1,9 @@
-import React from 'react';
-import { Date } from 'react-format';
+import React from 'react'
+import { Date } from 'react-format'
 
-import { Book as IBook } from '../types';
-import Rating from '../Rating';
-import Review from './Review';
+import { Book as IBook } from '../types'
+import Rating from '../Rating'
+import Review from './Review'
 
 import {
     ActionsContainer,
@@ -16,13 +16,13 @@ import {
     BookInfo,
     BookAuthor,
     BookTitle,
-    ReviewToggle,
-} from './styles';
+    ReviewToggle
+} from './styles'
 
 interface BookProps {
-    book: IBook;
-    reviewShown: boolean;
-    onSelect(bookId: number): void;
+    book: IBook
+    reviewShown: boolean
+    onSelect(bookId: number): void
 }
 
 export default ({ book, reviewShown, onSelect }: BookProps) => {
@@ -31,8 +31,12 @@ export default ({ book, reviewShown, onSelect }: BookProps) => {
             <div>
                 <CoverContainer>
                     <Cover>
-                        <CoverImage src={`http://images.amazon.com/images/P/${book.ISBN}`} />
-                    </Cover>                    
+                        <CoverImage
+                            src={`http://images.amazon.com/images/P/${
+                                book.ISBN
+                            }`}
+                        />
+                    </Cover>
                     <BookDetails>
                         <BookInfo>
                             <ReadDate>
@@ -45,14 +49,14 @@ export default ({ book, reviewShown, onSelect }: BookProps) => {
                     </BookDetails>
                 </CoverContainer>
                 <ActionsContainer>
-                    {book['My Review'] && 
+                    {book['My Review'] && (
                         <ReviewToggle onClick={() => onSelect(book['Book Id'])}>
                             {reviewShown ? 'Hide' : 'Show'} Review
                         </ReviewToggle>
-                    }
+                    )}
                 </ActionsContainer>
             </div>
             <Review review={book['My Review']} isShown={reviewShown} />
         </Book>
-    );   
-};
+    )
+}

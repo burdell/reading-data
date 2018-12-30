@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-import { Header, HeaderText, FilterToggle } from './styles';
+import { Header, HeaderText, FilterToggle } from './styles'
 
 interface Props {
-    toggleSidebar(): void;
+    toggleSidebar(): void
 }
 
 export default ({ toggleSidebar }: Props) => {
@@ -12,5 +12,5 @@ export default ({ toggleSidebar }: Props) => {
             <HeaderText className="header-text">What Nathan Read</HeaderText>
             <FilterToggle onClick={toggleSidebar}>Show Filter</FilterToggle>
         </Header>
-    );
-};
+    )
+}

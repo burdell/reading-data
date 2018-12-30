@@ -1,40 +1,43 @@
-import React from 'react';
+import React from 'react'
 
-import { Book as IBook } from '../types';
-import Book from '../Book';
-import NoBooks from './NoBooks';
+import { Book as IBook } from '../types'
+import Book from '../Book'
+import NoBooks from './NoBooks'
 
-import { BookList, Book as BooklistBook } from './styles';
+import { BookList, Book as BooklistBook } from './styles'
 
 interface ListProps {
-    books: IBook[];
+    books: IBook[]
 }
 
 interface ListState {
-    selectedBookId: number;
+    selectedBookId: number
 }
 
-export default class BookListComponent extends React.Component<ListProps, ListState> {
+export default class BookListComponent extends React.Component<
+    ListProps,
+    ListState
+> {
     constructor(props: ListProps) {
-        super(props);
-        this.setSelectedBook = this.setSelectedBook.bind(this);
+        super(props)
+        this.setSelectedBook = this.setSelectedBook.bind(this)
 
         this.state = {
             selectedBookId: null
-        };
-    }
-    
-    render() {
-        const books = this.props.books;
-        if (!books || books.length === 0) {
-            return <NoBooks />;
         }
-    
+    }
+
+    render() {
+        const books = this.props.books
+        if (!books || books.length === 0) {
+            return <NoBooks />
+        }
+
         return (
             <BookList>
                 {books.map((book, i) => (
                     <BooklistBook key={i}>
-                        <Book 
+                        <Book
                             book={book}
                             onSelect={this.setSelectedBook}
                             reviewShown={this.isBookSelected(book)}
@@ -42,17 +45,21 @@ export default class BookListComponent extends React.Component<ListProps, ListSt
                     </BooklistBook>
                 ))}
             </BookList>
-        );
+        )
     }
 
     setSelectedBook(selectedBookId: number) {
-        const currentlySelectedBook = this.state.selectedBookId;
+        const currentlySelectedBook = this.state.selectedBookId
         this.setState({
-            selectedBookId: currentlySelectedBook === selectedBookId ? null : selectedBookId
-        });
+            selectedBookId:
+                currentlySelectedBook === selectedBookId ? null : selectedBookId
+        })
     }
 
     isBookSelected(book: IBook): boolean {
-        return this.state.selectedBookId && this.state.selectedBookId === book['Book Id'];
+        return (
+            this.state.selectedBookId &&
+            this.state.selectedBookId === book['Book Id']
+        )
     }
 }

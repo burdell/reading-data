@@ -1,1 +1,1 @@
-export { default } from './FilterSection';
+export { default } from './FilterSection'

@@ -1,1 +1,1 @@
-export { default } from './CheckboxFilter';
+export { default } from './CheckboxFilter'

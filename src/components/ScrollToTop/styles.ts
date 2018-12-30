@@ -1,4 +1,4 @@
-import styled from 'react-emotion';
+import styled from 'react-emotion'
 
 export const ScrollToTop = styled('div')`
     position: fixed;
@@ -9,4 +9,4 @@ export const ScrollToTop = styled('div')`
     right: 1rem;
     bottom: 1rem;
     padding: .3rem .5rem;
-`;
+`
