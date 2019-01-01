@@ -1,5 +1,5 @@
 import React from 'react'
-import { Date } from 'react-format'
+import { format } from 'date-fns'
 
 import { Book as IBook } from '../types'
 import Rating from '../Rating'
@@ -28,37 +28,33 @@ interface BookProps {
 export default ({ book, reviewShown, onSelect }: BookProps) => {
     return (
         <Book>
-            <div>
-                <CoverContainer>
-                    <Cover>
-                        <CoverImage
-                            src={`http://images.amazon.com/images/P/${
-                                book.ISBN
-                            }`}
-                        />
-                    </Cover>
-                    <BookDetails>
-                        <BookInfo>
-                            <ReadDate>
-                                <Date locale="en-us">{book['Date Read']}</Date>
-                            </ReadDate>
-                            <BookTitle>{book.Title}</BookTitle>
-                            <BookAuthor>{book.Author}</BookAuthor>
-                        </BookInfo>
-                        <Rating rating={book['My Rating']} />
-                    </BookDetails>
-                </CoverContainer>
-                <ActionsContainer>
-                    {book['My Review'] && (
-                        <ReviewToggle
-                            onClick={() => onSelect(book['Book Id'])}
-                            className="review-toggle"
-                        >
-                            {reviewShown ? 'Hide' : 'Show'} Review
-                        </ReviewToggle>
-                    )}
-                </ActionsContainer>
-            </div>
+            <CoverContainer>
+                <Cover>
+                    <CoverImage
+                        src={`http://images.amazon.com/images/P/${book.ISBN}`}
+                    />
+                </Cover>
+                <BookDetails>
+                    <BookInfo>
+                        <ReadDate>
+                            {format(book['Date Read'], 'M/DD/YYYY')}
+                        </ReadDate>
+                        <BookTitle>{book.Title}</BookTitle>
+                        <BookAuthor>{book.Author}</BookAuthor>
+                    </BookInfo>
+                    <Rating rating={book['My Rating']} />
+                </BookDetails>
+            </CoverContainer>
+            <ActionsContainer>
+                {book['My Review'] && (
+                    <ReviewToggle
+                        onClick={() => onSelect(book['Book Id'])}
+                        className="review-toggle"
+                    >
+                        {reviewShown ? 'Hide' : 'Show'} Review
+                    </ReviewToggle>
+                )}
+            </ActionsContainer>
             <Review review={book['My Review']} isShown={reviewShown} />
         </Book>
     )
