@@ -6,18 +6,13 @@
         "node": "9.x.x"
     },
     "dependencies": {
-        "@babel/core": "^7.2.2",
-        "@babel/plugin-proposal-class-properties": "^7.2.3",
-        "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
-        "@babel/preset-env": "^7.2.3",
-        "@babel/preset-react": "^7.0.0",
-        "@babel/preset-typescript": "^7.1.0",
-        "@types/papaparse": "^4.5.5",
-        "@types/react-sidebar": "^3.0.0",
         "airtable": "^0.5.8",
         "antd": "^3.11.6",
         "axios": "^0.18.0",
+        "date-fns": "^1.30.1",
         "emotion": "^9.2.12",
+        "jest": "^23.6.0",
+        "jest-environment-jsdom-global": "^1.1.0",
         "lodash": "^4.17.11",
         "react": ">=16.0.0",
         "react-dom": ">=16.0.0",
@@ -25,23 +20,67 @@
         "react-format": "^1.2.0",
         "react-number-format": "^4.0.6",
         "react-sidebar": "^3.0.2",
+        "react-testing-library": "^5.4.2",
         "react-transition-group": "^2.5.2",
         "semantic-ui-css": "^2.4.1",
         "semantic-ui-react": "^0.84.0",
-        "smoothscroll-polyfill": "^0.4.3",
-        "tslint-react": "^3.6.0",
-        "typescript": "^3.2.2"
+        "smoothscroll-polyfill": "^0.4.3"
     },
     "scripts": {
         "start": "parcel src/index.html",
-        "build": "parcel build src/index.html"
+        "build": "parcel build src/index.html",
+        "test": "jest"
     },
     "devDependencies": {
-        "@types/jest": "^21.1.5",
+        "@babel/core": "^7.2.2",
+        "@babel/plugin-proposal-class-properties": "^7.2.3",
+        "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+        "@babel/plugin-transform-runtime": "^7.2.0",
+        "@babel/preset-env": "^7.2.3",
+        "@babel/preset-react": "^7.0.0",
+        "@babel/preset-typescript": "^7.1.0",
+        "@types/jest": "^23.3.11",
         "@types/node": "^8.0.47",
+        "@types/papaparse": "^4.5.5",
         "@types/react": "^16.0.19",
         "@types/react-dom": "^16.0.2",
+        "@types/react-sidebar": "^3.0.0",
+        "babel-core": "^7.0.0-bridge.0",
+        "babel-jest": "^23.6.0",
         "babel-plugin-module-resolver": "^3.1.1",
-        "parcel-bundler": "^1.11.0"
+        "faker": "^4.1.0",
+        "mocker-data-generator": "^2.6.6",
+        "parcel-bundler": "^1.11.0",
+        "regenerator-runtime": "^0.13.1",
+        "tslint-react": "^3.6.0",
+        "typescript": "^3.2.2"
+    },
+    "jest": {
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js"
+        ],
+        "moduleNameMapper": {
+            "@/([^\\.]*)$": "<rootDir>/src/$1",
+            "^.+\\.(jpg|png|css|less)$": "<rootDir>/test-utils/empty-module.ts"
+        },
+        "transform": {
+            "\\.(ts|tsx|js)$": "babel-jest"
+        },
+        "globals": {
+            "ts-jest": {
+                "useBabelrc": true
+            },
+            "jsdom": true
+        },
+        "testRegex": "(/__tests__/.*|\\.*(test))\\.(ts|tsx|js)$",
+        "testPathIgnorePatterns": [
+            "\\.snap$",
+            "<rootDir>/node_modules/"
+        ],
+        "setupTestFrameworkScriptFile": "<rootDir>/test-utils/test-setup.js",
+        "testEnvironment": "jest-environment-jsdom-global",
+        "testURL": "http://localhost/"
     }
 }

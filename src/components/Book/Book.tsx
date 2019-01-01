@@ -50,7 +50,10 @@ export default ({ book, reviewShown, onSelect }: BookProps) => {
                 </CoverContainer>
                 <ActionsContainer>
                     {book['My Review'] && (
-                        <ReviewToggle onClick={() => onSelect(book['Book Id'])}>
+                        <ReviewToggle
+                            onClick={() => onSelect(book['Book Id'])}
+                            className="review-toggle"
+                        >
                             {reviewShown ? 'Hide' : 'Show'} Review
                         </ReviewToggle>
                     )}

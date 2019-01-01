@@ -36,7 +36,7 @@ export default class BookListComponent extends React.Component<
         return (
             <BookList>
                 {books.map((book, i) => (
-                    <BooklistBook key={i}>
+                    <BooklistBook key={i} data-testid={book['Book Id']}>
                         <Book
                             book={book}
                             onSelect={this.setSelectedBook}
