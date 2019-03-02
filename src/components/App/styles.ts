@@ -5,14 +5,14 @@ import { queries } from '../../shared/breakpoints'
 export const appFont = 'Montserrat'
 
 export const AppContainer = styled('div')`
-    font-family: ${appFont};
-    display: relative;
+  font-family: ${appFont};
+  display: relative;
 `
 
 export const BodyContainer = styled('div')`
-    display: flex;
+  display: flex;
 
-    ${queries.small`
+  ${queries.small`
         margin-top: 3rem;
     `}
 `

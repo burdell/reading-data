@@ -1,21 +1,21 @@
 import React from 'react'
 
 import {
-    FilterSection,
-    FilterSectionContent,
-    FilterSectionTitle
+  FilterSection,
+  FilterSectionContent,
+  FilterSectionTitle
 } from './styles'
 
 interface FilterSectionProps {
-    children: any
-    title: string
+  children: any
+  title: string
 }
 
 export default ({ children, title }: FilterSectionProps) => {
-    return (
-        <FilterSection>
-            <FilterSectionTitle>{title}</FilterSectionTitle>
-            <FilterSectionContent>{children}</FilterSectionContent>
-        </FilterSection>
-    )
+  return (
+    <FilterSection>
+      <FilterSectionTitle>{title}</FilterSectionTitle>
+      <FilterSectionContent>{children}</FilterSectionContent>
+    </FilterSection>
+  )
 }

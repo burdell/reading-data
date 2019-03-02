@@ -4,15 +4,15 @@ import { queries } from '../../../shared/breakpoints'
 const bookPic = require('./no_books.jpg')
 
 export const NoBooks = styled('div')`
-    padding-top: 6rem;
-    margin: 0 auto;
-    text-align: center;
+  padding-top: 6rem;
+  margin: 0 auto;
+  text-align: center;
 
-    h1 {
-        font-size: 2rem;
-        font-weight: 800;
-        margin-bottom: 2.5rem;
-    }
+  h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 2.5rem;
+  }
 `
 
 export const Image = styled('div')`

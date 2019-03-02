@@ -8,5 +8,5 @@ _window.__forceSmoothScrollPolyfill__ = true
 require('smoothscroll-polyfill').polyfill()
 
 export default () => {
-    return <ScrollToTop onClick={scroll}>↑</ScrollToTop>
+  return <ScrollToTop onClick={scroll}>↑</ScrollToTop>
 }

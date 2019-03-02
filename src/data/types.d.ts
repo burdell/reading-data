@@ -1,5 +1,5 @@
 declare module 'airtable/build/airtable.browser' {
-    const airtable: any
+  const airtable: any
 
-    export default airtable
+  export default airtable
 }
