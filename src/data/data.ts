@@ -1,6 +1,6 @@
 // tslint:disable:max-line-length quotemark
 
-export default [
+export const ReadingData = [
   {
     'Book Id': 25937923,
     Title: "32 Yolks: From My Mother's Table to Working the Line",

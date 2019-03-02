@@ -2,7 +2,7 @@
 
 import { map, indexOf, each, chain, isUndefined, isNull } from 'lodash'
 
-import readingData from './data'
+import { ReadingData } from './data'
 
 function formatResult(data) {
   return map(data, book => {
@@ -22,7 +22,7 @@ export default class DataService {
     this.readingData = []
 
     this.filterFns = []
-    this.readingData = formatResult(readingData)
+    this.readingData = formatResult(ReadingData)
   }
 
   read(read = true) {

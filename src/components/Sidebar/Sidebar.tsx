@@ -56,7 +56,7 @@ export default class SidebarComponent extends React.Component<
 
   render() {
     return (
-      <div>
+      <div data-testid="sidebar">
         <CloseAction onClick={this.props.toggleSidebar}>X</CloseAction>
         <Sidebar>
           <Menu mode="vertical">
