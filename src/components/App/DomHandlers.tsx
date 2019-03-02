@@ -23,6 +23,11 @@ export class App extends Component<{}, Readonly<State>> {
     mql
   }
 
+  constructor(props: {}) {
+    super(props)
+    mql.addListener(this.mediaQueryChanged);
+  }
+
   public render() {
     return (
       <MainApp
@@ -30,11 +35,6 @@ export class App extends Component<{}, Readonly<State>> {
         scrollToTop={() => scroll()}
       />
     )
-  }
-
-  public componentWillMount = () => {
-    mql.addListener(this.mediaQueryChanged)
-    this.setState({ mql: mql, hasMatches: mql.matches })
   }
 
   public componentWillUnmount = () => {
