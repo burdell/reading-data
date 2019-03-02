@@ -13,78 +13,78 @@ import scroll from '../ScrollToTop/scroll'
 
 const mql = window.matchMedia(`(min-width: ${breakpoints.small}rem)`)
 export default class App extends Component<{}, AppState> {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
 
-        this.receiveBooks = this.receiveBooks.bind(this)
-        this.toggleSidebar = this.toggleSidebar.bind(this)
+    this.receiveBooks = this.receiveBooks.bind(this)
+    this.toggleSidebar = this.toggleSidebar.bind(this)
 
-        this.state = {
-            books: [],
-            stats: null,
-            filterOptions: null,
-            mql,
-            sidebarOpen: false,
-            sidebarDocked: true
-        }
-
-        this.mediaQueryChanged = this.mediaQueryChanged.bind(this)
-        this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this)
+    this.state = {
+      books: [],
+      stats: null,
+      filterOptions: null,
+      mql,
+      sidebarOpen: false,
+      sidebarDocked: true
     }
 
-    public render(): JSX.Element {
-        return (
-            <AppContainer>
-                <ReactSidebar
-                    sidebar={
-                        <Sidebar
-                            onChange={this.receiveBooks}
-                            open={this.state.sidebarOpen}
-                            toggleSidebar={this.toggleSidebar}
-                        />
-                    }
-                    docked={this.state.sidebarDocked}
-                    open={this.state.sidebarOpen}
-                    onSetOpen={this.onSetSidebarOpen}
-                >
-                    <Header toggleSidebar={this.toggleSidebar} />
-                    <BodyContainer id="body-container">
-                        <BookList books={this.state.books} />
-                        <ScrollToTop />
-                    </BodyContainer>
-                </ReactSidebar>
-            </AppContainer>
-        )
-    }
+    this.mediaQueryChanged = this.mediaQueryChanged.bind(this)
+    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this)
+  }
 
-    public componentWillMount() {
-        mql.addListener(this.mediaQueryChanged)
-        this.setState({ mql: mql, sidebarDocked: mql.matches })
-    }
+  public render(): JSX.Element {
+    return (
+      <AppContainer>
+        <ReactSidebar
+          sidebar={
+            <Sidebar
+              onChange={this.receiveBooks}
+              open={this.state.sidebarOpen}
+              toggleSidebar={this.toggleSidebar}
+            />
+          }
+          docked={this.state.sidebarDocked}
+          open={this.state.sidebarOpen}
+          onSetOpen={this.onSetSidebarOpen}
+        >
+          <Header toggleSidebar={this.toggleSidebar} />
+          <BodyContainer id="body-container">
+            <BookList books={this.state.books} />
+            <ScrollToTop />
+          </BodyContainer>
+        </ReactSidebar>
+      </AppContainer>
+    )
+  }
 
-    public componentWillUnmount() {
-        this.state.mql.removeListener(this.mediaQueryChanged)
-    }
+  public componentWillMount() {
+    mql.addListener(this.mediaQueryChanged)
+    this.setState({ mql: mql, sidebarDocked: mql.matches })
+  }
 
-    public receiveBooks(
-        books: Book[],
-        stats: IStats,
-        filterOptions: FilterOptions
-    ) {
-        scroll()
-        this.setState({ books, stats, filterOptions })
-    }
+  public componentWillUnmount() {
+    this.state.mql.removeListener(this.mediaQueryChanged)
+  }
 
-    private toggleSidebar() {
-        this.setState({ sidebarOpen: !this.state.sidebarOpen })
-    }
+  public receiveBooks(
+    books: Book[],
+    stats: IStats,
+    filterOptions: FilterOptions
+  ) {
+    scroll()
+    this.setState({ books, stats, filterOptions })
+  }
 
-    private mediaQueryChanged() {
-        this.setState({ sidebarDocked: this.state.mql.matches })
-    }
+  private toggleSidebar() {
+    this.setState({ sidebarOpen: !this.state.sidebarOpen })
+  }
 
-    private onSetSidebarOpen() {
-        const sidebarOpen = arguments[0]
-        this.setState({ sidebarOpen })
-    }
+  private mediaQueryChanged() {
+    this.setState({ sidebarDocked: this.state.mql.matches })
+  }
+
+  private onSetSidebarOpen() {
+    const sidebarOpen = arguments[0]
+    this.setState({ sidebarOpen })
+  }
 }
