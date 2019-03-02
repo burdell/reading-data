@@ -8,7 +8,5 @@ describe('Sidebar', () => {
     const { debug } = render(
       <Sidebar open={true} onChange={() => null} toggleSidebar={() => null} />
     )
-
-    debug()
   })
 })

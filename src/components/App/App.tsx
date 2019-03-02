@@ -5,31 +5,17 @@ import { AppState, Book, Stats as IStats, FilterOptions } from '../types'
 import BookList from '../BookList'
 import Sidebar from '../Sidebar'
 import Header from '../Header'
-import { breakpoints } from '../../shared/breakpoints'
-import './reset.css'
-import { AppContainer, BodyContainer } from './styles'
 import ScrollToTop from '../ScrollToTop'
-import scroll from '../ScrollToTop/scroll'
 
-const mql = window.matchMedia(`(min-width: ${breakpoints.small}rem)`)
-export default class App extends Component<{}, AppState> {
-  constructor(props) {
-    super(props)
+import { DOMInfo } from './DomHandlers'
+import { AppContainer, BodyContainer } from './styles'
 
-    this.receiveBooks = this.receiveBooks.bind(this)
-    this.toggleSidebar = this.toggleSidebar.bind(this)
-
-    this.state = {
-      books: [],
-      stats: null,
-      filterOptions: null,
-      mql,
-      sidebarOpen: false,
-      sidebarDocked: true
-    }
-
-    this.mediaQueryChanged = this.mediaQueryChanged.bind(this)
-    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this)
+export class App extends Component<Readonly<DOMInfo>, Readonly<AppState>> {
+  public readonly state: AppState = {
+    books: [],
+    stats: null,
+    filterOptions: null,
+    sidebarOpen: false
   }
 
   public render(): JSX.Element {
@@ -43,7 +29,7 @@ export default class App extends Component<{}, AppState> {
               toggleSidebar={this.toggleSidebar}
             />
           }
-          docked={this.state.sidebarDocked}
+          docked={this.props.hasMatches}
           open={this.state.sidebarOpen}
           onSetOpen={this.onSetSidebarOpen}
         >
@@ -57,34 +43,18 @@ export default class App extends Component<{}, AppState> {
     )
   }
 
-  public componentWillMount() {
-    mql.addListener(this.mediaQueryChanged)
-    this.setState({ mql: mql, sidebarDocked: mql.matches })
-  }
-
-  public componentWillUnmount() {
-    this.state.mql.removeListener(this.mediaQueryChanged)
-  }
-
-  public receiveBooks(
+  public receiveBooks = (
     books: Book[],
     stats: IStats,
     filterOptions: FilterOptions
-  ) {
-    scroll()
+  ) => {
+    this.props.scrollToTop()
     this.setState({ books, stats, filterOptions })
   }
 
-  private toggleSidebar() {
+  private toggleSidebar = () =>
     this.setState({ sidebarOpen: !this.state.sidebarOpen })
-  }
 
-  private mediaQueryChanged() {
-    this.setState({ sidebarDocked: this.state.mql.matches })
-  }
-
-  private onSetSidebarOpen() {
-    const sidebarOpen = arguments[0]
+  private onSetSidebarOpen = (sidebarOpen: boolean) =>
     this.setState({ sidebarOpen })
-  }
 }
