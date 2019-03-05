@@ -7,25 +7,25 @@ import { Sidebar, CloseAction } from './styles'
 import Filter from './Filter'
 import DataService from '../../data/data-service'
 
-interface SidebarProps {
+interface Props {
   open: boolean
   onChange(books: Book[], stats: Stats, filterOptions: FilterOptions)
   toggleSidebar(): void
 }
 
-interface SidebarState {
+interface State {
   open: boolean
   stats: Stats
 }
 
 export default class SidebarComponent extends React.Component<
-  SidebarProps,
-  SidebarState
+  Readonly<Props>,
+  Readonly<State>
 > {
   private dataService: BookDataService
   private defaultFilter: FilterOptions
 
-  constructor(props: SidebarProps) {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -44,7 +44,7 @@ export default class SidebarComponent extends React.Component<
     this.filter = this.filter.bind(this)
   }
 
-  componentWillReceiveProps(newProps: SidebarProps, oldProps: SidebarProps) {
+  componentWillReceiveProps(newProps: Props, oldProps: Props) {
     if (oldProps.open !== newProps.open) {
       this.setState({ open: newProps.open })
     }

@@ -2,7 +2,7 @@ import React from 'react'
 import { format } from 'date-fns'
 
 import { Book as IBook } from '../types'
-import Rating from '../Rating'
+import { Rating } from '../Rating'
 import Review from './Review'
 
 import {

@@ -3,6 +3,7 @@ import { render, fireEvent } from 'react-testing-library'
 
 import BookList from './BookList'
 import { generateBookList } from '../../../test-utils/data-factory'
+import { Book } from '../types'
 
 const getReviewEls = (book: Element) => ({
   reviewToggle: book.getElementsByClassName('review-toggle').item(0),
@@ -14,18 +15,22 @@ const expectReviewHidden = (review: Element) =>
 const expectReviewShown = (review: Element) =>
   expect(getComputedStyle(review).maxHeight).not.toBe('0')
 
+let books: Book[]
+
 describe('Book', () => {
-  it('renders a list of books', async () => {
-    const books = await generateBookList(10)
-    const { getByTestId } = render(<BookList books={books} />)
+  beforeAll(async () => {
+    books = await generateBookList(10)
+  })
+
+  it('renders a list of books', () => {
+    const { getByText } = render(<BookList books={books} />)
 
     books.forEach(book => {
-      getByTestId(book['Book Id'].toString())
+      getByText(book.Title)
     })
   })
 
-  it('shows a review', async () => {
-    const books = await generateBookList(10)
+  it('shows a review', () => {
     const thirdBook = books[2]
 
     const { getByTestId } = render(<BookList books={books} />)
@@ -36,12 +41,10 @@ describe('Book', () => {
     expectReviewHidden(review)
 
     fireEvent.click(reviewToggle)
-
     expectReviewShown(review)
   })
 
-  it('only shows 1 review at a time', async () => {
-    const books = await generateBookList(10)
+  it('only shows 1 review at a time', () => {
     const { getByTestId } = render(<BookList books={books} />)
 
     const firstBook = getByTestId(books[0]['Book Id'].toString())
