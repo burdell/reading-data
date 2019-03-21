@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, fireEvent } from 'react-testing-library'
 
-import BookList from './BookList'
+import { BookList } from './BookList'
 import { generateBookList } from '../../../test-utils/data-factory'
 import { Book } from '../types'
 
@@ -61,5 +61,10 @@ describe('Book', () => {
 
     expectReviewHidden(firstReview.review)
     expectReviewShown(secondReview.review)
+  })
+
+  it('handles no books', () => {
+    const { getByTestId } = render(<BookList books={[]} />)
+    getByTestId('no-books')
   })
 })

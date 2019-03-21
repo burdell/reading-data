@@ -7,7 +7,7 @@ interface ReviewProps {
 
 import { BookReview } from './styles'
 
-export default ({ isShown, review }: ReviewProps): JSX.Element => {
+export const Review = ({ isShown, review }: ReviewProps): JSX.Element => {
   return (
     <BookReview>
       <div className={`book-review ${isShown ? 'shown' : ''}`}>

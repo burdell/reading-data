@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactSidebar from 'react-sidebar'
 
 import { AppState, Book, Stats as IStats, FilterOptions } from '../types'
-import BookList from '../BookList'
+import { BookList } from '../BookList'
 import Sidebar from '../Sidebar'
 import Header from '../Header'
 import ScrollToTop from '../ScrollToTop'

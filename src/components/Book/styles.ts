@@ -2,7 +2,7 @@ import styled from 'react-emotion'
 
 import { queries } from '../../shared/breakpoints'
 
-export const Book = styled('div')`
+export const BookStyles = styled('div')`
   line-height: 1;
   padding: 1rem;
 `

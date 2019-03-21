@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { NoBooks, Image } from './styles'
+import { NoBooks as NoBooksStyles, Image } from './styles'
 
-export default () => {
+export const NoBooks = () => {
   return (
-    <NoBooks>
+    <NoBooksStyles data-testid="no-books">
       <Image />
-    </NoBooks>
+    </NoBooksStyles>
   )
 }

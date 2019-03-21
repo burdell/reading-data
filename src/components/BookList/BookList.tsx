@@ -1,64 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import { Book as IBook } from '../types'
-import Book from '../Book'
-import NoBooks from './NoBooks'
+import { Book as BookType } from '../types'
+import { Book } from '../Book'
+import { NoBooks } from './NoBooks'
 
-import { BookList, Book as BooklistBook } from './styles'
+import { BookList as BookListStyles, Book as BooklistBook } from './styles'
 
-interface ListProps {
-  books: IBook[]
+interface Props {
+  books: BookType[]
 }
 
-interface ListState {
-  selectedBookId: number
-}
+export const BookList = ({ books }: Props) => {
+  const [selectedBookId, setSelectedBook] = useState<number>()
 
-export default class BookListComponent extends React.Component<
-  ListProps,
-  ListState
-> {
-  constructor(props: ListProps) {
-    super(props)
-    this.setSelectedBook = this.setSelectedBook.bind(this)
+  const isBookSelected = (book: BookType) =>
+    selectedBookId && selectedBookId === book['Book Id']
 
-    this.state = {
-      selectedBookId: null
-    }
-  }
-
-  render() {
-    const books = this.props.books
-    if (!books || books.length === 0) {
-      return <NoBooks />
-    }
-
-    return (
-      <BookList>
-        {books.map((book, i) => (
-          <BooklistBook key={i} data-testid={book['Book Id']}>
-            <Book
-              book={book}
-              onSelect={this.setSelectedBook}
-              reviewShown={this.isBookSelected(book)}
-            />
-          </BooklistBook>
-        ))}
-      </BookList>
-    )
-  }
-
-  setSelectedBook(selectedBookId: number) {
-    const currentlySelectedBook = this.state.selectedBookId
-    this.setState({
-      selectedBookId:
-        currentlySelectedBook === selectedBookId ? null : selectedBookId
-    })
-  }
-
-  isBookSelected(book: IBook): boolean {
-    return (
-      this.state.selectedBookId && this.state.selectedBookId === book['Book Id']
-    )
-  }
+  return books && books.length ? (
+    <BookListStyles>
+      {books.map((book, i) => (
+        <BooklistBook key={i} data-testid={book['Book Id']}>
+          <Book
+            book={book}
+            onSelect={bookId => setSelectedBook(bookId)}
+            reviewShown={isBookSelected(book)}
+          />
+        </BooklistBook>
+      ))}
+    </BookListStyles>
+  ) : (
+    <NoBooks />
+  )
 }

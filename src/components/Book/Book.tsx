@@ -1,13 +1,13 @@
 import React from 'react'
 import { format } from 'date-fns'
 
-import { Book as IBook } from '../types'
+import { Book as BookType } from '../types'
 import { Rating } from '../Rating'
-import Review from './Review'
+import { Review } from './Review'
 
 import {
   ActionsContainer,
-  Book,
+  BookStyles,
   CoverContainer,
   Cover,
   CoverImage,
@@ -20,14 +20,14 @@ import {
 } from './styles'
 
 interface BookProps {
-  book: IBook
+  book: BookType
   reviewShown: boolean
   onSelect(bookId: number): void
 }
 
-export default ({ book, reviewShown, onSelect }: BookProps) => {
+export const Book = ({ book, reviewShown, onSelect }: BookProps) => {
   return (
-    <Book>
+    <BookStyles>
       <CoverContainer>
         <Cover>
           <CoverImage src={`http://images.amazon.com/images/P/${book.ISBN}`} />
@@ -52,6 +52,6 @@ export default ({ book, reviewShown, onSelect }: BookProps) => {
         )}
       </ActionsContainer>
       <Review review={book['My Review']} isShown={reviewShown} />
-    </Book>
+    </BookStyles>
   )
 }
