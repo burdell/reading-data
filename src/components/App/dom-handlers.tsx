@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { breakpoints } from '../../shared/breakpoints'
 import scroll from '../ScrollToTop/scroll'
@@ -7,40 +7,22 @@ import { App as MainApp } from './App'
 
 const mql = window.matchMedia(`(min-width: ${breakpoints.small}rem)`)
 
-interface State {
-  mql: MediaQueryList
-  hasMatches: boolean
-}
-
 export interface DOMInfo {
   hasMatches: boolean
   scrollToTop(): void
 }
 
-export class App extends Component<{}, Readonly<State>> {
-  public readonly state: State = {
-    hasMatches: mql.matches,
-    mql
-  }
+export const App = () => {
+  const [hasMatches, setMatches] = useState(mql.matches)
 
-  constructor(props: {}) {
-    super(props)
-    mql.addListener(this.mediaQueryChanged);
-  }
+  const mediaQueryChanged = () => setMatches(mql.matches)
+  useEffect(() => {
+    mql.addListener(mediaQueryChanged)
 
-  public render() {
-    return (
-      <MainApp
-        hasMatches={this.state.hasMatches}
-        scrollToTop={() => scroll()}
-      />
-    )
-  }
+    return () => {
+      mql.removeListener(mediaQueryChanged)
+    }
+  }, [])
 
-  public componentWillUnmount = () => {
-    this.state.mql.removeListener(this.mediaQueryChanged)
-  }
-
-  public mediaQueryChanged = () =>
-    this.setState({ hasMatches: this.state.mql.matches })
+  return <MainApp hasMatches={hasMatches} scrollToTop={scroll} />
 }
