@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import ReactSidebar from 'react-sidebar'
 
-import { AppState, Book, Stats as IStats, FilterOptions } from '../types'
+import { Book, Stats as StatsType, FilterOptions } from '../types'
 import { BookList } from '../BookList'
 import { Sidebar } from '../Sidebar'
 import Header from '../Header'
@@ -10,51 +10,46 @@ import ScrollToTop from '../ScrollToTop'
 import { DOMInfo } from './dom-handlers'
 import { AppContainer, BodyContainer } from './styles'
 
-export class App extends Component<Readonly<DOMInfo>, Readonly<AppState>> {
-  public readonly state: AppState = {
-    books: [],
-    stats: null,
-    filterOptions: null,
-    sidebarOpen: false
-  }
+export const App = ({ scrollToTop, hasMatches }: DOMInfo) => {
+  const [filterInfo, setFilterInfo] = useState<{
+    books: Book[]
+    stats: StatsType | null
+    filterOptions: FilterOptions | null
+  }>({ books: [], filterOptions: null, stats: null })
+  const [sidebarOpen, setSidebar] = useState(false)
 
-  public render(): JSX.Element {
-    return (
-      <AppContainer>
-        <ReactSidebar
-          sidebar={
-            <Sidebar
-              onChange={this.receiveBooks}
-              open={this.state.sidebarOpen}
-              toggleSidebar={this.toggleSidebar}
-            />
-          }
-          docked={this.props.hasMatches}
-          open={this.state.sidebarOpen}
-          onSetOpen={this.onSetSidebarOpen}
-        >
-          <Header toggleSidebar={this.toggleSidebar} />
-          <BodyContainer id="body-container">
-            <BookList books={this.state.books} />
-            <ScrollToTop />
-          </BodyContainer>
-        </ReactSidebar>
-      </AppContainer>
-    )
-  }
-
-  public receiveBooks = (
+  const receiveBooks = (
     books: Book[],
-    stats: IStats,
+    stats: StatsType,
     filterOptions: FilterOptions
   ) => {
-    this.props.scrollToTop()
-    this.setState({ books, stats, filterOptions })
+    scrollToTop()
+    setFilterInfo({ books, stats, filterOptions })
   }
 
-  private toggleSidebar = () =>
-    this.setState({ sidebarOpen: !this.state.sidebarOpen })
+  const toggleSidebar = () => setSidebar(!sidebarOpen)
+  const onSetSidebarOpen = (sidebarOpen: boolean) => setSidebar(sidebarOpen)
 
-  private onSetSidebarOpen = (sidebarOpen: boolean) =>
-    this.setState({ sidebarOpen })
+  return (
+    <AppContainer>
+      <ReactSidebar
+        sidebar={
+          <Sidebar
+            onChange={receiveBooks}
+            open={sidebarOpen}
+            toggleSidebar={toggleSidebar}
+          />
+        }
+        docked={hasMatches}
+        open={sidebarOpen}
+        onSetOpen={onSetSidebarOpen}
+      >
+        <Header toggleSidebar={toggleSidebar} />
+        <BodyContainer id="body-container">
+          <BookList books={filterInfo.books} />
+          <ScrollToTop />
+        </BodyContainer>
+      </ReactSidebar>
+    </AppContainer>
+  )
 }

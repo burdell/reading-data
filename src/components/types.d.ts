@@ -1,10 +1,3 @@
-export interface AppState {
-  books: Book[]
-  stats: Stats | null
-  filterOptions: FilterOptions | null
-  sidebarOpen: boolean
-}
-
 export interface Book {
   'Book Id': number
   Title: string
