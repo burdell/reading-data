@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Menu } from 'antd'
 import 'antd/lib/menu/style/css'
 
 import { Book, BookDataService, FilterOptions, Stats } from '../types'
-import { Sidebar, CloseAction } from './styles'
+import { SidebarStyles, CloseAction } from './styles'
 import Filter from './Filter'
 import DataService from '../../data/data-service'
 
@@ -13,67 +13,41 @@ interface Props {
   toggleSidebar(): void
 }
 
-interface State {
-  open: boolean
-  stats: Stats | null
-}
+const defaultFilter = () => ({
+  year: [2018],
+  read: true,
+  month: [],
+  rating: []
+})
 
-export default class SidebarComponent extends React.Component<
-  Readonly<Props>,
-  Readonly<State>
-> {
-  private dataService: BookDataService
-  private defaultFilter: FilterOptions
+const dataService: BookDataService = new DataService() as BookDataService
 
-  constructor(props: Props) {
-    super(props)
+export const Sidebar = ({ open, onChange, toggleSidebar }: Props) => {
+  const [stats, setStats] = useState<Stats | null>(null)
+  const [isOpen, setOpen] = useState(open)
 
-    this.state = {
-      open: props.open,
-      stats: null
-    }
+  useEffect(() => {
+    filter(defaultFilter())
+  }, [])
 
-    this.dataService = new DataService() as BookDataService
-    this.defaultFilter = {
-      year: [2018],
-      read: true,
-      month: [],
-      rating: []
-    }
-
-    this.filter = this.filter.bind(this)
+  const filter = (filterOptions: FilterOptions) => {
+    const { books, stats } = dataService.filter(filterOptions)
+    setStats(stats)
+    onChange(books, stats, filterOptions)
   }
 
-  componentWillReceiveProps(newProps: Props, oldProps: Props) {
-    if (oldProps.open !== newProps.open) {
-      this.setState({ open: newProps.open })
-    }
-  }
-
-  componentDidMount() {
-    this.filter(this.defaultFilter)
-  }
-
-  render() {
-    return (
-      <div data-testid="sidebar">
-        <CloseAction onClick={this.props.toggleSidebar}>X</CloseAction>
-        <Sidebar>
-          <Menu mode="vertical">
-            <Filter
-              defaultFilters={this.defaultFilter}
-              onFilter={this.filter}
-              stats={this.state.stats}
-            />
-          </Menu>
-        </Sidebar>
-      </div>
-    )
-  }
-
-  filter(filterOptions: FilterOptions) {
-    const { books, stats } = this.dataService.filter(filterOptions)
-    this.setState({ stats })
-    this.props.onChange(books, stats, filterOptions)
-  }
+  return (
+    <div data-testid="sidebar">
+      <CloseAction onClick={toggleSidebar}>X</CloseAction>
+      <SidebarStyles>
+        <Menu mode="vertical">
+          <Filter
+            defaultFilters={defaultFilter()}
+            onFilter={filter}
+            stats={stats}
+          />
+        </Menu>
+      </SidebarStyles>
+    </div>
+  )
 }

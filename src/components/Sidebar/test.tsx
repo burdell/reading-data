@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-testing-library'
 
-import Sidebar from './Sidebar'
+import { Sidebar } from './Sidebar'
 
 describe('Sidebar', () => {
   it('toggles the sidebar', () => {

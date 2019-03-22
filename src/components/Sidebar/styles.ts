@@ -2,7 +2,7 @@ import styled from 'react-emotion'
 
 import { queries } from '../../shared/breakpoints'
 
-export const Sidebar = styled('div')`
+export const SidebarStyles = styled('div')`
   background-color: #fff;
 `
 
