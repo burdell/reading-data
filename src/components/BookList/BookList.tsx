@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const BookList = ({ books }: Props) => {
-  const [selectedBookId, setSelectedBook] = useState<number>()
+  const [selectedBookId, setSelectedBook] = useState<number | null>(null)
 
   const isBookSelected = (book: BookType) =>
     !!(selectedBookId && selectedBookId === book['Book Id'])
@@ -22,7 +22,12 @@ export const BookList = ({ books }: Props) => {
         <BooklistBook key={i} data-testid={book['Book Id']}>
           <Book
             book={book}
-            onSelect={bookId => setSelectedBook(bookId)}
+            onSelect={bookId =>
+              setSelectedBook(() => {
+                if (selectedBookId === bookId) return null
+                return bookId
+              })
+            }
             reviewShown={isBookSelected(book)}
           />
         </BooklistBook>

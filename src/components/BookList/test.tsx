@@ -30,7 +30,7 @@ describe('Book', () => {
     })
   })
 
-  it('shows a review', () => {
+  it('shows & hides a review', () => {
     const thirdBook = books[2]
 
     const { getByTestId } = render(<BookList books={books} />)
@@ -41,7 +41,12 @@ describe('Book', () => {
     expectReviewHidden(review!)
 
     fireEvent.click(reviewToggle!)
+
     expectReviewShown(review!)
+
+    fireEvent.click(reviewToggle!)
+
+    expectReviewHidden(review!)
   })
 
   it('only shows 1 review at a time', () => {
