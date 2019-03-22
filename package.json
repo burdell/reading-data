@@ -62,7 +62,7 @@
     ],
     "moduleNameMapper": {
       "@/([^\\.]*)$": "<rootDir>/src/$1",
-      "^.+\\.(jpg|png|css|less)$": "<rootDir>/test-utils/empty-module.ts"
+      "^.+\\.(jpg|png|css|less)$": "<rootDir>/src/test-utils/empty-module.ts"
     },
     "transform": {
       "\\.(ts|tsx|js)$": "babel-jest"
@@ -78,7 +78,7 @@
       "\\.snap$",
       "<rootDir>/node_modules/"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>/test-utils/test-setup.js",
+    "setupTestFrameworkScriptFile": "<rootDir>/src/test-utils/test-setup.js",
     "testEnvironment": "jest-environment-jsdom-global",
     "testURL": "http://localhost/"
   }
