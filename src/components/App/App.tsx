@@ -7,7 +7,7 @@ import Sidebar from '../Sidebar'
 import Header from '../Header'
 import ScrollToTop from '../ScrollToTop'
 
-import { DOMInfo } from './DOMHandlers'
+import { DOMInfo } from './dom-handlers'
 import { AppContainer, BodyContainer } from './styles'
 
 export class App extends Component<Readonly<DOMInfo>, Readonly<AppState>> {

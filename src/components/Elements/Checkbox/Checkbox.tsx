@@ -1,9 +1,14 @@
 import React from 'react'
-import { Checkbox } from 'antd'
+import { Checkbox as AntdCheckbox } from 'antd'
 import 'antd/lib/checkbox/style/css'
 
-import { CheckboxSelection } from './'
 import { Label, LabelDisplay } from './styles'
+
+export interface CheckboxSelection {
+  field: string
+  selected: boolean
+  value: any
+}
 
 interface CheckboxProps {
   isChecked: boolean
@@ -13,15 +18,21 @@ interface CheckboxProps {
   onSelect(result: CheckboxSelection): void
 }
 
-export default ({ label, isChecked, onSelect, name, value }: CheckboxProps) => {
+export const Checkbox = ({
+  label,
+  isChecked,
+  onSelect,
+  name,
+  value
+}: CheckboxProps) => {
   return (
     <Label>
-      <Checkbox
+      <AntdCheckbox
         name={name}
         checked={isChecked}
         onChange={e => {
           onSelect({
-            field: e.target.name,
+            field: e.target.name || '',
             selected: e.target.checked,
             value: Number(e.target.value)
           })

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { FilterOptions } from '../../../types'
-import Checkbox, { CheckboxSelection } from '../../../Elements/Checkbox'
+import { Checkbox, CheckboxSelection } from '../../../Elements/Checkbox'
 import { CheckboxFilter, ClearFilter } from './styles'
 
 interface CheckboxFilterProps {
@@ -27,7 +27,7 @@ export default ({
             name={field}
             value={option}
             label={renderOption ? renderOption(option) : option}
-            isChecked={currentFilter[field].indexOf(option) >= 0}
+            isChecked={(currentFilter as any)[field].indexOf(option) >= 0}
             onSelect={onSelect}
           />
         </div>

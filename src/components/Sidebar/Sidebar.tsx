@@ -9,13 +9,13 @@ import DataService from '../../data/data-service'
 
 interface Props {
   open: boolean
-  onChange(books: Book[], stats: Stats, filterOptions: FilterOptions)
+  onChange(books: Book[], stats: Stats, filterOptions: FilterOptions): void
   toggleSidebar(): void
 }
 
 interface State {
   open: boolean
-  stats: Stats
+  stats: Stats | null
 }
 
 export default class SidebarComponent extends React.Component<

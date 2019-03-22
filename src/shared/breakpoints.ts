@@ -11,17 +11,17 @@ export const breakpoints = {
 }
 
 export const queries = Object.keys(breakpoints).reduce((accumulator, label) => {
-  if (typeof breakpoints[label] === 'string') {
-    accumulator[label] = (...args) =>
+  if (typeof (breakpoints as any)[label] === 'string') {
+    ;(accumulator as any)[label] = (...args: any) =>
       css`
-        @media (${breakpoints[label]}) {
+        @media (${(breakpoints as any)[label]}) {
           ${css(...args)};
         }
       `
   } else {
-    accumulator[label] = (...args) =>
+    ;(accumulator as any)[label] = (...args: any) =>
       css`
-        @media (max-width: ${breakpoints[label]}rem) {
+        @media (max-width: ${(breakpoints as any)[label]}rem) {
           ${css(...args)};
         }
       `

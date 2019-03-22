@@ -26,5 +26,5 @@ export const monthMap = {
 }
 
 export const translateMonth = (month: string) => {
-  return monthMap[Number(month)]
+  return (monthMap as any)[Number(month)]
 }

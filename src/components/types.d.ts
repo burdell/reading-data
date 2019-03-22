@@ -1,7 +1,7 @@
 export interface AppState {
   books: Book[]
-  stats: Stats
-  filterOptions: FilterOptions
+  stats: Stats | null
+  filterOptions: FilterOptions | null
   sidebarOpen: boolean
 }
 

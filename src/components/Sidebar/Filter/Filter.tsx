@@ -17,8 +17,8 @@ import Stats from '../../Stats'
 
 interface FilterProps {
   defaultFilters: FilterOptions
-  stats: IStats
-  onFilter(f: FilterOptions)
+  stats: IStats | null
+  onFilter(f: FilterOptions): void
 }
 
 interface FilterState {
@@ -39,7 +39,7 @@ export default class Filter extends React.Component<FilterProps, FilterState> {
     return (
       <SidebarSection>
         <FilterSection title="Stats">
-          <Stats stats={this.props.stats} />
+          {this.props.stats && <Stats stats={this.props.stats} />}
         </FilterSection>
         <FilterSection title="Year">
           <CheckboxFilter
@@ -66,7 +66,7 @@ export default class Filter extends React.Component<FilterProps, FilterState> {
             currentFilter={this.state.filterOptions}
             onSelect={this.checkboxSelected}
             options={possibleMonths}
-            renderOption={(month: string) => monthMap[month]}
+            renderOption={(month: string) => (monthMap as any)[month]}
           />
         </FilterSection>
       </SidebarSection>
@@ -78,9 +78,9 @@ export default class Filter extends React.Component<FilterProps, FilterState> {
 
     if (value === null) {
       // clear filter
-      filterOptions[field] = []
+      ;(filterOptions as any)[field] = []
     } else {
-      const filter = filterOptions[field]
+      const filter = (filterOptions as any)[field]
       const valueIndex = filter.indexOf(value)
       if (valueIndex < 0) {
         filter.push(value)

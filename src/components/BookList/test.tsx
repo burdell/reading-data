@@ -2,7 +2,7 @@ import React from 'react'
 import { render, fireEvent } from 'react-testing-library'
 
 import { BookList } from './BookList'
-import { generateBookList } from '../../../test-utils/data-factory'
+import { generateBookList } from '../../test-utils/data-factory'
 import { Book } from '../types'
 
 const getReviewEls = (book: Element) => ({
@@ -38,10 +38,10 @@ describe('Book', () => {
     const book = getByTestId(thirdBook['Book Id'].toString())
     const { review, reviewToggle } = getReviewEls(book)
 
-    expectReviewHidden(review)
+    expectReviewHidden(review!)
 
-    fireEvent.click(reviewToggle)
-    expectReviewShown(review)
+    fireEvent.click(reviewToggle!)
+    expectReviewShown(review!)
   })
 
   it('only shows 1 review at a time', () => {
@@ -53,14 +53,14 @@ describe('Book', () => {
     const firstReview = getReviewEls(firstBook)
     const secondReview = getReviewEls(secondBook)
 
-    expectReviewHidden(firstReview.review)
-    expectReviewHidden(secondReview.review)
+    expectReviewHidden(firstReview.review!)
+    expectReviewHidden(secondReview.review!)
 
-    fireEvent.click(firstReview.reviewToggle)
-    fireEvent.click(secondReview.reviewToggle)
+    fireEvent.click(firstReview.reviewToggle!)
+    fireEvent.click(secondReview.reviewToggle!)
 
-    expectReviewHidden(firstReview.review)
-    expectReviewShown(secondReview.review)
+    expectReviewHidden(firstReview.review!)
+    expectReviewShown(secondReview.review!)
   })
 
   it('handles no books', () => {

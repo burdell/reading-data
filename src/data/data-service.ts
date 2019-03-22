@@ -3,8 +3,9 @@
 import { map, indexOf, each, chain, isUndefined, isNull } from 'lodash'
 
 import { ReadingData } from './data'
+import { Book } from '../components/types'
 
-function formatResult(data) {
+function formatResult(data: any) {
   return map(data, book => {
     const isbn = book.ISBN
     const parsedISBN = isbn.match(/="(.+)"/)
@@ -26,7 +27,7 @@ export default class DataService {
   }
 
   read(read = true) {
-    this.filterFns.push(book => {
+    this.filterFns.push((book: Book) => {
       const isRead = !!book['Date Read']
       return read === isRead
     })
@@ -34,8 +35,8 @@ export default class DataService {
     return this
   }
 
-  year(desiredYears, dateAttribute = 'Date Read') {
-    this.filterFns.push(book => {
+  year(desiredYears: any, dateAttribute = 'Date Read') {
+    this.filterFns.push((book: any) => {
       const date = book[dateAttribute]
       if (!date) {
         return false
@@ -48,8 +49,8 @@ export default class DataService {
     return this
   }
 
-  month(desiredMonths, dateAttribute = 'Date Read') {
-    this.filterFns.push(book => {
+  month(desiredMonths: any, dateAttribute = 'Date Read') {
+    this.filterFns.push((book: any) => {
       const date = book[dateAttribute]
       if (!date) {
         return false
@@ -62,8 +63,8 @@ export default class DataService {
     return this
   }
 
-  rating(desiredRatings) {
-    this.filterFns.push(book => {
+  rating(desiredRatings: any) {
+    this.filterFns.push((book: any) => {
       const bookRating = Number(book['My Rating'])
       return indexOf(desiredRatings, bookRating) >= 0
     })
@@ -71,14 +72,14 @@ export default class DataService {
     return this
   }
 
-  filter(options) {
+  filter(options: any) {
     each(options, (value, key) => {
       if (isUndefined(value) || isNull(value) || value.length === 0) {
         return
       }
-      const filterFn = this[key]
+      const filterFn = (this as any)[key]
       if (filterFn) {
-        this[key](value)
+        ;(this as any)[key](value)
       }
     })
 

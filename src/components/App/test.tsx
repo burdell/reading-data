@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-testing-library'
 
-import { mockBooks, books2018, books2017 } from '../../../test-utils/mock-books'
+import { mockBooks, books2018, books2017 } from '../../test-utils/mock-books'
 
 import { App } from './App'
 

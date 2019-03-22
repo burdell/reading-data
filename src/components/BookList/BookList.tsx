@@ -14,7 +14,7 @@ export const BookList = ({ books }: Props) => {
   const [selectedBookId, setSelectedBook] = useState<number>()
 
   const isBookSelected = (book: BookType) =>
-    selectedBookId && selectedBookId === book['Book Id']
+    !!(selectedBookId && selectedBookId === book['Book Id'])
 
   return books && books.length ? (
     <BookListStyles>
