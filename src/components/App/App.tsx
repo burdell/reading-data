@@ -1,31 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactSidebar from 'react-sidebar'
 
-import { Book, Stats as StatsType, FilterOptions } from '../types'
+import {
+  Book,
+  Stats as StatsType,
+  FilterOptions,
+  BookDataService,
+  Stats
+} from '../types'
 import { BookList } from '../BookList'
-import { Sidebar } from '../Sidebar'
+import { Sidebar, defaultFilter } from '../Sidebar'
 import Header from '../Header'
 import ScrollToTop from '../ScrollToTop'
 
 import { DOMInfo } from './dom-handlers'
 import { AppContainer, BodyContainer } from './styles'
+import DataService from '../../data/data-service'
+
+const dataService: BookDataService = new DataService() as BookDataService
 
 export const App = ({ scrollToTop, hasMatches }: DOMInfo) => {
-  const [filterInfo, setFilterInfo] = useState<{
-    books: Book[]
-    stats: StatsType | null
-    filterOptions: FilterOptions | null
-  }>({ books: [], filterOptions: null, stats: null })
+  const [books, setBooks] = useState<Book[]>([])
+  const [stats, setStats] = useState<Stats | null>(null)
   const [sidebarOpen, setSidebar] = useState(false)
 
-  const receiveBooks = (
-    books: Book[],
-    stats: StatsType,
-    filterOptions: FilterOptions
-  ) => {
+  const filterBooks = (filterOptions: FilterOptions) => {
+    const { books, stats } = dataService.filter(filterOptions)
+    setBooks(books)
+    setStats(stats)
     scrollToTop()
-    setFilterInfo({ books, stats, filterOptions })
   }
+
+  useEffect(() => {
+    filterBooks(defaultFilter())
+  }, [])
 
   const toggleSidebar = () => setSidebar(!sidebarOpen)
   const onSetSidebarOpen = (sidebarOpen: boolean) => setSidebar(sidebarOpen)
@@ -35,7 +43,8 @@ export const App = ({ scrollToTop, hasMatches }: DOMInfo) => {
       <ReactSidebar
         sidebar={
           <Sidebar
-            onChange={receiveBooks}
+            onFilter={filterBooks}
+            stats={stats}
             open={sidebarOpen}
             toggleSidebar={toggleSidebar}
           />
@@ -46,7 +55,7 @@ export const App = ({ scrollToTop, hasMatches }: DOMInfo) => {
       >
         <Header toggleSidebar={toggleSidebar} />
         <BodyContainer id="body-container">
-          <BookList books={filterInfo.books} />
+          <BookList books={books} />
           <ScrollToTop />
         </BodyContainer>
       </ReactSidebar>
