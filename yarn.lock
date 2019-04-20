@@ -980,10 +980,10 @@ add-dom-event-listener@^1.1.0:
   dependencies:
     object-assign "4.x"
 
-airtable@^0.5.8:
-  version "0.5.9"
-  resolved "https://registry.yarnpkg.com/airtable/-/airtable-0.5.9.tgz#1db5071d55ea31ec269015de76020b94ed807d35"
-  integrity sha512-eB3flT+Y4DSvPnWZRq/zH+uCKMwSD/6X/tuf8ybTd9PbtMbZbuQQJYrnGNfYy5F8YCp6ZhRtn6x50aWhCPD6KQ==
+airtable@^0.5.10:
+  version "0.5.10"
+  resolved "https://registry.yarnpkg.com/airtable/-/airtable-0.5.10.tgz#89ea398393fac46f04a1ea810b97bfcf6bf07012"
+  integrity sha512-dasOg2FpNsydcqlYJ0rsteop54i0uU4kYINkjv3AMW5w9ledIY1W0mwEP8ZVrOokH8o9BLyNAEvaWJUTMFAJhg==
   dependencies:
     lodash "4.17.11"
     request "2.88.0"

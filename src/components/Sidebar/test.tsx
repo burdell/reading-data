@@ -8,7 +8,8 @@ describe('Sidebar', () => {
     const toggleSidebar = jest.fn()
     const result = render(
       <Sidebar
-        onChange={() => null}
+        stats={null}
+        onFilter={() => null}
         toggleSidebar={toggleSidebar}
         open={true}
       />

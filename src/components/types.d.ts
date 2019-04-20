@@ -46,7 +46,7 @@ export interface FilterOptions {
 }
 
 export interface BookDataService {
-  filter(options: FilterOptions): BookDataServiceResult
+  filter(options: FilterOptions): Promise<BookDataServiceResult>
 }
 
 export interface BookDataServiceResult {

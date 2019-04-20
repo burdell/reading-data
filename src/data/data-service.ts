@@ -83,7 +83,8 @@ export default class DataService {
       }
     })
 
-    return this.value()
+    const data = this.value()
+    return Promise.resolve(data)
   }
 
   value() {
