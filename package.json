@@ -23,7 +23,8 @@
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html",
     "compile": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "migrate": "ts-node ./src/migrate/migrate.ts"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -40,6 +41,8 @@
     "@types/react": "^16.8.0",
     "@types/react-dom": "^16.8.0",
     "@types/react-sidebar": "^3.0.0",
+    "@types/uuid": "^3.4.5",
+    "aws-sdk": "^2.505.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
     "babel-plugin-module-resolver": "^3.1.1",
@@ -50,9 +53,11 @@
     "parcel-bundler": "^1.11.0",
     "react-testing-library": "^5.4.2",
     "regenerator-runtime": "^0.13.1",
+    "ts-node": "^8.1.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^3.6.0",
-    "typescript": "^3.3.4000"
+    "typescript": "^3.3.4000",
+    "uuid": "^3.3.2"
   },
   "jest": {
     "moduleFileExtensions": [

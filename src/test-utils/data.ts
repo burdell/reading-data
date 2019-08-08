@@ -1,8 +1,6 @@
 // tslint:disable:max-line-length quotemark
 
-import { Book } from '../components/types'
-
-export const ReadingData: Book[] = [
+export const ReadingData = [
   {
     'Book Id': 25937923,
     Title: "32 Yolks: From My Mother's Table to Working the Line",
@@ -834,7 +832,7 @@ export const ReadingData: Book[] = [
     'Date Read': '2017/05/03',
     'Date Added': '2017/03/03',
     'Exclusive Shelf': 'read',
-    'Private Notes': '',
+    'Private Notes': 1,
     'Recommended By': '0'
   },
   {
@@ -3192,7 +3190,8 @@ export const ReadingData: Book[] = [
     'Original Purchase Location': '',
     Condition: '',
     'Condition Description': '',
-    BCID: ''
+    BCID: '',
+    '': ''
   },
   {
     'Book Id': 29527138,
@@ -3226,7 +3225,8 @@ export const ReadingData: Book[] = [
     'Original Purchase Location': '',
     Condition: '',
     'Condition Description': '',
-    BCID: ''
+    BCID: '',
+    '': ''
   },
   {
     'Book Id': 56083,
@@ -3259,7 +3259,8 @@ export const ReadingData: Book[] = [
     'Original Purchase Location': '',
     Condition: '',
     'Condition Description': '',
-    BCID: ''
+    BCID: '',
+    '': ''
   },
   {
     'Book Id': 18890428,
@@ -3292,7 +3293,8 @@ export const ReadingData: Book[] = [
     'Original Purchase Location': '',
     Condition: '',
     'Condition Description': '',
-    BCID: ''
+    BCID: '',
+    '': ''
   },
   {
     'Book Id': 40694542,

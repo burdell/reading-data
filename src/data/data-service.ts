@@ -2,8 +2,8 @@
 
 import { map, indexOf, each, chain, isUndefined, isNull } from 'lodash'
 
-import { ReadingData } from './data'
 import { Book } from '../components/types'
+import { getBooks } from './api'
 
 function formatResult(data: any) {
   return map(data, book => {
@@ -16,14 +16,10 @@ function formatResult(data: any) {
 }
 
 export default class DataService {
-  private readingData: any[]
   private filterFns: any[]
 
   constructor() {
-    this.readingData = []
-
     this.filterFns = []
-    this.readingData = formatResult(ReadingData)
   }
 
   read(read = true) {
@@ -83,15 +79,19 @@ export default class DataService {
       }
     })
 
-    const data = this.value()
-    return Promise.resolve(data)
+    return this.value()
   }
 
-  value() {
+  async value() {
     let pageCount = 0
     let ratingCount = 0
 
-    const books = chain(this.readingData)
+    const rawData = await getBooks()
+    const readingData = formatResult(
+      rawData.data.records.map((book: any) => book.fields)
+    )
+
+    const books = chain(readingData)
       .filter(book => {
         let bookIsValid = true
         each(this.filterFns, fn => {
