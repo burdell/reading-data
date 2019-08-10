@@ -1,5 +1,5 @@
-import { BookConversion, NewBook } from '../data/types'
-import { ReadingData } from '../data/data'
+import { BookConversion, NewBook } from '../../frontend/data/types'
+import { ReadingData } from '../../frontend/data/data'
 
 export function getBooks(): NewBook[] {
   const books: NewBook[] = []

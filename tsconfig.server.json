@@ -8,14 +8,13 @@
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "types": ["jest", "node"],
-    "lib": ["dom", "es2015", "esnext.asynciterable"],
-    "outDir": "./dist/frontend",
+    "types": ["node"],
+    "lib": ["es2015", "esnext.asynciterable"],
+    "outDir": "./dist/server",
     "resolveJsonModule": true
   },
-  "include": ["src/frontend"],
-  "exclude": ["node_modules", "build", ".cache", "src/setupTests.ts"]
+  "include": ["src/server"],
+  "exclude": ["node_modules", "build", ".cache", "src/server/migrate"]
 }
