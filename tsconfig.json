@@ -16,6 +16,6 @@
     "outDir": "./dist",
     "resolveJsonModule": true
   },
-  "include": ["src"],
+  "include": ["src/frontend"],
   "exclude": ["node_modules", "build", ".cache", "src/setupTests.ts"]
 }
