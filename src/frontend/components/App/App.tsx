@@ -1,33 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import ReactSidebar from 'react-sidebar'
 
-import { Book, Stats, FilterOptions, BookDataService } from '../types'
+import { Stats, FilterOptions } from '../types'
 import { BookList } from '../BookList'
 import { Sidebar, defaultFilter } from '../Sidebar'
 import Header from '../Header'
 import ScrollToTop from '../ScrollToTop'
 
-import { DOMInfo } from './dom-handlers'
+import { useDomHandlers } from './DomHandlers'
 import { AppContainer, BodyContainer } from './styles'
-import DataService from '../../data/data-service'
+import { NewBook } from '../../data/types'
 
-const dataService: BookDataService = new DataService() as BookDataService
+interface Props {
+  books: NewBook[]
+  loading: boolean
+  filterBooks(options: FilterOptions): void
+}
 
-export const App = ({ scrollToTop, hasMatches }: DOMInfo) => {
-  const [books, setBooks] = useState<Book[]>([])
+export function App({ books, filterBooks, loading }: Props) {
   const [stats, setStats] = useState<Stats | null>(null)
   const [sidebarOpen, setSidebar] = useState(false)
-  const [loading, setLoading] = useState(true)
-
-  const filterBooks = async (filterOptions: FilterOptions) => {
-    setLoading(true)
-    const { books, stats } = await dataService.filter(filterOptions)
-
-    setBooks(books)
-    setStats(stats)
-    scrollToTop()
-    setLoading(false)
-  }
+  const { hasMatches } = useDomHandlers()
 
   useEffect(() => {
     filterBooks(defaultFilter())

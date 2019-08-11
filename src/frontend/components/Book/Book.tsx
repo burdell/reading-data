@@ -1,7 +1,7 @@
 import React from 'react'
 import { format } from 'date-fns'
 
-import { Book as BookType } from '../types'
+import { NewBook } from '../../data/types'
 import { Rating } from '../Rating'
 import { Review } from './Review'
 
@@ -20,7 +20,7 @@ import {
 } from './styles'
 
 interface BookProps {
-  book: BookType
+  book: NewBook
   reviewShown: boolean
   onSelect(bookId: number): void
 }
@@ -30,28 +30,28 @@ export const Book = ({ book, reviewShown, onSelect }: BookProps) => {
     <BookStyles>
       <CoverContainer>
         <Cover>
-          <CoverImage src={`http://images.amazon.com/images/P/${book.ISBN}`} />
+          <CoverImage src={`http://images.amazon.com/images/P/${book.isbn}`} />
         </Cover>
         <BookDetails>
           <BookInfo>
-            <ReadDate>{format(book['Date Read'], 'M/DD/YYYY')}</ReadDate>
-            <BookTitle>{book.Title}</BookTitle>
-            <BookAuthor>{book.Author}</BookAuthor>
+            <ReadDate>{format(book.date_read, 'M/DD/YYYY')}</ReadDate>
+            <BookTitle>{book.title}</BookTitle>
+            <BookAuthor>{book.author}</BookAuthor>
           </BookInfo>
-          <Rating rating={book['My Rating']} />
+          <Rating rating={book.my_rating} />
         </BookDetails>
       </CoverContainer>
       <ActionsContainer>
-        {book['My Review'] && (
+        {book.my_review && (
           <ReviewToggle
-            onClick={() => onSelect(book['Book Id'])}
+            onClick={() => onSelect(book.book_id)}
             className="review-toggle"
           >
             {reviewShown ? 'Hide' : 'Show'} Review
           </ReviewToggle>
         )}
       </ActionsContainer>
-      <Review review={book['My Review']} isShown={reviewShown} />
+      <Review review={book.my_review} isShown={reviewShown} />
     </BookStyles>
   )
 }

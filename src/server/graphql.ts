@@ -18,13 +18,13 @@ const typeDefs = gql`
   }
 
   type Query {
-    getBooks: [Book!]!
+    books: [Book!]!
   }
 `
 
 const resolvers = {
   Query: {
-    getBooks: async () => {
+    books: async () => {
       const result = await dynamo.scan({ TableName: 'Books' }).promise()
       return result.Items
     }

@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 import { breakpoints } from '../../shared/breakpoints'
 import scroll from '../ScrollToTop/scroll'
-
-import { App as MainApp } from './App'
 
 const mql = window.matchMedia(`(min-width: ${breakpoints.small}rem)`)
 
@@ -12,9 +10,8 @@ export interface DOMInfo {
   scrollToTop(): void
 }
 
-export const App = () => {
+export function useDomHandlers(): DOMInfo {
   const [hasMatches, setMatches] = useState(mql.matches)
-
   const mediaQueryChanged = () => setMatches(mql.matches)
   useEffect(() => {
     mql.addListener(mediaQueryChanged)
@@ -24,5 +21,5 @@ export const App = () => {
     }
   }, [])
 
-  return <MainApp hasMatches={hasMatches} scrollToTop={scroll} />
+  return { hasMatches, scrollToTop: scroll }
 }

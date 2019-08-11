@@ -1,1 +1,1 @@
-export { App } from './dom-handlers'
+export { App } from './AppData'
