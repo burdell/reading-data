@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
-import { NewBook } from '../../data/types'
-import { Book as BookType } from '../types'
+import { Book as BookType } from '../../data/types'
 import { Book } from '../Book'
 import { NoBooks } from './NoBooks'
 
@@ -10,14 +9,14 @@ import { Loader } from '../Loader'
 import { BookList as BookListStyles, Book as BooklistBook } from './styles'
 
 interface Props {
-  books: NewBook[]
+  books: BookType[]
   loading: boolean
 }
 
 export const BookList = ({ books, loading }: Props) => {
   const [selectedBookId, setSelectedBook] = useState<number | null>(null)
 
-  const isBookSelected = (book: NewBook) =>
+  const isBookSelected = (book: BookType) =>
     !!(selectedBookId && selectedBookId === book.book_id)
 
   if (loading) return <Loader />

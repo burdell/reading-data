@@ -1,6 +1,6 @@
 // tslint:disable:max-line-length quotemark
 
-import { Book } from '../components/types'
+import { Book } from '../types'
 
 export const ReadingData: Book[] = [
   {

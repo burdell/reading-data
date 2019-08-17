@@ -2,7 +2,7 @@ import React from 'react'
 import { Menu } from 'antd'
 import 'antd/lib/menu/style/css'
 
-import { FilterOptions, Stats } from '../types'
+import { FilterOptions, Stats } from '../../types'
 import { SidebarStyles, CloseAction } from './styles'
 import Filter from './Filter'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FilterOptions, Stats as IStats } from '../../types'
+import { FilterOptions, Stats as IStats } from '../../../types'
 import FilterSection from './FilterSection'
 import {
   possibleMonths,

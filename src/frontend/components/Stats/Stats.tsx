@@ -1,7 +1,7 @@
 import React from 'react'
 import NumberFormat from 'react-number-format'
 
-import { Stats } from '../types'
+import { Stats } from '../../types'
 import { StatsContainer, Stat } from './styles'
 
 interface StatsProps {

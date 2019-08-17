@@ -5,7 +5,7 @@ import { format } from 'date-fns'
 import { generateBook } from '../../test-utils/data-factory'
 import { Book } from './Book'
 import ratingGenerator from '../Rating/ratingGenerator'
-import { Book as BookType } from '../types'
+import { Book as BookType } from '../../types'
 
 let book: BookType
 

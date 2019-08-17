@@ -1,5 +1,5 @@
 export type BookConversion = Pick<
-  Book,
+  GoodreadsBook,
   | 'Book Id'
   | 'Title'
   | 'Author'
@@ -11,7 +11,8 @@ export type BookConversion = Pick<
   | 'ISBN13'
 >
 
-export interface NewBook {
+export interface Book {
+  id: string
   book_id: number
   title: string
   author: string
@@ -23,7 +24,7 @@ export interface NewBook {
   isbn_13?: string
 }
 
-export interface Book {
+export interface GoodreadsBook {
   'Book Id': number
   Title: string
   Author: string
@@ -55,4 +56,26 @@ export interface Book {
   Condition: string
   'Condition Description': string
   BCID: string
+}
+
+export interface Stats {
+  bookCount: number
+  pageCount: number
+  ratingCount: number
+}
+
+export interface FilterOptions {
+  read: boolean
+  year: number[]
+  rating: number[]
+  month: string[]
+}
+
+export interface BookDataService {
+  filter(options: FilterOptions): Promise<BookDataServiceResult>
+}
+
+export interface BookDataServiceResult {
+  books: Book[]
+  stats: Stats
 }

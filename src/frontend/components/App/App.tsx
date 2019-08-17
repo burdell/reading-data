@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactSidebar from 'react-sidebar'
 
-import { Stats, FilterOptions } from '../types'
+import { Stats, FilterOptions } from '../../types'
 import { BookList } from '../BookList'
 import { Sidebar, defaultFilter } from '../Sidebar'
 import Header from '../Header'
@@ -9,10 +9,10 @@ import ScrollToTop from '../ScrollToTop'
 
 import { useDomHandlers } from './DomHandlers'
 import { AppContainer, BodyContainer } from './styles'
-import { NewBook } from '../../data/types'
+import { Book } from '../../data/types'
 
 interface Props {
-  books: NewBook[]
+  books: Book[]
   loading: boolean
   filterBooks(options: FilterOptions): void
 }

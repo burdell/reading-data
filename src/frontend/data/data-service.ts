@@ -1,125 +1,82 @@
-// tslint:disable:typedef
+import { Book, FilterOptions, BookDataServiceResult } from '../types'
 
-import { map, indexOf, each, chain, isUndefined, isNull } from 'lodash'
+type FilterFn = (book: Book) => boolean
 
-import { Book } from '../components/types'
-import { getBooks } from './api'
-
-function formatResult(data: any) {
-  return map(data, book => {
-    const isbn = book.ISBN
-    const parsedISBN = isbn.match(/="(.+)"/)
-    book.ISBN = parsedISBN ? parsedISBN[1] : isbn
-
-    return book
-  })
-}
-
-export default class DataService {
-  private filterFns: any[]
+export class DataService {
+  private filterFns: FilterFn[]
 
   constructor() {
     this.filterFns = []
   }
 
-  read(read = true) {
-    this.filterFns.push((book: Book) => {
-      const isRead = !!book['Date Read']
-      return read === isRead
-    })
-
-    return this
-  }
-
-  year(desiredYears: any, dateAttribute = 'Date Read') {
-    this.filterFns.push((book: any) => {
-      const date = book[dateAttribute]
+  year(desiredYears: number[]) {
+    this.filterFns.push(book => {
+      const date = book.date_read
       if (!date) {
         return false
       }
 
       const year = date.split('/').shift()
-      return indexOf(desiredYears, Number(year)) >= 0
+      return desiredYears.indexOf(Number(year)) >= 0
     })
 
     return this
   }
 
-  month(desiredMonths: any, dateAttribute = 'Date Read') {
-    this.filterFns.push((book: any) => {
-      const date = book[dateAttribute]
+  month(desiredMonths: number[]) {
+    this.filterFns.push(book => {
+      const date = book.date_read
       if (!date) {
         return false
       }
 
       const month = date.split('/')[1]
-      return indexOf(desiredMonths, Number(month)) >= 0
+      return desiredMonths.indexOf(Number(month)) >= 0
     })
 
     return this
   }
 
-  rating(desiredRatings: any) {
-    this.filterFns.push((book: any) => {
-      const bookRating = Number(book['My Rating'])
-      return indexOf(desiredRatings, bookRating) >= 0
+  rating(desiredRatings: number[]) {
+    this.filterFns.push(book => {
+      const bookRating = Number(book.my_rating)
+      return desiredRatings.indexOf(bookRating) >= 0
     })
 
     return this
   }
 
-  filter(options: any) {
-    each(options, (value, key) => {
-      if (isUndefined(value) || isNull(value) || value.length === 0) {
-        return
-      }
-      const filterFn = (this as any)[key]
-      if (filterFn) {
-        ;(this as any)[key](value)
-      }
-    })
+  filter(
+    books: Book[],
+    options: Partial<FilterOptions>
+  ): BookDataServiceResult {
+    // each(options, (value, key) => {
+    //   const filterFn = (this as DataService)[key]
+    //   if (filterFn) {
+    //     ;(this as any)[key](value)
+    //   }
+    // })
 
-    return this.value()
-  }
-
-  async value() {
-    let pageCount = 0
-    let ratingCount = 0
-
-    const rawData = await getBooks()
-    const readingData = formatResult(
-      rawData.data.records.map((book: any) => book.fields)
-    )
-
-    const books = chain(readingData)
-      .filter(book => {
-        let bookIsValid = true
-        each(this.filterFns, fn => {
-          let valid = fn(book)
-          if (!valid) {
-            bookIsValid = false
-          }
-        })
-
-        if (bookIsValid) {
-          pageCount += Number(book['Number of Pages']) || 0
-          ratingCount += Number(book['My Rating'])
-        }
-
-        return bookIsValid
-      })
-      .orderBy(book => book['Date Read'], 'desc')
-      .valueOf()
-
-    this.filterFns = []
-
+    // return this.value()
     return {
       books,
       stats: {
         bookCount: books.length,
-        pageCount,
-        ratingCount
+        pageCount: 0,
+        ratingCount: 0
       }
     }
   }
+}
+
+function formatResult(data: Book[]) {
+  return data.map(book => {
+    const isbn = book.isbn
+    if (isbn) {
+      const parsedISBN = isbn.match(/="(.+)"/)
+      book.isbn = parsedISBN ? parsedISBN[1] : isbn
+    }
+
+    return book
+  })
 }

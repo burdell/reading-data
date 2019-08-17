@@ -3,7 +3,7 @@ import { render, fireEvent } from 'react-testing-library'
 
 import { BookList } from './BookList'
 import { generateBookList } from '../../test-utils/data-factory'
-import { Book } from '../types'
+import { Book } from '../../types'
 
 const getReviewEls = (book: Element) => ({
   reviewToggle: book.getElementsByClassName('review-toggle').item(0),

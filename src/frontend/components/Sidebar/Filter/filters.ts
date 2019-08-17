@@ -1,4 +1,4 @@
-import { FilterOptions } from '../../types'
+import { FilterOptions } from '../../../types'
 
 export const emptyFilter: FilterOptions = {
   year: [],

@@ -1,7 +1,7 @@
 import React from 'react'
 import { format } from 'date-fns'
 
-import { NewBook } from '../../data/types'
+import { Book as BookType } from '../../data/types'
 import { Rating } from '../Rating'
 import { Review } from './Review'
 
@@ -20,7 +20,7 @@ import {
 } from './styles'
 
 interface BookProps {
-  book: NewBook
+  book: BookType
   reviewShown: boolean
   onSelect(bookId: number): void
 }

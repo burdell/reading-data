@@ -1,7 +1,7 @@
 import { format, subYears, subMonths } from 'date-fns'
 import mocker from 'mocker-data-generator'
 
-import { Book } from '../components/types'
+import { Book } from '../types'
 
 const randomInt = (limit = 5) => Math.floor(Math.random() * (limit + 1))
 const randomPastYear = () => format(subYears(new Date(), randomInt(40)), 'YYYY')

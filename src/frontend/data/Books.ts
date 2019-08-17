@@ -1,4 +1,6 @@
-export const Books = [
+import { Book } from "../types";
+
+export const Books: Book[] = [
     {
       "id": "18e8af92-b99c-11e9-8979-a765fe72db01",
       "title": "The Voyage of the Dawn Treader (Chronicles of Narnia, #3)",
@@ -704,7 +706,7 @@ export const Books = [
       "isbn": "=\"1555979106",
       "isbn_13": "=\"9781555979102",
       "my_rating": 5,
-      "number_of_pages": "",
+      "number_of_pages": 256,
       "my_review": ""
     },
     {
