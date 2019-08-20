@@ -1,1 +1,1 @@
-export { App } from './AppData'
+export { App } from './App'

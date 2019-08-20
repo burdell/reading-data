@@ -1,4 +1,4 @@
-import { Book, FilterOptions, BookDataServiceResult } from '../types'
+import { Book, FilterOptions, BookDataServiceResult } from '../../types'
 
 type FilterFn = (book: Book) => boolean
 
@@ -47,23 +47,23 @@ export class DataService {
   }
 
   filter(
-    books: Book[],
+    rawBooks: Book[],
     options: Partial<FilterOptions>
   ): BookDataServiceResult {
-    // each(options, (value, key) => {
-    //   const filterFn = (this as DataService)[key]
-    //   if (filterFn) {
-    //     ;(this as any)[key](value)
-    //   }
-    // })
+    let pageCount = 0
+    let ratingCount = 0
 
-    // return this.value()
+    rawBooks.forEach(book => {
+      pageCount += book.number_of_pages
+      ratingCount += book.my_rating
+    })
+
     return {
-      books,
+      books: formatResult(rawBooks),
       stats: {
-        bookCount: books.length,
-        pageCount: 0,
-        ratingCount: 0
+        bookCount: rawBooks.length,
+        pageCount,
+        ratingCount
       }
     }
   }

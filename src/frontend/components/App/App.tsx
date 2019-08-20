@@ -1,30 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import ReactSidebar from 'react-sidebar'
 
-import { Stats, FilterOptions } from '../../types'
 import { BookList } from '../BookList'
-import { Sidebar, defaultFilter } from '../Sidebar'
+import { Sidebar } from '../Sidebar'
 import Header from '../Header'
 import ScrollToTop from '../ScrollToTop'
+import { useData } from '../AppData'
 
 import { useDomHandlers } from './DomHandlers'
 import { AppContainer, BodyContainer } from './styles'
-import { Book } from '../../data/types'
 
-interface Props {
-  books: Book[]
-  loading: boolean
-  filterBooks(options: FilterOptions): void
-}
-
-export function App({ books, filterBooks, loading }: Props) {
-  const [stats, setStats] = useState<Stats | null>(null)
+export function App() {
   const [sidebarOpen, setSidebar] = useState(false)
   const { hasMatches } = useDomHandlers()
-
-  useEffect(() => {
-    filterBooks(defaultFilter())
-  }, [])
+  const { loading, books, stats } = useData()
 
   const toggleSidebar = () => setSidebar(!sidebarOpen)
   const onSetSidebarOpen = (sidebarOpen: boolean) => setSidebar(sidebarOpen)
@@ -34,7 +23,7 @@ export function App({ books, filterBooks, loading }: Props) {
       <ReactSidebar
         sidebar={
           <Sidebar
-            onFilter={filterBooks}
+            onFilter={() => null}
             stats={stats}
             open={sidebarOpen}
             toggleSidebar={toggleSidebar}
