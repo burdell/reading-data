@@ -1,7 +1,7 @@
 import { useQuery } from 'urql'
 
 import { DataService } from './data-service'
-import { Book, Stats } from '../../types'
+import { Book, Stats, FilterOptions } from '../../types'
 
 interface DataResults {
   books: Book[]
@@ -10,6 +10,15 @@ interface DataResults {
 }
 
 const dataService = new DataService()
+
+function defaultFilter(): FilterOptions {
+  return {
+    read: true,
+    year: [2018],
+    month: [],
+    rating: []
+  }
+}
 
 export function useData(): DataResults {
   const [result] = useQuery<{ books: Book[] }>({
@@ -34,7 +43,13 @@ export function useData(): DataResults {
   const loading = result.fetching
 
   if (!loading && result.data) {
-    const filterResult = dataService.filter(result.data.books, {})
+    const filter = defaultFilter()
+    const filterResult = dataService
+      .addFilter('year', filter)
+      .addFilter('month', filter)
+      .addFilter('rating', filter)
+      .filter(result.data.books)
+
     books = filterResult.books
     stats = filterResult.stats
   }

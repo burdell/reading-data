@@ -2,15 +2,20 @@ import { Book, FilterOptions, BookDataServiceResult } from '../../types'
 
 type FilterFn = (book: Book) => boolean
 
-export class DataService {
-  private filterFns: FilterFn[]
+function getProperty<T, K extends keyof T>(obj: T, key: K) {
+  return obj[key]
+}
 
-  constructor() {
-    this.filterFns = []
-  }
+function NoOp() {
+  return true
+}
 
-  year(desiredYears: number[]) {
-    this.filterFns.push(book => {
+const filterFns: { [s: string]: (o: Partial<FilterOptions>) => FilterFn } = {
+  year: function(options) {
+    const desiredYears = options.year
+    if (!desiredYears) return NoOp
+
+    return book => {
       const date = book.date_read
       if (!date) {
         return false
@@ -18,13 +23,14 @@ export class DataService {
 
       const year = date.split('/').shift()
       return desiredYears.indexOf(Number(year)) >= 0
-    })
+    }
+  },
 
-    return this
-  }
+  month: function(options) {
+    const desiredMonths = options.year
+    if (!desiredMonths) return NoOp
 
-  month(desiredMonths: number[]) {
-    this.filterFns.push(book => {
+    return book => {
       const date = book.date_read
       if (!date) {
         return false
@@ -32,51 +38,72 @@ export class DataService {
 
       const month = date.split('/')[1]
       return desiredMonths.indexOf(Number(month)) >= 0
-    })
+    }
+  },
 
-    return this
-  }
+  rating: function(options) {
+    const desiredRatings = options.year
+    if (!desiredRatings) return NoOp
 
-  rating(desiredRatings: number[]) {
-    this.filterFns.push(book => {
+    return book => {
       const bookRating = Number(book.my_rating)
       return desiredRatings.indexOf(bookRating) >= 0
-    })
-
-    return this
-  }
-
-  filter(
-    rawBooks: Book[],
-    options: Partial<FilterOptions>
-  ): BookDataServiceResult {
-    let pageCount = 0
-    let ratingCount = 0
-
-    rawBooks.forEach(book => {
-      pageCount += book.number_of_pages
-      ratingCount += book.my_rating
-    })
-
-    return {
-      books: formatResult(rawBooks),
-      stats: {
-        bookCount: rawBooks.length,
-        pageCount,
-        ratingCount
-      }
     }
   }
 }
 
-function formatResult(data: Book[]) {
-  return data.map(book => {
-    const isbn = book.isbn
-    if (isbn) {
-      const parsedISBN = isbn.match(/="(.+)"/)
-      book.isbn = parsedISBN ? parsedISBN[1] : isbn
+export class DataService {
+  private filterFns: FilterFn[]
+
+  constructor() {
+    this.filterFns = []
+
+    this.addFilter = this.addFilter.bind(this)
+    this.bookIsValid = this.bookIsValid.bind(this)
+  }
+
+  bookIsValid(book: Book) {
+    return this.filterFns.every(fn => fn(book))
+  }
+
+  addFilter(filterName: string, options: Partial<FilterOptions>) {
+    const filter = getProperty(filterFns, filterName)
+    if (filter) {
+      this.filterFns.push(filter(options))
     }
 
-    return book
-  })
+    return this
+  }
+
+  filter(rawBooks: Book[]): BookDataServiceResult {
+    const result: BookDataServiceResult = {
+      stats: {
+        bookCount: 0,
+        pageCount: 0,
+        ratingCount: 0
+      },
+      books: []
+    }
+
+    return rawBooks.filter(this.bookIsValid).reduce((acc, book) => {
+      const { stats, books } = result
+      books.push(formatResult(book))
+      stats.bookCount += 1
+      stats.pageCount += book.number_of_pages
+      stats.ratingCount += book.my_rating
+
+      return acc
+    }, result)
+  }
+}
+
+function formatResult(rawBook: Book) {
+  const book = { ...rawBook }
+  const isbn = book.isbn
+  if (isbn) {
+    const parsedISBN = isbn.match(/="(.+)"/)
+    book.isbn = parsedISBN ? parsedISBN[1] : isbn
+  }
+
+  return book
 }
