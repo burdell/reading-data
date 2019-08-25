@@ -13,7 +13,7 @@ function NoOp() {
 const filterFns: { [s: string]: (o: Partial<FilterOptions>) => FilterFn } = {
   year: function(options) {
     const desiredYears = options.year
-    if (!desiredYears) return NoOp
+    if (!desiredYears || !desiredYears.length) return NoOp
 
     return book => {
       const date = book.date_read
@@ -27,8 +27,8 @@ const filterFns: { [s: string]: (o: Partial<FilterOptions>) => FilterFn } = {
   },
 
   month: function(options) {
-    const desiredMonths = options.year
-    if (!desiredMonths) return NoOp
+    const desiredMonths = options.month
+    if (!desiredMonths || !desiredMonths.length) return NoOp
 
     return book => {
       const date = book.date_read
@@ -37,18 +37,19 @@ const filterFns: { [s: string]: (o: Partial<FilterOptions>) => FilterFn } = {
       }
 
       const month = date.split('/')[1]
-      return desiredMonths.indexOf(Number(month)) >= 0
+      return desiredMonths.indexOf(month) >= 0
     }
   },
 
   rating: function(options) {
-    const desiredRatings = options.year
-    if (!desiredRatings) return NoOp
+    const desiredRatings = options.rating
+    if (!desiredRatings || !desiredRatings.length) return NoOp
 
-    return book => {
-      const bookRating = Number(book.my_rating)
-      return desiredRatings.indexOf(bookRating) >= 0
-    }
+    return NoOp
+    // return book => {
+    //   const bookRating = Number(book.my_rating)
+    //   return desiredRatings.indexOf(bookRating) >= 0
+    // }
   }
 }
 
@@ -63,7 +64,9 @@ export class DataService {
   }
 
   bookIsValid(book: Book) {
-    return this.filterFns.every(fn => fn(book))
+    return this.filterFns.every(fn => {
+      return fn(book)
+    })
   }
 
   addFilter(filterName: string, options: Partial<FilterOptions>) {
@@ -75,7 +78,10 @@ export class DataService {
     return this
   }
 
-  filter(rawBooks: Book[]): BookDataServiceResult {
+  filter(
+    rawBooks: Book[],
+    filter: Partial<FilterOptions>
+  ): BookDataServiceResult {
     const result: BookDataServiceResult = {
       stats: {
         bookCount: 0,
@@ -85,15 +91,22 @@ export class DataService {
       books: []
     }
 
-    return rawBooks.filter(this.bookIsValid).reduce((acc, book) => {
-      const { stats, books } = result
-      books.push(formatResult(book))
-      stats.bookCount += 1
-      stats.pageCount += book.number_of_pages
-      stats.ratingCount += book.my_rating
+    this.filterFns.push(filterFns.year(filter))
+    this.filterFns.push(filterFns.month(filter))
+    this.filterFns.push(filterFns.rating(filter))
 
-      return acc
-    }, result)
+    return rawBooks
+      .filter(this.bookIsValid)
+      .sort((book1, book2) => (book1.date_read < book2.date_read ? -1 : 1))
+      .reduce((acc, book) => {
+        const { stats, books } = result
+        books.push(formatResult(book))
+        stats.bookCount += 1
+        stats.pageCount += book.number_of_pages
+        stats.ratingCount += book.my_rating
+
+        return acc
+      }, result)
   }
 }
 

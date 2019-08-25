@@ -44,11 +44,7 @@ export function useData(): DataResults {
 
   if (!loading && result.data) {
     const filter = defaultFilter()
-    const filterResult = dataService
-      .addFilter('year', filter)
-      .addFilter('month', filter)
-      .addFilter('rating', filter)
-      .filter(result.data.books)
+    const filterResult = dataService.filter(result.data.books, filter)
 
     books = filterResult.books
     stats = filterResult.stats
