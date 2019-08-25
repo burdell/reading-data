@@ -68,7 +68,7 @@ export interface FilterOptions {
   read: boolean
   year: number[]
   rating: number[]
-  month: string[]
+  month: number[]
 }
 
 export interface BookDataService {

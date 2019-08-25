@@ -36,7 +36,7 @@ const filterFns: { [s: string]: (o: Partial<FilterOptions>) => FilterFn } = {
         return false
       }
 
-      const month = date.split('/')[1]
+      const month = Number(date.split('/')[1])
       return desiredMonths.indexOf(month) >= 0
     }
   },
@@ -45,11 +45,10 @@ const filterFns: { [s: string]: (o: Partial<FilterOptions>) => FilterFn } = {
     const desiredRatings = options.rating
     if (!desiredRatings || !desiredRatings.length) return NoOp
 
-    return NoOp
-    // return book => {
-    //   const bookRating = Number(book.my_rating)
-    //   return desiredRatings.indexOf(bookRating) >= 0
-    // }
+    return book => {
+      const bookRating = Number(book.my_rating)
+      return desiredRatings.indexOf(bookRating) >= 0
+    }
   }
 }
 
@@ -95,9 +94,9 @@ export class DataService {
     this.filterFns.push(filterFns.month(filter))
     this.filterFns.push(filterFns.rating(filter))
 
-    return rawBooks
+    rawBooks
       .filter(this.bookIsValid)
-      .sort((book1, book2) => (book1.date_read < book2.date_read ? -1 : 1))
+      .sort((book1, book2) => (book1.date_read > book2.date_read ? -1 : 1))
       .reduce((acc, book) => {
         const { stats, books } = result
         books.push(formatResult(book))
@@ -107,6 +106,9 @@ export class DataService {
 
         return acc
       }, result)
+
+    this.filterFns = []
+    return result
   }
 }
 

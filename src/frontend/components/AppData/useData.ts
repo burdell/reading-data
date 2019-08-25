@@ -2,11 +2,17 @@ import { useQuery } from 'urql'
 
 import { DataService } from './data-service'
 import { Book, Stats, FilterOptions } from '../../types'
+import { useState, useEffect } from 'react'
 
 interface DataResults {
   books: Book[]
-  loading: boolean
   stats: Stats | null
+}
+
+interface UseData {
+  data: DataResults
+  loading: boolean
+  updateFilter(o: Partial<FilterOptions>): void
 }
 
 const dataService = new DataService()
@@ -20,7 +26,7 @@ function defaultFilter(): FilterOptions {
   }
 }
 
-export function useData(): DataResults {
+export function useData(): UseData {
   const [result] = useQuery<{ books: Book[] }>({
     query: `{
           books { 
@@ -37,18 +43,23 @@ export function useData(): DataResults {
           } 
         }`
   })
+  const [filter, setFilter] = useState<FilterOptions>(defaultFilter())
+  const [readingData, setReadingData] = useState<DataResults>({
+    books: [],
+    stats: null
+  })
 
-  let books: Book[] = []
-  let stats = null
-  const loading = result.fetching
-
-  if (!loading && result.data) {
-    const filter = defaultFilter()
-    const filterResult = dataService.filter(result.data.books, filter)
-
-    books = filterResult.books
-    stats = filterResult.stats
+  function updateFilter(newFilter: Partial<FilterOptions>) {
+    setFilter({ ...filter, ...newFilter })
   }
 
-  return { loading, books, stats }
+  const loading = result.fetching
+  useEffect(() => {
+    if (!loading && result.data) {
+      const filterResult = dataService.filter(result.data.books, filter)
+      setReadingData(filterResult)
+    }
+  }, [result, filter])
+
+  return { data: readingData, loading, updateFilter }
 }
