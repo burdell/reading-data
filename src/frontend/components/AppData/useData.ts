@@ -15,8 +15,6 @@ interface UseData {
   updateFilter(o: Partial<FilterOptions>): void
 }
 
-const dataService = new DataService()
-
 function defaultFilter(): FilterOptions {
   return {
     read: true,
@@ -56,7 +54,7 @@ export function useData(): UseData {
   const loading = result.fetching
   useEffect(() => {
     if (!loading && result.data) {
-      const filterResult = dataService.filter(result.data.books, filter)
+      const filterResult = DataService.filter(result.data.books, filter)
       setReadingData(filterResult)
     }
   }, [result, filter])

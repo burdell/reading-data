@@ -2,10 +2,6 @@ import { Book, FilterOptions, BookDataServiceResult } from '../../types'
 
 type FilterFn = (book: Book) => boolean
 
-function getProperty<T, K extends keyof T>(obj: T, key: K) {
-  return obj[key]
-}
-
 function NoOp() {
   return true
 }
@@ -52,35 +48,8 @@ const filterFns: { [s: string]: (o: Partial<FilterOptions>) => FilterFn } = {
   }
 }
 
-export class DataService {
-  private filterFns: FilterFn[]
-
-  constructor() {
-    this.filterFns = []
-
-    this.addFilter = this.addFilter.bind(this)
-    this.bookIsValid = this.bookIsValid.bind(this)
-  }
-
-  bookIsValid(book: Book) {
-    return this.filterFns.every(fn => {
-      return fn(book)
-    })
-  }
-
-  addFilter(filterName: string, options: Partial<FilterOptions>) {
-    const filter = getProperty(filterFns, filterName)
-    if (filter) {
-      this.filterFns.push(filter(options))
-    }
-
-    return this
-  }
-
-  filter(
-    rawBooks: Book[],
-    filter: Partial<FilterOptions>
-  ): BookDataServiceResult {
+export const DataService = {
+  filter: function(rawBooks: Book[], filter: Partial<FilterOptions>) {
     const result: BookDataServiceResult = {
       stats: {
         bookCount: 0,
@@ -90,16 +59,19 @@ export class DataService {
       books: []
     }
 
-    this.filterFns.push(filterFns.year(filter))
-    this.filterFns.push(filterFns.month(filter))
-    this.filterFns.push(filterFns.rating(filter))
+    const filters = [
+      filterFns.year(filter),
+      filterFns.month(filter),
+      filterFns.rating(filter)
+    ]
 
     rawBooks
-      .filter(this.bookIsValid)
+      .filter(book => filters.every(fn => fn(book)))
       .sort((book1, book2) => (book1.date_read > book2.date_read ? -1 : 1))
       .reduce((acc, book) => {
         const { stats, books } = result
         books.push(formatResult(book))
+
         stats.bookCount += 1
         stats.pageCount += book.number_of_pages
         stats.ratingCount += book.my_rating
@@ -107,7 +79,6 @@ export class DataService {
         return acc
       }, result)
 
-    this.filterFns = []
     return result
   }
 }
