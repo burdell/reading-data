@@ -1,4 +1,5 @@
-import { BookConversion, Book } from '../../frontend/types'
+import { Book } from '../../frontend/types'
+import { BookConversion } from '../types'
 
 export type BookWithoutId = Omit<Book, 'id'>
 
