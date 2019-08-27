@@ -1,4 +1,4 @@
-export default function scrollToTop() {
+export function scroll() {
   const container = document.getElementById('body-container')
   if (!container) return
 

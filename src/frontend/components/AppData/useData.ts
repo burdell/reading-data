@@ -1,8 +1,10 @@
+import { useState, useEffect } from 'react'
 import { useQuery } from 'urql'
 
-import { DataService } from './data-service'
 import { Book, Stats, FilterOptions } from '../../types'
-import { useState, useEffect } from 'react'
+
+import { DataService } from './data-service'
+import { scroll } from '../ScrollToTop'
 
 interface DataResults {
   books: Book[]
@@ -46,17 +48,20 @@ export function useData(): UseData {
     books: [],
     stats: null
   })
+  const [loading, setLoading] = useState(false)
 
   function updateFilter(newFilter: Partial<FilterOptions>) {
     setFilter({ ...filter, ...newFilter })
   }
 
-  const loading = result.fetching
   useEffect(() => {
-    if (!loading && result.data) {
-      const filterResult = DataService.filter(result.data.books, filter)
-      setReadingData(filterResult)
-    }
+    setLoading(result.fetching)
+
+    if (!result.data) return
+
+    const filterResult = DataService.filter(result.data.books, filter)
+    setReadingData(filterResult)
+    scroll()
   }, [result, filter])
 
   return { data: readingData, loading, updateFilter }

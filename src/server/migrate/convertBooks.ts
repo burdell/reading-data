@@ -1,9 +1,12 @@
-import { BookConversion, NewBook } from '../../frontend/data/types'
-import { ReadingData } from '../../frontend/data/data'
+import { BookConversion, Book } from '../../frontend/types'
+// import { ReadingData } from '../../frontend/data/data'
 
-export function getBooks(): NewBook[] {
-  const books: NewBook[] = []
-  console.log(ReadingData.length)
+type BookWithoutId = Omit<Book, 'id'>
+
+const ReadingData = []
+export function getBooks() {
+  const books: BookWithoutId[] = []
+
   ReadingData.map(rawBook => {
     const book = convertToNewType(rawBook)
     if (book) books.push(book)
@@ -15,7 +18,7 @@ export function getBooks(): NewBook[] {
 
 function convertToNewType(
   rawBook: Partial<BookConversion>
-): NewBook | undefined {
+): BookWithoutId | undefined {
   const book = validateData(rawBook)
   if (!book) return
 
