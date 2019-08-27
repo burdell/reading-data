@@ -7,7 +7,22 @@ export const emptyFilter: FilterOptions = {
   month: []
 }
 
-export const possibleYears = [2015, 2016, 2017, 2018]
+const startYear = 2015
+const currentYear = new Date().getFullYear()
+const yearCount = currentYear - startYear + 1
+export const possibleYears = Array.from({ length: yearCount }).map(
+  (_, index) => index + startYear
+)
+
+export function defaultFilter(): FilterOptions {
+  return {
+    read: true,
+    year: [possibleYears[possibleYears.length - 1]],
+    month: [],
+    rating: []
+  }
+}
+
 export const possibleRatings = [1, 2, 3, 4, 5]
 export const possibleMonths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 export const monthMap = {

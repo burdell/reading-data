@@ -3,8 +3,11 @@ import { useQuery } from 'urql'
 
 import { Book, Stats, FilterOptions } from '../../types'
 
-import { DataService } from './data-service'
 import { scroll } from '../ScrollToTop'
+import { defaultFilter } from '../Sidebar/Filter'
+
+import { DataService } from './data-service'
+import {} from 'module'
 
 interface DataResults {
   books: Book[]
@@ -15,15 +18,6 @@ interface UseData {
   data: DataResults
   loading: boolean
   updateFilter(o: Partial<FilterOptions>): void
-}
-
-function defaultFilter(): FilterOptions {
-  return {
-    read: true,
-    year: [2018],
-    month: [],
-    rating: []
-  }
 }
 
 export function useData(): UseData {
