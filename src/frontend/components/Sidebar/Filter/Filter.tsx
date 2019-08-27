@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo } from 'react'
 
 import { FilterOptions, Stats as IStats } from '../../../types'
 import FilterSection from './FilterSection'
@@ -16,11 +16,7 @@ interface FilterProps {
 }
 
 export function Filter({ stats, onFilter, defaultFilters }: FilterProps) {
-  const [filterOptions, setFilterOptions] = useState<FilterOptions>(
-    defaultFilters
-  )
-
-  console.log({ filterOptions })
+  const filterOptions = useMemo<FilterOptions>(() => defaultFilters, [])
 
   function checkboxSelected({ field, value }: CheckboxSelection) {
     if (value === null) {
