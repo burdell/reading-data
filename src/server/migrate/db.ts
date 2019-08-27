@@ -6,12 +6,12 @@ import {
 } from 'aws-sdk/clients/dynamodb'
 import uuid from 'uuid/v1'
 
-import { NewBook } from '../data/types'
+import { BookWithoutId } from './convertBooks'
 
 AWS.config.loadFromPath(resolve(__dirname, './aws_creds.json'))
 
 const UPLOAD_NUMBER = 25
-export function addToDb(books: NewBook[]) {
+export function addToDb(books: BookWithoutId[]) {
   const chunks = getBookChunks(books)
   const db = new DynamoDB()
   chunks.forEach(chunk => {
@@ -22,7 +22,7 @@ export function addToDb(books: NewBook[]) {
   })
 }
 
-function getBookChunks(books: NewBook[]): NewBook[][] {
+function getBookChunks(books: BookWithoutId[]): BookWithoutId[][] {
   const chunkNumber = Math.ceil(books.length / UPLOAD_NUMBER)
   let currentChunk = 0
   const chunks = []
@@ -34,7 +34,7 @@ function getBookChunks(books: NewBook[]): NewBook[][] {
   return chunks
 }
 
-function getDynamoInput(books: NewBook[]): BatchWriteItemInput {
+function getDynamoInput(books: BookWithoutId[]): BatchWriteItemInput {
   const putRequests = books.map(getAttributeMap)
   return {
     RequestItems: {
@@ -48,13 +48,13 @@ function getDynamoInput(books: NewBook[]): BatchWriteItemInput {
 }
 
 const defaultType = 'S'
-const newBookTypeMap: Partial<{ [key in keyof NewBook]: string }> = {
+const BookTypeMap: Partial<{ [key in keyof BookWithoutId]: string }> = {
   book_id: 'N',
   my_rating: 'N',
   number_of_pages: 'N'
 }
 
-function getAttributeMap(book: NewBook): PutItemInputAttributeMap {
+function getAttributeMap(book: BookWithoutId): PutItemInputAttributeMap {
   const input: PutItemInputAttributeMap = {
     id: {
       S: uuid()
@@ -65,7 +65,7 @@ function getAttributeMap(book: NewBook): PutItemInputAttributeMap {
     const dbValue = (book as any)[key]
     if (dbValue) {
       input[key] = {
-        [(newBookTypeMap as any)[key] || defaultType]: dbValue.toString()
+        [(BookTypeMap as any)[key] || defaultType]: dbValue.toString()
       }
     }
   })

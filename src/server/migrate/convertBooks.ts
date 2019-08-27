@@ -1,19 +1,23 @@
 import { BookConversion, Book } from '../../frontend/types'
-// import { ReadingData } from '../../frontend/data/data'
 
-type BookWithoutId = Omit<Book, 'id'>
+export type BookWithoutId = Omit<Book, 'id'>
 
-const ReadingData = []
-export function getBooks() {
+export function getBooks(readingData: BookConversion[], year?: number) {
   const books: BookWithoutId[] = []
 
-  ReadingData.map(rawBook => {
+  readingData.map(rawBook => {
+    const validYear = year ? year === getYear(rawBook['Date Read']) : true
     const book = convertToNewType(rawBook)
-    if (book) books.push(book)
+    if (validYear && book) books.push(book)
   })
 
-  console.log(books.length)
   return books
+}
+
+function getYear(date: string): number | undefined {
+  const splitDate = date.split('/')
+  const year = Number(splitDate[0])
+  return year || undefined
 }
 
 function convertToNewType(
