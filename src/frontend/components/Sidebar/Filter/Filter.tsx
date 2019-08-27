@@ -1,14 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { FilterOptions, Stats as IStats } from '../../../types'
 import FilterSection from './FilterSection'
-import {
-  possibleMonths,
-  possibleRatings,
-  possibleYears,
-  emptyFilter,
-  monthMap
-} from './filters'
+import { possibleRatings, possibleYears } from './filters'
 import { CheckboxSelection } from '../../Elements/Checkbox'
 import CheckboxFilter from './CheckboxFilter/CheckboxFilter'
 import { ratingGenerator } from '../../Rating'
@@ -21,61 +15,14 @@ interface FilterProps {
   onFilter(f: FilterOptions): void
 }
 
-interface FilterState {
-  filterOptions: FilterOptions
-}
+export function Filter({ stats, onFilter, defaultFilters }: FilterProps) {
+  const [filterOptions, setFilterOptions] = useState<FilterOptions>(
+    defaultFilters
+  )
 
-export default class Filter extends React.Component<FilterProps, FilterState> {
-  constructor(props: FilterProps) {
-    super(props)
+  console.log({ filterOptions })
 
-    this.state = {
-      filterOptions: props.defaultFilters || emptyFilter
-    }
-    this.checkboxSelected = this.checkboxSelected.bind(this)
-  }
-
-  public render() {
-    return (
-      <SidebarSection>
-        <FilterSection title="Stats">
-          {this.props.stats && <Stats stats={this.props.stats} />}
-        </FilterSection>
-        <FilterSection title="Year">
-          <CheckboxFilter
-            field="year"
-            currentFilter={this.state.filterOptions}
-            onSelect={this.checkboxSelected}
-            options={possibleYears}
-          />
-        </FilterSection>
-
-        <FilterSection title="Rating">
-          <CheckboxFilter
-            field="rating"
-            currentFilter={this.state.filterOptions}
-            onSelect={this.checkboxSelected}
-            options={possibleRatings}
-            renderOption={(rating: string) => ratingGenerator(Number(rating))}
-          />
-        </FilterSection>
-
-        <FilterSection title="Month">
-          <CheckboxFilter
-            field="month"
-            currentFilter={this.state.filterOptions}
-            onSelect={this.checkboxSelected}
-            options={possibleMonths}
-            renderOption={(month: string) => (monthMap as any)[month]}
-          />
-        </FilterSection>
-      </SidebarSection>
-    )
-  }
-
-  private checkboxSelected({ field, value, selected }: CheckboxSelection) {
-    const filterOptions = this.state.filterOptions
-
+  function checkboxSelected({ field, value }: CheckboxSelection) {
     if (value === null) {
       // clear filter
       ;(filterOptions as any)[field] = []
@@ -89,6 +36,32 @@ export default class Filter extends React.Component<FilterProps, FilterState> {
       }
     }
 
-    this.props.onFilter(filterOptions)
+    onFilter(filterOptions)
   }
+
+  return (
+    <SidebarSection>
+      <FilterSection title="Stats">
+        {stats && <Stats stats={stats} />}
+      </FilterSection>
+      <FilterSection title="Year">
+        <CheckboxFilter
+          field="year"
+          currentFilter={filterOptions}
+          onSelect={checkboxSelected}
+          options={possibleYears}
+        />
+      </FilterSection>
+
+      <FilterSection title="Rating">
+        <CheckboxFilter
+          field="rating"
+          currentFilter={filterOptions}
+          onSelect={checkboxSelected}
+          options={possibleRatings}
+          renderOption={(rating: string) => ratingGenerator(Number(rating))}
+        />
+      </FilterSection>
+    </SidebarSection>
+  )
 }

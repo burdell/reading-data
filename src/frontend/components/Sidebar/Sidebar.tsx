@@ -3,8 +3,9 @@ import { Menu } from 'antd'
 import 'antd/lib/menu/style/css'
 
 import { FilterOptions, Stats } from '../../types'
+
 import { SidebarStyles, CloseAction } from './styles'
-import Filter from './Filter'
+import { Filter, defaultFilter } from './Filter'
 
 interface Props {
   open: boolean
@@ -12,13 +13,6 @@ interface Props {
   toggleSidebar(): void
   stats: Stats | null
 }
-
-export const defaultFilter = () => ({
-  year: [2018],
-  read: true,
-  month: [],
-  rating: []
-})
 
 export const Sidebar = ({ onFilter, stats, toggleSidebar }: Props) => {
   return (
