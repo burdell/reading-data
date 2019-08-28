@@ -1,3 +1,5 @@
+import { Book } from '../frontend/types'
+
 export type BookConversion = Pick<
   GoodreadsBook,
   | 'Book Id'
@@ -10,6 +12,8 @@ export type BookConversion = Pick<
   | 'ISBN'
   | 'ISBN13'
 >
+
+export type BookWithoutId = Omit<Book, 'id'>
 
 export interface GoodreadsBook {
   'Book Id': number
@@ -43,4 +47,71 @@ export interface GoodreadsBook {
   Condition: string
   'Condition Description': string
   BCID: string
+}
+
+interface Authors {
+  id: number
+  name: string
+  role: string
+  image_url: string
+  small_image_url: string
+  link: string
+  average_rating: number
+  ratings_count: number
+  text_reviews_count: number
+}
+
+interface Work {}
+
+interface GoodreadsAPIBook {
+  id: number
+  isbn: string
+  isbn13: number
+  text_reviews_count: number
+  uri: string
+  title: string
+  title_without_series: string
+  image_url: string
+  small_image_url: string
+  large_image_url: string
+  link: string
+  num_pages: string
+  format: string
+  edition_information: string
+  publisher: string
+  publication_day: string
+  publication_year: string
+  publication_month: string
+  average_rating: number
+  ratings_count: number
+  description: string
+  authors: { author: Authors }
+  published: string
+  work: Work
+}
+
+interface Shelves {
+  shelf: string
+}
+
+export interface GoodreadsAPIReadEvent {
+  id: number
+  book: GoodreadsAPIBook
+  rating: number
+  votes: number
+  spoiler_flag: boolean
+  spoilers_state: string
+  shelves: Shelves
+  recommended_for: string
+  recommended_by: string
+  started_at: string
+  read_at: string
+  date_added: string
+  date_updated: string
+  read_count: number
+  body: string
+  comments_count: number
+  url: string
+  link: string
+  owned: number
 }

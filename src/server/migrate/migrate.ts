@@ -5,7 +5,7 @@ import { FullLibrary } from './data/full_library'
 import { ReReads } from './data/rereads'
 
 import { getBooks } from './convertBooks'
-import { addToDb } from './db'
+import { addToDb } from '../db'
 
 function main() {
   const books = getBooks(ReReads)

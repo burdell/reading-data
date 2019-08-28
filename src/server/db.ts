@@ -6,7 +6,7 @@ import {
 } from 'aws-sdk/clients/dynamodb'
 import uuid from 'uuid/v1'
 
-import { BookWithoutId } from './convertBooks'
+import { BookWithoutId } from './types'
 
 AWS.config.loadFromPath(resolve(__dirname, './aws_creds.json'))
 

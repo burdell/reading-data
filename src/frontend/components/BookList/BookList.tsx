@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Book as BookType } from '../../data/types'
+import { Book as BookType } from '../../types'
 import { Book } from '../Book'
 import { NoBooks } from './NoBooks'
 

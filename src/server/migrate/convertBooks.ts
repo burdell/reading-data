@@ -1,7 +1,4 @@
-import { Book } from '../../frontend/types'
-import { BookConversion } from '../types'
-
-export type BookWithoutId = Omit<Book, 'id'>
+import { BookWithoutId, BookConversion } from '../types'
 
 export function getBooks(readingData: BookConversion[], year?: number) {
   const books: BookWithoutId[] = []
