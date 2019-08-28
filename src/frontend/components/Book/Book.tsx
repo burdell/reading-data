@@ -1,7 +1,7 @@
 import React from 'react'
 import { format } from 'date-fns'
 
-import { Book as BookType } from '../../data/types'
+import { Book as BookType } from '../../types'
 import { Rating } from '../Rating'
 import { Review } from './Review'
 
@@ -34,7 +34,7 @@ export const Book = ({ book, reviewShown, onSelect }: BookProps) => {
         </Cover>
         <BookDetails>
           <BookInfo>
-            <ReadDate>{format(book.date_read, 'M/DD/YYYY')}</ReadDate>
+            <ReadDate>{format(new Date(book.date_read), 'M/dd/yyyy')}</ReadDate>
             <BookTitle>{book.title}</BookTitle>
             <BookAuthor>{book.author}</BookAuthor>
           </BookInfo>
