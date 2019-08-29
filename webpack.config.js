@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
   mode: 'production',
-  entry: ['./src/server/index.ts'],
+  entry: ['./src/server/graphql/index.ts'],
   resolve: {
     extensions: ['.mjs', '.js', '.ts']
   },

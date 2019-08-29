@@ -4,7 +4,7 @@ Resources:
   GraphQL:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: index.handler
+      Handler: graphql/index.handler
       Runtime: nodejs8.10
       Role: arn:aws:iam::435716529842:role/LambdaDynamo
       Events:

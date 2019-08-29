@@ -1,19 +1,15 @@
-import { config } from 'dotenv'
 import axios from 'axios'
 import parser from 'fast-xml-parser'
 import { addDays, endOfDay, isWithinInterval, format } from 'date-fns'
 
-import { GoodreadsAPIReadEvent, BookWithoutId } from './types'
-import { addToDb } from './db'
+import { GoodreadsAPIReadEvent, BookWithoutId } from '../types'
+import { addToDb } from '../db'
 
-config()
-
-const { GOODREADS_KEY, GOODREADS_USER } = process.env
-const goodreadsApi = `https://www.goodreads.com/review/list/${GOODREADS_USER}.xml?key=${GOODREADS_KEY}&v=2&shelf=read&per_page=20&page=1`
-
-async function main() {
+export async function syncGoodreads(apiKey: string, user: string) {
+  const goodreadsApi = `https://www.goodreads.com/review/list/${user}.xml?key=${apiKey}&v=2&shelf=read&per_page=20&page=1`
   const { data } = await axios.get(goodreadsApi)
-  const booksToAdd = getReadBooks(data)
+
+  const booksToAdd = parseBookData(data)
     .filter(bookReadInLastDay)
     .map(convertApiBook)
 
@@ -41,7 +37,7 @@ function convertApiBook({
   }
 }
 
-function getReadBooks(xmlData: any): GoodreadsAPIReadEvent[] {
+function parseBookData(xmlData: any): GoodreadsAPIReadEvent[] {
   const jsonData = getJson(xmlData)
   const readBooks = jsonData.GoodreadsResponse.reviews.review
   readBooks[0].read_at = 'Mon Aug 25 21:44:15 -0700 2019'
@@ -62,5 +58,3 @@ function getJson(xmlData: any) {
   var tObj = parser.getTraversalObj(xmlData)
   return parser.convertToJson(tObj)
 }
-
-main()

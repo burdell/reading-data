@@ -31,7 +31,7 @@
     "compile": "tsc",
     "test": "jest",
     "migrate": "ts-node ./src/server/migrate/migrate.ts",
-    "goodreads-sync": "ts-node ./src/server/goodreads_sync.ts",
+    "goodreads-sync": "NODE_ENV=local ts-node ./src/server/goodreads",
     "build-server": "webpack && cp ./src/server/template.yml ./dist/server",
     "package-server": "aws cloudformation package --template-file ./dist/server/template.yml --output-template-file ./dist/server/serverless-output.yml --s3-bucket reading-data-server",
     "deploy-server": "aws cloudformation deploy --template-file ./dist/server/serverless-output.yml --stack-name ReadingData --capabilities CAPABILITY_IAM",
