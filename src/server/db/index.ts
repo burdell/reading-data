@@ -8,7 +8,9 @@ import uuid from 'uuid/v1'
 
 import { BookWithoutId } from '../types'
 
-AWS.config.loadFromPath(resolve(__dirname, './aws_creds.json'))
+if (process.env.NODE_ENV === 'local') {
+  AWS.config.loadFromPath(resolve(__dirname, './aws_creds.json'))
+}
 
 const UPLOAD_NUMBER = 25
 export function addToDb(books: BookWithoutId[]) {

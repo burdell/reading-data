@@ -2,15 +2,22 @@ import { config } from 'dotenv'
 
 import { syncGoodreads } from './goodreads_sync'
 
-if (process.env.NODE_ENV === 'local') {
-  config()
-}
+export async function goodreadsHandler() {
+  const isLocal = process.env.NODE_ENV === 'local'
+  if (isLocal) {
+    config()
+  }
 
-export function handler() {
   const { GOODREADS_KEY, GOODREADS_USER } = process.env
   if (!GOODREADS_KEY || !GOODREADS_USER) {
     throw new Error('Proper env variables not set')
   }
 
-  syncGoodreads(GOODREADS_KEY, GOODREADS_USER)
+  try {
+    const books = await syncGoodreads(GOODREADS_KEY, GOODREADS_USER)
+    console.log(`[GOODREADS SYNC] Added ${books.length} books`)
+    return { status: 200 }
+  } catch (e) {
+    throw new Error(`[GOODREADS SYNC ERROR]: ${e.message}`)
+  }
 }

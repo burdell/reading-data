@@ -13,9 +13,11 @@ export async function syncGoodreads(apiKey: string, user: string) {
     .filter(bookReadInLastDay)
     .map(convertApiBook)
 
-  if (!booksToAdd.length) return
+  if (booksToAdd.length) {
+    await addToDb(booksToAdd)
+  }
 
-  addToDb(booksToAdd)
+  return booksToAdd
 }
 
 function convertApiBook({

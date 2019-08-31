@@ -4,7 +4,7 @@ Resources:
   GraphQL:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: graphql/index.handler
+      Handler: index.graphqlHander
       Runtime: nodejs8.10
       Role: arn:aws:iam::435716529842:role/LambdaDynamo
       Events:
@@ -12,4 +12,20 @@ Resources:
           Type: Api
           Properties:
             Path: /graphql
+            Method: ANY
+  GoodreadsSync:
+    Type: AWS::Serverless::Function
+    Environment:
+      Variables:
+        GOODREADS_KEY: '{{resolve:ssm:GOODREADS_KEY:1}}'
+        GOODREADS_USER: '{{resolve:ssm:GOODREADS_USER:1}}'
+    Properties:
+      Handler: index.goodreadsHandler
+      Runtime: nodejs8.10
+      Role: arn:aws:iam::435716529842:role/LambdaDynamo
+      Events:
+        AnyRequest:
+          Type: Api
+          Properties:
+            Path: /goodreads
             Method: ANY
