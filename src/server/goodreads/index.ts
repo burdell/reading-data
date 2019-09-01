@@ -3,11 +3,6 @@ import { config } from 'dotenv'
 import { syncGoodreads } from './goodreads_sync'
 
 export async function handler() {
-  const isLocal = process.env.NODE_ENV === 'local'
-  if (isLocal) {
-    config()
-  }
-
   const { GOODREADS_KEY, GOODREADS_USER } = process.env
   if (!GOODREADS_KEY || !GOODREADS_USER) {
     throw new Error('Proper env variables not set')
@@ -23,5 +18,6 @@ export async function handler() {
 }
 
 if (process.env.NODE_ENV === 'local') {
+  config()
   handler()
 }

@@ -5,7 +5,10 @@ import { addDays, endOfDay, isWithinInterval, format } from 'date-fns'
 import { GoodreadsAPIReadEvent, BookWithoutId } from '../types'
 import { addToDb } from '../db'
 
-export async function syncGoodreads(apiKey: string, user: string) {
+export async function syncGoodreads(
+  apiKey: string,
+  user: string
+): Promise<number> {
   const goodreadsApi = `https://www.goodreads.com/review/list/${user}.xml?key=${apiKey}&v=2&shelf=read&per_page=20&page=1`
   const { data } = await axios.get(goodreadsApi)
 
@@ -13,12 +16,8 @@ export async function syncGoodreads(apiKey: string, user: string) {
     .filter(bookReadInLastDay)
     .map(convertApiBook)
 
-  if (booksToAdd.length) {
-    const booksAdded = await addToDb(booksToAdd)
-    return booksAdded
-  }
-
-  return booksToAdd.length
+  if (!booksToAdd.length) return 0
+  return addToDb(booksToAdd)
 }
 
 function convertApiBook({
