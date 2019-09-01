@@ -2,7 +2,7 @@ import { config } from 'dotenv'
 
 import { syncGoodreads } from './goodreads_sync'
 
-export async function goodreadsHandler() {
+export async function handler() {
   const isLocal = process.env.NODE_ENV === 'local'
   if (isLocal) {
     config()
@@ -18,6 +18,10 @@ export async function goodreadsHandler() {
     console.log(`[GOODREADS SYNC] Added ${books.length} books`)
     return { status: 200 }
   } catch (e) {
-    throw new Error(`[GOODREADS SYNC ERROR]: ${e.message}`)
+    throw new Error(`[GOODREADS SYNC] Error: ${e.message}`)
   }
+}
+
+if (process.env.NODE_ENV === 'local') {
+  handler()
 }

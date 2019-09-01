@@ -42,7 +42,6 @@ function convertApiBook({
 function parseBookData(xmlData: any): GoodreadsAPIReadEvent[] {
   const jsonData = getJson(xmlData)
   const readBooks = jsonData.GoodreadsResponse.reviews.review
-  readBooks[0].read_at = 'Mon Aug 25 21:44:15 -0700 2019'
   return readBooks
 }
 

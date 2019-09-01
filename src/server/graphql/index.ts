@@ -1,5 +1,5 @@
 import { server } from './graphql'
 
-export const graphqlHander = server.createHandler({
+export const handler = server.createHandler({
   cors: { origin: '*', credentials: true }
 })

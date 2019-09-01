@@ -2,7 +2,10 @@ const path = require('path')
 
 module.exports = {
   mode: 'production',
-  entry: ['./src/server/graphql/index.ts', './src/server/goodreads/index.ts'],
+  entry: {
+    graphql: './src/server/graphql/index.ts',
+    goodreads: './src/server/goodreads/index.ts'
+  },
   resolve: {
     extensions: ['.mjs', '.js', '.ts']
   },
@@ -21,7 +24,7 @@ module.exports = {
   target: 'node',
   output: {
     path: path.resolve(__dirname, 'dist/server'),
-    filename: 'index.js',
+    filename: '[name]/index.js',
     libraryTarget: 'umd'
   }
 }
