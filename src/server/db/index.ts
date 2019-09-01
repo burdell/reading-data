@@ -1,5 +1,5 @@
 import { resolve } from 'path'
-import AWS, { DynamoDB } from 'aws-sdk'
+import AWS from 'aws-sdk'
 import {
   BatchWriteItemInput,
   PutItemInputAttributeMap
@@ -15,9 +15,9 @@ if (process.env.NODE_ENV === 'local') {
 const UPLOAD_NUMBER = 25
 export function addToDb(books: BookWithoutId[]) {
   const chunks = getBookChunks(books)
-  const db = new DynamoDB()
+  const db = new AWS.DynamoDB.DocumentClient()
   chunks.forEach(chunk => {
-    db.batchWriteItem(getDynamoInput(chunk), (err, output) => {
+    db.batchWrite(getDynamoInput(chunk), (err, output) => {
       console.log(err)
       console.log(output)
     })
