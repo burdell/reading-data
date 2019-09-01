@@ -13,8 +13,9 @@ Resources:
           Properties:
             Path: /graphql
             Method: ANY
+
   GoodreadsSync:
-    Type: AWS::Serverless::Function
+    Type: AWS::Lambda::Function
     Properties:
       Environment:
         Variables:
@@ -23,27 +24,27 @@ Resources:
       Handler: goodreads/index.handler
       Runtime: nodejs8.10
       Role: arn:aws:iam::435716529842:role/LambdaDynamo
-      Events:
-        AnyRequest:
-          Type: Api
-          Properties:
-            Path: /goodreads
-            Method: ANY
-  # GoodreadsCron:
-  #   Type: AWS::Events::Rule
-  #   Properties:
-  #     ScheduleExpression: cron(00 04 * * * ? *)
-  #     Targets:
-  #       - Arn:
-  #           Fn:GetAtt: [GoodreadsSync, 'Arn']
-  #           Id:
-  #             Ref: GoodreadsSync
-  # LambdaInvokePermission:
-  #   Type: AWS::Lambda::Permission
-  #   Properties:
-  #     FunctionName:
-  #       Fn::GetAtt: [GoodreadsSync, "Arn"]
-  #     Action: lambda:InvokeFunction
-  #     Principal: events.amazonaws.com
-  #     SourceArn:
-  #       Fn::GetAtt: [GoodreadsSync, "Arn"]
+
+  GoodreadsEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      ScheduleExpression: cron(0 6 * * ? *)
+      State: 'ENABLED'
+      Targets:
+        - Arn:
+            Fn::GetAtt:
+              - 'GoodreadsSync'
+              - 'Arn'
+          Id: 'TargetFunctionV1'
+
+  GoodreadsPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Ref: 'GoodreadsSync'
+      Action: 'lambda:InvokeFunction'
+      Principal: 'events.amazonaws.com'
+      SourceArn:
+        Fn::GetAtt:
+          - 'GoodreadsEvent'
+          - 'Arn'
