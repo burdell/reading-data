@@ -14,10 +14,11 @@ export async function syncGoodreads(apiKey: string, user: string) {
     .map(convertApiBook)
 
   if (booksToAdd.length) {
-    await addToDb(booksToAdd)
+    const booksAdded = await addToDb(booksToAdd)
+    return booksAdded
   }
 
-  return booksToAdd
+  return booksToAdd.length
 }
 
 function convertApiBook({

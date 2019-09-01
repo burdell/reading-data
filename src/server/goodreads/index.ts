@@ -14,8 +14,8 @@ export async function handler() {
   }
 
   try {
-    const books = await syncGoodreads(GOODREADS_KEY, GOODREADS_USER)
-    console.log(`[GOODREADS SYNC] Added ${books.length} books`)
+    const bookCount = await syncGoodreads(GOODREADS_KEY, GOODREADS_USER)
+    console.log(`[GOODREADS SYNC] Added ${bookCount} books`)
     return { status: 200 }
   } catch (e) {
     throw new Error(`[GOODREADS SYNC] Error: ${e.message}`)

@@ -13,13 +13,20 @@ if (process.env.NODE_ENV === 'local') {
 }
 
 const UPLOAD_NUMBER = 25
-export function addToDb(books: BookWithoutId[]) {
+const db = new AWS.DynamoDB.DocumentClient()
+
+export async function addToDb(books: BookWithoutId[]): Promise<number> {
   const chunks = getBookChunks(books)
-  const db = new AWS.DynamoDB.DocumentClient()
-  chunks.forEach(chunk => {
-    db.batchWrite(getDynamoInput(chunk), (err, output) => {
-      console.log(err)
-      console.log(output)
+
+  if (!chunks.length) return Promise.resolve(0)
+
+  return new Promise((resolve, reject) => {
+    chunks.forEach((chunk, index) => {
+      db.batchWrite(getDynamoInput(chunk), (err, output) => {
+        if (index === chunks.length) {
+          resolve(books.length)
+        }
+      })
     })
   })
 }
@@ -57,18 +64,14 @@ const BookTypeMap: Partial<{ [key in keyof BookWithoutId]: string }> = {
 }
 
 function getAttributeMap(book: BookWithoutId): PutItemInputAttributeMap {
-  const input: PutItemInputAttributeMap = {
-    id: {
-      S: uuid()
-    }
+  const input: any = {
+    id: uuid()
   }
   const keys = Object.keys(book)
   keys.forEach(key => {
     const dbValue = (book as any)[key]
     if (dbValue) {
-      input[key] = {
-        [(BookTypeMap as any)[key] || defaultType]: dbValue.toString()
-      }
+      input[key] = dbValue.toString()
     }
   })
 
