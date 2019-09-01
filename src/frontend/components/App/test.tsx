@@ -5,11 +5,11 @@ import { mockBooks, books2018, books2017 } from '../../test-utils/mock-books'
 
 import { App } from './App'
 
-jest.mock('../../data/data.ts', () => ({
-  ReadingData: mockBooks
-}))
+// jest.mock('../../data/data.ts', () => ({
+//   ReadingData: mockBooks
+// }))
 
-describe('App', () => {
+xdescribe('App', () => {
   it('shows the last year on render', async () => {
     const result = render(<App hasMatches={true} scrollToTop={() => null} />)
 

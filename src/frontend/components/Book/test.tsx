@@ -9,7 +9,7 @@ import { Book as BookType } from '../../types'
 
 let book: BookType
 
-describe('Book', () => {
+xdescribe('Book', () => {
   beforeAll(async () => {
     book = await generateBook()
   })

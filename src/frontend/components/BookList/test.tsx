@@ -17,7 +17,7 @@ const expectReviewShown = (review: Element) =>
 
 let books: Book[]
 
-describe('Book', () => {
+xdescribe('Book', () => {
   beforeAll(async () => {
     books = await generateBookList(10)
   })
