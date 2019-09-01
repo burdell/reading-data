@@ -26,8 +26,8 @@
     "urql": "^1.3.0"
   },
   "scripts": {
-    "start": "parcel src/frontend/index.html",
-    "build": "parcel build src/frontend/index.html",
+    "start": "parcel src/frontend/index.html -d frontend-build",
+    "build": "parcel build src/frontend/index.html -d frontend-build",
     "compile": "tsc",
     "test": "jest",
     "migrate": "ts-node ./src/server/migrate/migrate.ts",

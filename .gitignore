@@ -25,4 +25,4 @@ dist/
 .cache
 .env
 aws_creds.json
-
+frontend-build/
