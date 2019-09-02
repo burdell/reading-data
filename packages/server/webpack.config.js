@@ -3,8 +3,8 @@ const path = require('path')
 module.exports = {
   mode: 'production',
   entry: {
-    graphql: './src/server/graphql/index.ts',
-    goodreads: './src/server/goodreads/index.ts'
+    graphql: './src/graphql/index.ts',
+    goodreads: './src/goodreads/index.ts'
   },
   resolve: {
     extensions: ['.mjs', '.js', '.ts']
@@ -15,7 +15,7 @@ module.exports = {
         test: /\.(ts)?$/,
         use: {
           loader: 'awesome-typescript-loader',
-          options: { configFileName: 'tsconfig.server.json' }
+          options: { configFileName: 'tsconfig.json' }
         },
         exclude: /node_modules/
       }
@@ -23,7 +23,7 @@ module.exports = {
   },
   target: 'node',
   output: {
-    path: path.resolve(__dirname, 'dist/server'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name]/index.js',
     libraryTarget: 'umd'
   }
