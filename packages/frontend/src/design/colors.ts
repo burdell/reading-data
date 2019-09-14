@@ -1,47 +1,55 @@
 export const primary = {
-  primary1: 'hsl(220, 56%, 24%)',
-  primary2: null,
-  primary3: 'hsl(207, 57%, 51%)',
-  primary4: null,
-  primary5: 'hsl(207, 57%, 75%)',
-  primary6: null,
-  primary7: 'hsl(207, 57%, 87%)',
-  primary8: null,
-  primary9: 'hsl(206, 57%, 95%)'
+  primary1: 'hsl(183, 48%, 24%)',
+  primary2: 'hsl(183, 50%, 33%)',
+  primary3: 'hsl(183, 55%, 40%)',
+  primary4: 'hsl(183, 57%, 47%)',
+  primary5: 'hsl(183, 60%, 53%)',
+  primary6: 'hsl(183, 57%, 65%)',
+  primary7: 'hsl(183, 55%, 74%)',
+  primary8: 'hsl(183, 50%, 82%)',
+  primary9: 'hsl(183, 48%, 95%)'
 }
 
 export const secondary = {
-  secondary1: 'hsl(11, 85%, 40%)',
-  secondary2: null,
-  secondary3: 'hsl(11, 86%, 63%)',
-  secondary4: null,
-  secondary5: 'hsl(11, 90%, 75%)',
-  secondary6: null,
-  secondary7: 'hsl(11, 95%, 84%)',
-  secondary8: null,
-  secondary9: 'hsl(11, 95%, 95%)'
+  secondary1: 'hsl(23, 80%, 42%)',
+  secondary2: 'hsl(23, 82%, 47%)',
+  secondary3: 'hsl(23, 85%, 50%)',
+  secondary4: 'hsl(23, 92%, 57%)',
+  secondary5: 'hsl(23, 95%, 65%)',
+  secondary6: 'hsl(23, 87%, 74%)',
+  secondary7: 'hsl(23, 85%, 80%)',
+  secondary8: 'hsl(23, 85%, 87%)',
+  secondary9: 'hsl(23, 80%, 95%)'
 }
 
 export const tertiary = {
-  tertiary1: 'hsl(37, 96%, 50%)',
-  tertiary2: null,
-  tertiary3: 'hsl(37, 96%, 65%)',
-  tertiary4: null,
-  tertiary5: 'hsl(37, 96%, 75%)',
-  tertiary6: null,
-  tertiary7: 'hsl(37, 96%, 87%)',
-  tertiary8: null,
-  tertiary9: 'hsl(37, 96%, 95%)'
+  tertiary1: 'hsl(40, 80%, 42%)',
+  tertiary2: 'hsl(40, 82%, 48%)',
+  tertiary3: 'hsl(40, 84%, 58%)',
+  tertiary4: 'hsl(40, 85%, 67%)',
+  tertiary5: 'hsl(40, 90%, 75%)',
+  tertiary6: 'hsl(40, 85%, 82%)',
+  tertiary7: 'hsl(40, 84%, 87%)',
+  tertiary8: 'hsl(40, 81%, 91%)',
+  tertiary9: 'hsl(40, 80%, 95%)'
 }
 
-export const grays = {
-  gray1: 'hsl(209, 15%, 28%)',
-  gray2: 'hsl(207, 12%, 43%)',
-  gray3: 'hsl(208, 12%, 58%)',
-  gray4: 'hsl(210, 16%, 76%)',
-  gray5: 'hsl(208, 21%, 88%)',
-  gray6: 'hsl(209, 15%, 90%)',
-  gray7: 'hsl(207, 12%, 92%)',
-  gray8: 'hsl(208, 12%, 94%)',
-  gray9: 'hsl(210, 16%, 96%)'
+export const white = {
+  white1: 'hsl(54, 57%, 87%)',
+  white2: 'hsl(52, 62%, 90%)',
+  white3: 'hsl(54, 65%, 92%)',
+  white4: 'hsl(54, 62%, 95%)',
+  white5: 'hsl(54, 57%, 97%)'
+}
+
+export const gray = {
+  gray1: 'hsl(38, 8%, 28%)',
+  gray2: 'hsl(38, 10%, 43%)',
+  gray3: 'hsl(38, 10%, 58%)',
+  gray4: 'hsl(38, 12%, 76%)',
+  gray5: 'hsl(38, 15%, 88%)',
+  gray6: 'hsl(38, 12%, 90%)',
+  gray7: 'hsl(38, 10%, 92%)',
+  gray8: 'hsl(38, 10%, 94%)',
+  gray9: 'hsl(38, 8%, 96%)'
 }

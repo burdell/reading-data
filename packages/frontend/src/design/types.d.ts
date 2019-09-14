@@ -1,5 +1,5 @@
 export interface Color {
-  name: string
+  name?: string
   color: string
 }
 

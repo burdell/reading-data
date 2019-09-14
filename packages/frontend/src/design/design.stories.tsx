@@ -2,12 +2,14 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 
 import { ColorGroup } from '../design/types'
-import * as colors from './colors'
 import { ColorRow } from './ColorRow'
 
-const colorGroups: ColorGroup[] = Object.keys(colors as any).reduce(
-  (acc, colorGroupName: any) => {
-    const colorGroup = (colors as any)[colorGroupName]
+import * as pallet from './colors'
+import * as swatches from './pallets/swatches'
+
+function createColorGroup(pallet: any): ColorGroup[] {
+  return Object.keys(pallet as any).reduce((acc, colorGroupName: any) => {
+    const colorGroup = (pallet as any)[colorGroupName]
     const group: ColorGroup = {
       name: colorGroupName,
       colors: Object.keys(colorGroup).reduce((acc, colorName) => {
@@ -18,14 +20,21 @@ const colorGroups: ColorGroup[] = Object.keys(colors as any).reduce(
     }
     ;(acc as any).push(group)
     return acc
-  },
-  []
-)
+  }, [])
+}
 
-storiesOf('Colors', module).add('palette', () => (
-  <div>
-    {colorGroups.map(group => (
-      <ColorRow group={group} />
-    ))}
-  </div>
-))
+storiesOf('Colors', module)
+  .add('pallet1', () => (
+    <div>
+      {createColorGroup(pallet).map(group => (
+        <ColorRow group={group} />
+      ))}
+    </div>
+  ))
+  .add('swatches', () => (
+    <div>
+      {createColorGroup(swatches).map(group => (
+        <ColorRow group={group} />
+      ))}
+    </div>
+  ))
