@@ -2,22 +2,12 @@ import React from 'react'
 import { format } from 'date-fns'
 
 import { Book as BookType } from '../../types'
+import { Button } from '../Elements'
 import { Rating } from '../Rating'
+
 import { Review } from './Review'
 
-import {
-  ActionsContainer,
-  BookStyles,
-  CoverContainer,
-  Cover,
-  CoverImage,
-  ReadDate,
-  BookDetails,
-  BookInfo,
-  BookAuthor,
-  BookTitle,
-  ReviewToggle
-} from './styles'
+import { BookStyles, BookDetails, Title, Author, ReadDate } from './styles'
 
 interface BookProps {
   book: BookType
@@ -28,30 +18,12 @@ interface BookProps {
 export const Book = ({ book, reviewShown, onSelect }: BookProps) => {
   return (
     <BookStyles>
-      <CoverContainer>
-        <Cover>
-          <CoverImage src={`http://images.amazon.com/images/P/${book.isbn}`} />
-        </Cover>
-        <BookDetails>
-          <BookInfo>
-            <ReadDate>{format(new Date(book.date_read), 'M/dd/yyyy')}</ReadDate>
-            <BookTitle>{book.title}</BookTitle>
-            <BookAuthor>{book.author}</BookAuthor>
-          </BookInfo>
-          <Rating rating={book.my_rating} />
-        </BookDetails>
-      </CoverContainer>
-      <ActionsContainer>
-        {book.my_review && (
-          <ReviewToggle
-            onClick={() => onSelect(book.book_id)}
-            className="review-toggle"
-          >
-            {reviewShown ? 'Hide' : 'Show'} Review
-          </ReviewToggle>
-        )}
-      </ActionsContainer>
-      <Review review={book.my_review} isShown={reviewShown} />
+      <ReadDate>{format(new Date(book.date_read), 'M/dd/yyyy')}</ReadDate>
+      <BookDetails>
+        <Title>{book.title}</Title>
+        <Author>{book.author}</Author>
+      </BookDetails>
+      <Rating rating={book.my_rating} />
     </BookStyles>
   )
 }

@@ -1,5 +1,8 @@
 import styled from 'react-emotion'
 
+import { tertiary } from '../../design/colors'
+
 export const Rating = styled('div')`
-  color: rgb(175, 156, 14);
+  color: ${tertiary.tertiary5};
+  font-size: 0.8rem;
 `

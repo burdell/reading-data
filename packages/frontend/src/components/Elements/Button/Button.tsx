@@ -9,14 +9,14 @@ interface ButtonProps {
 
 const StyledButton = styled('button')`
   outline: none;
-  background-color: ${secondary.secondary3};
-  padding: 0.5rem;
+  background-color: ${secondary.secondary4};
+  color: ${white.white9};
+  padding: 0.2rem 0.5rem;
   border-radius: 0.25rem;
-  color: ${white.white5};
-  transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in;
 
   &:hover {
-    background-color: ${secondary.secondary2};
+    background-color: ${secondary.secondary5};
   }
 `
 

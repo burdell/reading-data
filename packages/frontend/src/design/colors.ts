@@ -15,7 +15,7 @@ export const secondary = {
   secondary2: 'hsl(172, 20%, 40%)',
   secondary3: 'hsl(172, 24%, 50%)',
   secondary4: 'hsl(172, 26%, 62%)',
-  secondary5: 'hsl(172, 26%, 62%)',
+  secondary5: 'hsl(172, 26%, 65%)',
   secondary6: 'hsl(172, 23%, 70%)',
   secondary7: 'hsl(172, 22%, 82%)',
   secondary8: 'hsl(172, 21%, 89%)',
@@ -33,18 +33,6 @@ export const tertiary = {
   tertiary8: 'hsl(14, 60%, 88%)',
   tertiary9: 'hsl(14, 50%, 95%)'
 }
-
-// export const tertiary = {
-//   tertiary1: 'hsl(43, 74%, 30%)',
-//   tertiary2: 'hsl(43, 75%, 43%)',
-//   tertiary3: 'hsl(43, 75%, 52%)',
-//   tertiary4: 'hsl(43, 76%, 62%)',
-//   tertiary5: 'hsl(43, 77%, 68%)',
-//   tertiary6: 'hsl(43, 75%, 78%)',
-//   tertiary7: 'hsl(43, 75%, 85%)',
-//   tertiary8: 'hsl(43, 75%, 90%)',
-//   tertiary9: 'hsl(43, 74%, 98%)'
-// }
 
 export const white = {
   white1: 'hsl(54, 57%, 87%)',
