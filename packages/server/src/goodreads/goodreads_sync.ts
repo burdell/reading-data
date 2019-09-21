@@ -1,6 +1,7 @@
 import axios from 'axios'
 import parser from 'fast-xml-parser'
 import { addDays, endOfDay, isWithinInterval, format } from 'date-fns'
+import { writeFileSync } from 'fs'
 
 import { GoodreadsAPIReadEvent, BookWithoutId } from '../types'
 import { addToDb } from '../db'
@@ -9,7 +10,7 @@ export async function syncGoodreads(
   apiKey: string,
   user: string
 ): Promise<number> {
-  const goodreadsApi = `https://www.goodreads.com/review/list/${user}.xml?key=${apiKey}&v=2&shelf=read&per_page=20&page=1`
+  const goodreadsApi = `https://www.goodreads.com/review/list/${user}.xml?key=${apiKey}&v=2&shelf=read&per_page=20&sort=date_read&page=1`
   const { data } = await axios.get(goodreadsApi)
 
   const booksToAdd = parseBookData(data)
