@@ -24,7 +24,7 @@ function createColorGroup(pallet: any): ColorGroup[] {
 }
 
 storiesOf('Colors', module)
-  .add('pallet1', () => (
+  .add('pallet', () => (
     <div>
       {createColorGroup(pallet).map(group => (
         <ColorRow group={group} />

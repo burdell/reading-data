@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
-import { Book } from './Book'
 
 import { Book as BookType } from '../../types'
+import { Book } from './Book'
+import { AppContainer } from '../App/styles'
 
 function getBook(): BookType {
   return {
@@ -10,7 +11,7 @@ function getBook(): BookType {
     book_id: 1234,
     date_read: '2019-03-01',
     id: '1234',
-    isbn: '=9780140186390',
+    isbn: '=0140186395',
     my_rating: 5,
     my_review: '<div>dis good</div>',
     number_of_pages: 123,
@@ -18,6 +19,8 @@ function getBook(): BookType {
   }
 }
 
-storiesOf('Button', module).add('basic book', () => (
-  <Book onSelect={() => null} book={getBook()} reviewShown={false} />
+storiesOf('Book', module).add('basic book', () => (
+  <AppContainer>
+    <Book onSelect={() => null} book={getBook()} reviewShown={false} />
+  </AppContainer>
 ))

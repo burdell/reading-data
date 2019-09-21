@@ -95,7 +95,7 @@ export const ActionsContainer = styled('div')`
   margin-top: 0.2rem;
 `
 
-export const ReviewToggle = styled('div')`
+export const ReviewToggle = styled('button')`
   cursor: pointer;
   font-size: 0.6rem;
   background-color: #f2f2f2;

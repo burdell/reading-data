@@ -7,9 +7,11 @@
     "storybook": "start-storybook -p 4000 -c .storybook"
   },
   "dependencies": {
+    "@chakra-ui/core": "^0.2.6",
     "antd": "^3.11.6",
     "date-fns": "^2.0.1",
     "emotion": "^9.2.12",
+    "emotion-theming": "^10.0.18",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-emotion": "^9.2.12",
