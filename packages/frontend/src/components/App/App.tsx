@@ -21,7 +21,7 @@ export function App() {
 
   return (
     <AppContainer>
-      {/* <ReactSidebar
+      <ReactSidebar
         sidebar={
           <Sidebar
             onFilter={updateFilter}
@@ -34,13 +34,12 @@ export function App() {
         open={sidebarOpen}
         onSetOpen={onSetSidebarOpen}
       >
-        <Header toggleSidebar={toggleSidebar} /> */}
-      {/* <BodyContainer id="body-container">
+        <Header toggleSidebar={toggleSidebar} />
+        <BodyContainer id="body-container">
           <BookList loading={loading} books={books} />
           <ScrollToTop />
-        </BodyContainer> */}
-      {/* </ReactSidebar> */}
-      <BookList loading={loading} books={books} />
+        </BodyContainer>
+      </ReactSidebar>
     </AppContainer>
   )
 }

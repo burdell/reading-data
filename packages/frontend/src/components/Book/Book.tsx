@@ -27,8 +27,10 @@ export const Book = ({ book, reviewShown, onSelect }: BookProps) => {
   return (
     <BookStyles>
       <BookDisplay>
-        {/* <ReadDate>{format(new Date(book.date_read), 'M/dd/yyyy')}</ReadDate> */}
         <CoverImage src={`http://images.amazon.com/images/P/${book.isbn}`} />
+        <ReadDate className="read-date">
+          {format(new Date(book.date_read), 'M/dd/yyyy')}
+        </ReadDate>
         <Rating rating={book.my_rating} />
         <BookDetails>
           <Title>{book.title}</Title>
