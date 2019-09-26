@@ -6,7 +6,7 @@ import { NoBooks } from './NoBooks'
 
 import { Loader } from '../Loader'
 
-import { BookList as BookListStyles, Book as BooklistBook } from './styles'
+import { BookList as BookListContainer } from './styles'
 
 interface Props {
   books: BookType[]
@@ -14,30 +14,28 @@ interface Props {
 }
 
 export const BookList = ({ books, loading }: Props) => {
-  const [selectedBookId, setSelectedBook] = useState<number | null>(null)
-
+  const [selectedBookId, setSelectedBook] = useState<number | undefined>()
   const isBookSelected = (book: BookType) =>
     !!(selectedBookId && selectedBookId === book.book_id)
 
   if (loading) return <Loader />
 
   return books && books.length ? (
-    <BookListStyles>
+    <BookListContainer>
       {books.map((book, i) => (
-        <BooklistBook key={i} data-testid={book.book_id}>
-          <Book
-            book={book}
-            onSelect={bookId =>
-              setSelectedBook(() => {
-                if (selectedBookId === bookId) return null
-                return bookId
-              })
-            }
-            reviewShown={isBookSelected(book)}
-          />
-        </BooklistBook>
+        <Book
+          key={i}
+          data-testid={book.book_id}
+          book={book}
+          onSelect={bookId =>
+            setSelectedBook(() =>
+              selectedBookId === bookId ? undefined : bookId
+            )
+          }
+          reviewShown={isBookSelected(book)}
+        />
       ))}
-    </BookListStyles>
+    </BookListContainer>
   ) : (
     <NoBooks />
   )
