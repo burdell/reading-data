@@ -1,16 +1,18 @@
 import React from 'react'
 
-import { Header, HeaderText, FilterToggle } from './styles'
+import { Button } from '../Elements'
+
+import { Header as HeaderStyles, HeaderText } from './styles'
 
 interface Props {
   toggleSidebar(): void
 }
 
-export default ({ toggleSidebar }: Props) => {
+export function Header({ toggleSidebar }: Props) {
   return (
-    <Header>
-      <HeaderText className="header-text">What Nathan Read</HeaderText>
-      <FilterToggle onClick={toggleSidebar}>Show Filter</FilterToggle>
-    </Header>
+    <HeaderStyles>
+      <HeaderText className="header-text">What Did Nathan Read?</HeaderText>
+      <Button onClick={toggleSidebar}>Show Filter</Button>
+    </HeaderStyles>
   )
 }

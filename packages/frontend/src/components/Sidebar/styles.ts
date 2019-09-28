@@ -30,15 +30,10 @@ export const SidebarType = styled('div')`
 export const CloseAction = styled('div')`
   position: absolute;
   right: 10px;
-  top: 5px;
+  top: 10px;
   z-index: 10000;
   display: none;
   cursor: pointer;
-
-  background-color: #5b6c87;
-  padding: 0.3rem 0.5rem;
-  color: #fff;
-  border-radius: 50%;
 
   ${queries.small`
         display: inline-block;

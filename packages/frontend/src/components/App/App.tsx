@@ -3,8 +3,8 @@ import ReactSidebar from 'react-sidebar'
 
 import { BookList } from '../BookList'
 import { Sidebar } from '../Sidebar'
-import Header from '../Header'
-import ScrollToTop from '../ScrollToTop'
+import { Header } from '../Header'
+import { ScrollToTop } from '../ScrollToTop'
 import { useData } from '../AppData'
 
 import { useDomHandlers } from './DomHandlers'

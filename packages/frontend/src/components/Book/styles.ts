@@ -16,13 +16,17 @@ export const BookDetails = styled('div')`
 
   ${queries.small`
     text-align: left;
-    padding-left: 0.5rem;
+    padding-left: 0.3rem;
     margin: 0;
   `}
 `
 export const Title = styled('div')`
   font-size: 1.2rem;
   color: ${primary.primary3};
+
+  ${queries.small`
+    font-size: 1.5rem;
+  `}
 `
 
 export const Author = styled('div')`
@@ -44,7 +48,7 @@ export const CoverImage = styled('img')`
   transition: box-shadow 0.3s ease-in-out;
 
   ${queries.small`
-    width: 6rem;
+    width: 7rem;
   `}
 
   ~ .read-date {
