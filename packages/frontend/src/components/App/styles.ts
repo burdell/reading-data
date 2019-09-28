@@ -1,11 +1,10 @@
 import styled from 'react-emotion'
 
 import { queries } from '../../shared/breakpoints'
-
-export const appFont = 'Montserrat'
+import { sanSerif } from '../../design/fonts'
 
 export const AppContainer = styled('div')`
-  font-family: ${appFont};
+  font-family: ${sanSerif};
   display: relative;
 `
 

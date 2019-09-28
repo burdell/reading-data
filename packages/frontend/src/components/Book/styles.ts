@@ -1,118 +1,76 @@
 import styled from 'react-emotion'
 
 import { queries } from '../../shared/breakpoints'
+import { gray, primary, secondary } from '../../design/colors'
+import { sanSerif, serif } from '../../design/fonts'
 
-export const BookStyles = styled('div')`
-  line-height: 1;
-  padding: 1rem;
-`
+export const BookStyles = styled('div')``
 
-export const CoverContainer = styled('div')`
+export const BookDetails = styled('div')`
+  font-family: ${serif};
+  margin: 0.3rem 0;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.1;
+
+  ${queries.small`
+    text-align: left;
+    padding-left: 0.5rem;
+    margin: 0;
+  `}
+`
+export const Title = styled('div')`
+  font-size: 1.2rem;
+  color: ${primary.primary3};
 `
 
-export const Cover = styled('div')`
-  display: inline-block;
+export const Author = styled('div')`
+  font-size: 0.9rem;
+  color: ${gray.gray4};
+`
+
+export const ReadDate = styled('div')`
+  font-size: 0.6rem;
+  color: ${gray.gray4};
+  font-family: ${sanSerif};
 `
 
 export const CoverImage = styled('img')`
   width: 8rem;
-  box-shadow: 0px 0px 5px 0px rgba(180, 180, 180, 1);
+  box-shadow: 0px 0px 5px 0px ${gray.gray3};
   max-height: 12rem;
-
-  transition: all 0.3s ease-in-out;
-
-  ${queries.medium`
-        width: 6.5rem;
-    `}
+  margin: 0.2rem 0;
+  transition: box-shadow 0.3s ease-in-out;
 
   ${queries.small`
-        width: 8rem;
-    `}
-`
+    width: 6rem;
+  `}
 
-export const ReadDate = styled('div')`
-  font-size: 0.5rem;
-  color: rgb(165, 165, 165);
-  font-style: italic;
-  margin-bottom: 0.2rem;
-`
-
-export const BookDetails = styled('div')`
-  padding-left: 1rem;
-  line-height: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
-  ${queries.medium`
-        .rating-display {
-            font-size: .8rem;
-        }
-    `}
-
-  ${queries.small`
-        .rating-display {
-            font-size: 1rem;
-        }
-    `}
-`
-
-export const BookInfo = styled('div')`
-  width: 100%;
-  margin-bottom: 0.3rem;
-`
-
-export const BookAuthor = styled('span')`
-  font-size: 0.7rem;
-  color: rgb(160, 160, 160);
-
-  ${queries.medium`
-        font-size: .6rem;
-    `}
-
-  ${queries.small`
-        font-size: .7rem;
-    `}
-`
-
-export const BookTitle = styled('div')`
-  font-size: 0.9rem;
-
-  ${queries.medium`
-        font-size: .8rem;
-    `}
-
-  ${queries.small`
-        font-size: 1rem;
-    `}
-`
-
-export const ActionsContainer = styled('div')`
-  width: 6rem;
-  text-align: center;
-  margin-top: 0.2rem;
-`
-
-export const ReviewToggle = styled('div')`
-  cursor: pointer;
-  font-size: 0.6rem;
-  background-color: #f2f2f2;
-  padding: 0.5rem 0.5rem;
-  display: inline-block;
-  min-width: 8rem;
-
-  :hover {
-    color: #376bbf;
-    box-shadow: 0px 0px 1px -3px rgba(0, 0, 0, 0.3);
+  ~ .read-date {
+    overflow-y: hidden;
+    max-height: 0;
+    transition: max-height 0.6s ease-in-out;
+    padding-top: 0.3rem;
   }
 
-  ${queries.medium`
-        min-width: 6.5rem;
-    `}
+  &:hover {
+    box-shadow: 0px 0px 10px 0px ${secondary.secondary4};
+
+    ~ .read-date {
+      max-height: 100px;
+    }
+  }
+`
+export const BookDisplay = styled('div')`
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0.8rem 0;
+  text-align: center;
 
   ${queries.small`
-        min-width: 8rem;
-    `}
+    grid-template-columns: 1fr 2fr;
+    margin: 0;
+    margin-top: .5rem;
+  `}
 `

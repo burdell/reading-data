@@ -6,7 +6,7 @@ interface Breakpoints {
 }
 
 export const breakpoints = {
-  medium: 68,
+  medium: 62,
   small: 46
 }
 
