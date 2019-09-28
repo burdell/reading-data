@@ -7,7 +7,7 @@ export const StyledButton = styled('button')`
   outline: none;
   background-color: ${primary.primary3};
   color: ${white.white3};
-  padding: 0.2rem 0.5rem;
+  padding: 0.4rem;
   border-radius: 0.25rem;
   transition: all 0.1s ease-in;
   font-family: ${sanSerif};

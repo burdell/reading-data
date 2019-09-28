@@ -30,7 +30,7 @@ export const SidebarType = styled('div')`
 export const CloseAction = styled('div')`
   position: absolute;
   right: 10px;
-  top: 10px;
+  top: 7px;
   z-index: 10000;
   display: none;
   cursor: pointer;

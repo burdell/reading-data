@@ -11,7 +11,7 @@ export const Header = styled('div')`
   width: 100%;
   position: fixed;
   top: 0;
-  padding: 0 0.8rem;
+  padding: 0 1rem;
   z-index: 1;
   font-family: ${serif};
   color: ${gray.gray3};
