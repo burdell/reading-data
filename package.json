@@ -2,13 +2,18 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {},
-  "workspaces": [
-    "packages/frontend",
-    "packages/server"
-  ],
+  "dependencies": {
+    "lerna": "^3.16.4",
+    "parcel": "^1.12.3"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/frontend",
+      "packages/server"
+    ]
+  },
   "scripts": {
-    "build-frontend": "cd packages/frontend && yarn build"
+    "build-frontend": "lerna run build"
   },
   "devDependencies": {
     "tslint-config-prettier": "^1.18.0",
