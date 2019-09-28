@@ -21,6 +21,6 @@ function getBook(): BookType {
 
 storiesOf('Book', module).add('basic book', () => (
   <AppContainer>
-    <Book onSelect={() => null} book={getBook()} reviewShown={false} />
+    <Book book={getBook()} />
   </AppContainer>
 ))

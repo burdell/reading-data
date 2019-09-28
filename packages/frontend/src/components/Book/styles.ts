@@ -1,14 +1,10 @@
 import styled from 'react-emotion'
 
 import { queries } from '../../shared/breakpoints'
-import { gray, primary, tertiary } from '../../design/colors'
+import { gray, primary, secondary } from '../../design/colors'
 import { sanSerif, serif } from '../../design/fonts'
 
-export const BookStyles = styled('div')`
-  display: grid;
-  grid-template-columns: 1fr;
-  margin: 0.8rem 0;
-`
+export const BookStyles = styled('div')``
 
 export const BookDetails = styled('div')`
   font-family: ${serif};
@@ -17,10 +13,16 @@ export const BookDetails = styled('div')`
   flex-direction: column;
   justify-content: center;
   line-height: 1.1;
+
+  ${queries.small`
+    text-align: left;
+    padding-left: 0.5rem;
+    margin: 0;
+  `}
 `
 export const Title = styled('div')`
-  font-size: 1.1rem;
-  color: ${primary.primary2};
+  font-size: 1.2rem;
+  color: ${primary.primary3};
 `
 
 export const Author = styled('div')`
@@ -41,10 +43,34 @@ export const CoverImage = styled('img')`
   margin: 0.2rem 0;
   transition: box-shadow 0.3s ease-in-out;
 
+  ${queries.small`
+    width: 6rem;
+  `}
+
+  ~ .read-date {
+    overflow-y: hidden;
+    max-height: 0;
+    transition: max-height 0.6s ease-in-out;
+    padding-top: 0.3rem;
+  }
+
   &:hover {
-    box-shadow: 0px 0px 10px 0px ${primary.primary6};
+    box-shadow: 0px 0px 10px 0px ${secondary.secondary4};
+
+    ~ .read-date {
+      max-height: 100px;
+    }
   }
 `
 export const BookDisplay = styled('div')`
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0.8rem 0;
   text-align: center;
+
+  ${queries.small`
+    grid-template-columns: 1fr 2fr;
+    margin: 0;
+    margin-top: .5rem;
+  `}
 `

@@ -22,13 +22,17 @@ export const Book = ({ book }: BookProps) => {
   return (
     <BookStyles>
       <BookDisplay>
-        <Rating rating={book.my_rating} />
-        <CoverImage src={`http://images.amazon.com/images/P/${book.isbn}`} />
+        <div>
+          <Rating rating={book.my_rating} />
+          <CoverImage src={`http://images.amazon.com/images/P/${book.isbn}`} />
+          <div className="read-date">
+            <ReadDate>{format(new Date(book.date_read), 'M/dd/yyyy')}</ReadDate>
+          </div>
+        </div>
         <BookDetails>
           <Title>{book.title}</Title>
           <Author>{book.author}</Author>
         </BookDetails>
-        <ReadDate>{format(new Date(book.date_read), 'M/dd/yyyy')}</ReadDate>
       </BookDisplay>
     </BookStyles>
   )
