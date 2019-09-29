@@ -1,22 +1,26 @@
 import styled from 'react-emotion'
 
 import { queries } from '../../shared/breakpoints'
-import { gray } from '../../design/colors'
+import { primary, white } from '../../design/colors'
 import { serif } from '../../design/fonts'
 
+export const headerHeight = '4rem'
+
 export const Header = styled('div')`
-  display: none;
-  height: 3rem;
-  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: ${headerHeight};
+  background-color: ${white.white9};
   width: 100%;
   position: fixed;
   top: 0;
   padding: 0 1rem;
   z-index: 1;
   font-family: ${serif};
-  color: ${gray.gray3};
+  color: ${primary.primary3};
 
-  box-shadow: 0px 2px 5px 0px ${gray.gray8};
+  box-shadow: 0px 0px 2px 0px ${primary.primary8};
 
   ${queries.small`
         display: flex;

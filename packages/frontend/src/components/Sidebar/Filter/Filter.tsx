@@ -7,7 +7,7 @@ import { CheckboxSelection } from '../../Elements/Checkbox'
 import CheckboxFilter from './CheckboxFilter/CheckboxFilter'
 import { ratingGenerator } from '../../Rating'
 import { SidebarSection } from '../styles'
-import Stats from '../../Stats'
+import { Stats } from '../../Stats'
 
 interface FilterProps {
   defaultFilters: FilterOptions

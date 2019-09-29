@@ -7,7 +7,7 @@ export const primary = {
   primary6: 'hsl(206, 51%, 57%)',
   primary7: 'hsl(206, 50%, 72%)',
   primary8: 'hsl(206, 49%, 88%)',
-  primary9: 'hsl(206, 48%, 95%)'
+  primary9: 'hsl(206, 48%, 98%)'
 }
 
 export const secondary = {
@@ -43,7 +43,7 @@ export const white = {
   white6: '',
   white7: 'hsl(54, 62%, 95%)',
   white8: '',
-  white9: 'hsl(54, 57%, 97%)'
+  white9: 'hsl(54, 40%, 98%)'
 }
 
 export const gray = {
@@ -55,5 +55,5 @@ export const gray = {
   gray6: 'hsl(209, 15%, 90%)',
   gray7: 'hsl(207, 12%, 92%)',
   gray8: 'hsl(208, 12%, 94%)',
-  gray9: 'hsl(210, 16%, 96%)'
+  gray9: 'hsl(210, 16%, 98%)'
 }

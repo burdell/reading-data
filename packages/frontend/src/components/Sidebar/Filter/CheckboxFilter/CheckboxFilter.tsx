@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { FilterOptions } from '../../../../types'
-import { Checkbox, CheckboxSelection } from '../../../Elements/Checkbox'
+import { Checkbox, CheckboxSelection } from '../../../Elements'
 import { CheckboxFilter, ClearFilter } from './styles'
 
 interface CheckboxFilterProps {

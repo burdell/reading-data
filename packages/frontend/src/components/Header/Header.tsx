@@ -12,7 +12,7 @@ export function Header({ toggleSidebar }: Props) {
   return (
     <HeaderStyles>
       <HeaderText className="header-text">What Did Nathan Read?</HeaderText>
-      <Button onClick={toggleSidebar}>Show Filter</Button>
+      {/* <Button onClick={toggleSidebar}>Show Filter</Button> */}
     </HeaderStyles>
   )
 }
