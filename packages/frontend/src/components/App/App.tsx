@@ -20,12 +20,12 @@ export function App() {
 
   return (
     <AppContainer>
-      <Header toggleSidebar={toggleSidebar} />
+      <Header toggleSidebar={toggleSidebar} showToggle={!hasMatches} />
       <BodyContainer id="body-container">
         <Sidebar
           onFilter={updateFilter}
           stats={stats}
-          open={sidebarOpen}
+          open={hasMatches || sidebarOpen}
           toggleSidebar={toggleSidebar}
         />
         <BookList books={books} loading={loading} />

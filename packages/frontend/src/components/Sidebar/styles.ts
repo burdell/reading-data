@@ -1,15 +1,24 @@
 import styled from 'react-emotion'
 
 import { queries } from '../../shared/breakpoints'
-import { gray, primary } from '../../design/colors'
+import { gray } from '../../design/colors'
+import { inherits } from 'util'
+
+interface SidebarProps {
+  showSidebar: boolean
+}
 
 export const SidebarContainer = styled('div')`
   position: relative;
   min-width: 185px;
   background-color: ${gray.gray9};
   height: 100%;
-  display: flex;
+  display: ${(props: SidebarProps) => (props.showSidebar ? 'flex' : 'none')};
   justify-content: center;
+
+  ${queries.small`
+    position: fixed;
+  `}
 `
 
 export const SidebarStyles = styled('div')`
@@ -39,7 +48,7 @@ export const SidebarType = styled('div')`
 export const CloseAction = styled('div')`
   position: absolute;
   right: 10px;
-  top: 7px;
+  top: 10px;
   z-index: 10000;
   display: none;
   cursor: pointer;

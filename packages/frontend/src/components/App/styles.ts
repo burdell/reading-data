@@ -1,8 +1,8 @@
 import styled from 'react-emotion'
 
-import { queries } from '../../shared/breakpoints'
 import { sanSerif } from '../../design/fonts'
 import { headerHeight } from '../Header'
+import { queries } from '../../shared/breakpoints'
 
 export const AppContainer = styled('div')`
   font-family: ${sanSerif};
@@ -16,6 +16,6 @@ export const BodyContainer = styled('div')`
   min-height: 100vh;
 
   ${queries.small`
-        margin-top: 3rem;
-    `}
+    grid-template-columns: 1fr;
+  `}
 `

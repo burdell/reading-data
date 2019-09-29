@@ -6,13 +6,14 @@ import { Header as HeaderStyles, HeaderText } from './styles'
 
 interface Props {
   toggleSidebar(): void
+  showToggle: boolean
 }
 
-export function Header({ toggleSidebar }: Props) {
+export function Header({ toggleSidebar, showToggle }: Props) {
   return (
     <HeaderStyles>
-      <HeaderText className="header-text">What Did Nathan Read?</HeaderText>
-      {/* <Button onClick={toggleSidebar}>Show Filter</Button> */}
+      <HeaderText>What Did Nathan Read?</HeaderText>
+      {showToggle && <Button onClick={toggleSidebar}>Filter</Button>}
     </HeaderStyles>
   )
 }
