@@ -1,12 +1,10 @@
 import React from 'react'
-import { Menu } from 'antd'
-import 'antd/lib/menu/style/css'
 import { X } from 'react-feather'
 
 import { FilterOptions, Stats } from '../../types'
-import { Button } from '../Elements'
+import { MiniButton } from '../Elements'
 
-import { SidebarStyles, CloseAction } from './styles'
+import { SidebarStyles, CloseAction, SidebarContainer } from './styles'
 import { Filter, defaultFilter } from './Filter'
 
 interface Props {
@@ -16,23 +14,21 @@ interface Props {
   stats: Stats | null
 }
 
-export const Sidebar = ({ onFilter, stats, toggleSidebar }: Props) => {
+export const Sidebar = ({ onFilter, stats, open, toggleSidebar }: Props) => {
   return (
-    <div data-testid="sidebar">
-      <CloseAction onClick={toggleSidebar}>
-        <Button>
+    <SidebarContainer showSidebar={open} data-testid="sidebar">
+      <CloseAction>
+        <MiniButton onClick={toggleSidebar}>
           <X size={14} />
-        </Button>
+        </MiniButton>
       </CloseAction>
       <SidebarStyles>
-        <Menu mode="vertical">
-          <Filter
-            defaultFilters={defaultFilter()}
-            onFilter={onFilter}
-            stats={stats}
-          />
-        </Menu>
+        <Filter
+          defaultFilters={defaultFilter()}
+          onFilter={onFilter}
+          stats={stats}
+        />
       </SidebarStyles>
-    </div>
+    </SidebarContainer>
   )
 }

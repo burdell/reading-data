@@ -1,4 +1,5 @@
 import styled from 'react-emotion'
+import { gray } from '../../../../design/colors'
 
 export const FilterSection = styled('div')`
   margin: 0.5rem 0;

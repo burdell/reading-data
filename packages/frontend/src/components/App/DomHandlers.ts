@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import { breakpoints } from '../../shared/breakpoints'
-import scroll from '../ScrollToTop/scroll'
+import { scroll } from '../ScrollToTop/scroll'
 
 const mql = window.matchMedia(`(min-width: ${breakpoints.small}rem)`)
 

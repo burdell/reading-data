@@ -47,24 +47,13 @@ export const CoverImage = styled('img')`
   margin: 0.2rem 0;
   transition: box-shadow 0.3s ease-in-out;
 
+  &:hover {
+    box-shadow: 0px 0px 10px 0px ${secondary.secondary4};
+  }
+
   ${queries.small`
     width: 7rem;
   `}
-
-  ~ .read-date {
-    overflow-y: hidden;
-    max-height: 0;
-    transition: max-height 0.6s ease-in-out;
-    padding-top: 0.3rem;
-  }
-
-  &:hover {
-    box-shadow: 0px 0px 10px 0px ${secondary.secondary4};
-
-    ~ .read-date {
-      max-height: 100px;
-    }
-  }
 `
 export const BookDisplay = styled('div')`
   display: grid;

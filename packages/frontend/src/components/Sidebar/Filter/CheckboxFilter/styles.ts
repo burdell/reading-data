@@ -1,5 +1,7 @@
 import styled from 'react-emotion'
 
+import { gray } from '../../../../design/colors'
+
 export const CheckboxFilter = styled('div')`
   position: relative;
 `
@@ -11,7 +13,7 @@ export const ClearFilter = styled('div')`
 
   :before {
     content: 'Clear';
-    color: #cecece;
+    color: ${gray.gray4};
     font-size: 0.7rem;
     cursor: pointer;
   }

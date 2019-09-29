@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ReactSidebar from 'react-sidebar'
 
 import { BookList } from '../BookList'
 import { Sidebar } from '../Sidebar'
@@ -21,25 +20,17 @@ export function App() {
 
   return (
     <AppContainer>
-      <ReactSidebar
-        sidebar={
-          <Sidebar
-            onFilter={updateFilter}
-            stats={stats}
-            open={sidebarOpen}
-            toggleSidebar={toggleSidebar}
-          />
-        }
-        docked={hasMatches}
-        open={sidebarOpen}
-        onSetOpen={onSetSidebarOpen}
-      >
-        <Header toggleSidebar={toggleSidebar} />
-        <BodyContainer id="body-container">
-          <BookList loading={loading} books={books} />
-          <ScrollToTop />
-        </BodyContainer>
-      </ReactSidebar>
+      <Header toggleSidebar={toggleSidebar} showToggle={!hasMatches} />
+      <BodyContainer id="body-container">
+        <Sidebar
+          onFilter={updateFilter}
+          stats={stats}
+          open={hasMatches || sidebarOpen}
+          toggleSidebar={toggleSidebar}
+        />
+        <BookList books={books} loading={loading} />
+        <ScrollToTop />
+      </BodyContainer>
     </AppContainer>
   )
 }
