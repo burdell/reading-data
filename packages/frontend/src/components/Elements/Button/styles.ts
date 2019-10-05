@@ -1,4 +1,4 @@
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 import { primary, white } from '../../../design/colors'
 import { sanSerif } from '../../../design/fonts'

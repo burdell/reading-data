@@ -1,4 +1,4 @@
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 import { queries } from '../../../shared/breakpoints'
 const bookPic = require('./no_books.jpg')

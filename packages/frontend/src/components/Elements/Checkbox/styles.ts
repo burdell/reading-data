@@ -1,4 +1,4 @@
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 export const Label = styled('label')`
   font-size: 0.9rem;

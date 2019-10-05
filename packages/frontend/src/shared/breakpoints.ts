@@ -1,4 +1,4 @@
-import { css } from 'react-emotion'
+import { css } from '@emotion/core'
 
 interface Breakpoints {
   medium(s: TemplateStringsArray): string

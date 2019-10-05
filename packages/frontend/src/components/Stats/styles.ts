@@ -1,4 +1,4 @@
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { secondary } from '../../design/colors'
 
 export const StatsContainer = styled('div')`

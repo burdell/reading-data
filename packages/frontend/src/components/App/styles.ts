@@ -1,4 +1,4 @@
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 import { sanSerif } from '../../design/fonts'
 import { headerHeight } from '../Header'
