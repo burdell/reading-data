@@ -54,6 +54,6 @@ export const gray = {
   gray5: 'hsl(208, 21%, 88%)',
   gray6: 'hsl(209, 15%, 90%)',
   gray7: 'hsl(207, 12%, 92%)',
-  gray8: 'hsl(208, 12%, 94%)',
+  gray8: 'hsl(208, 12%, 96%)',
   gray9: 'hsl(210, 16%, 98%)'
 }

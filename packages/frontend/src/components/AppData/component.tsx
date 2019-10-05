@@ -1,6 +1,5 @@
 import React from 'react'
 import { createClient, Provider } from 'urql'
-import { ThemeProvider } from '@chakra-ui/core'
 
 import { App as MainApp } from '../App'
 
@@ -10,10 +9,8 @@ const apiClient = createClient({ url: apiUrl })
 
 export function App() {
   return (
-    <ThemeProvider>
-      <Provider value={apiClient}>
-        <MainApp />
-      </Provider>
-    </ThemeProvider>
+    <Provider value={apiClient}>
+      <MainApp />
+    </Provider>
   )
 }

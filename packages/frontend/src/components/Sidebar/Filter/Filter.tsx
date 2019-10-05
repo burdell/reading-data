@@ -19,7 +19,6 @@ export function Filter({ stats, onFilter, defaultFilters }: FilterProps) {
   const filterOptions = useMemo<FilterOptions>(() => defaultFilters, [])
 
   function checkboxSelected({ field, value }: CheckboxSelection) {
-    debugger
     if (value === null) {
       // clear filter
       ;(filterOptions as any)[field] = []

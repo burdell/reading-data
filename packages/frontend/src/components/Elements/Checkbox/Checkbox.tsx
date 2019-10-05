@@ -1,6 +1,8 @@
 import React, { ChangeEvent } from 'react'
 import { Checkbox as ChakraCheckbox } from '@chakra-ui/core'
 
+import { tertiary } from '../../../design/colors'
+
 export interface CheckboxSelection {
   field: string
   selected: boolean
@@ -18,6 +20,8 @@ interface CheckboxProps {
 export function Checkbox(props: CheckboxProps) {
   return (
     <ChakraCheckbox
+      size="sm"
+      variantColor="checkbox"
       onChange={(e: ChangeEvent<HTMLInputElement>) =>
         props.onSelect({
           field: props.name,

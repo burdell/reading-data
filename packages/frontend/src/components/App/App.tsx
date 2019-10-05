@@ -14,9 +14,7 @@ export function App() {
   const { hasMatches } = useDomHandlers()
   const { loading, data, updateFilter } = useData()
   const { books, stats } = data
-
   const toggleSidebar = () => setSidebar(!sidebarOpen)
-  const onSetSidebarOpen = (sidebarOpen: boolean) => setSidebar(sidebarOpen)
 
   return (
     <AppContainer>

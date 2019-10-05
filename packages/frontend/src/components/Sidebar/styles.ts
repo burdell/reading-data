@@ -2,23 +2,10 @@ import styled from '@emotion/styled'
 
 import { queries } from '../../shared/breakpoints'
 import { gray } from '../../design/colors'
-import { inherits } from 'util'
 
 interface SidebarProps {
   showSidebar: boolean
 }
-/*
-position: relative;
-min-width: 185px;
-background-color: ${gray.gray9};
-height: 100%;
-display: ${(props: SidebarProps) => (props.showSidebar ? 'flex' : 'none')};
-justify-content: center;
-
-${queries.small`
-  position: fixed;
-`}
-*/
 
 export const SidebarContainer = styled<'div', SidebarProps>('div')`
   position: relative;
