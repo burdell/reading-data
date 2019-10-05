@@ -1,8 +1,5 @@
-import React from 'react'
-import { Checkbox as AntdCheckbox } from 'antd'
-import 'antd/lib/checkbox/style/css'
-
-import { Label, LabelDisplay } from './styles'
+import React, { ChangeEvent } from 'react'
+import { Checkbox as ChakraCheckbox } from '@chakra-ui/core'
 
 export interface CheckboxSelection {
   field: string
@@ -18,28 +15,20 @@ interface CheckboxProps {
   onSelect(result: CheckboxSelection): void
 }
 
-export const Checkbox = ({
-  label,
-  isChecked,
-  onSelect,
-  name,
-  value
-}: CheckboxProps) => {
+export function Checkbox(props: CheckboxProps) {
   return (
-    <Label>
-      <AntdCheckbox
-        name={name}
-        checked={isChecked}
-        onChange={e => {
-          onSelect({
-            field: e.target.name || '',
-            selected: e.target.checked,
-            value: Number(e.target.value)
-          })
-        }}
-        value={value || label}
-      />
-      <LabelDisplay>{label}</LabelDisplay>
-    </Label>
+    <ChakraCheckbox
+      onChange={(e: ChangeEvent<HTMLInputElement>) =>
+        props.onSelect({
+          field: props.name,
+          selected: e.target.checked,
+          value: props.value
+        })
+      }
+      value={props.value}
+      isChecked={props.isChecked}
+    >
+      {props.label}
+    </ChakraCheckbox>
   )
 }
