@@ -1,9 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { ThemeProvider, theme } from '@chakra-ui/core'
+import { Global, css } from '@emotion/core'
 
 import { App } from './components/AppData'
 import { secondary } from './design/colors'
+import { CssReset } from './CssReset'
 
 const customTheme = {
   ...theme,
@@ -24,11 +26,12 @@ const customTheme = {
   }
 }
 
-console.log(customTheme)
-
 ReactDOM.render(
-  <ThemeProvider theme={customTheme}>
-    <App />
-  </ThemeProvider>,
+  <>
+    <Global styles={CssReset} />
+    <ThemeProvider theme={customTheme}>
+      <App />
+    </ThemeProvider>
+  </>,
   document.getElementById('root')
 )
