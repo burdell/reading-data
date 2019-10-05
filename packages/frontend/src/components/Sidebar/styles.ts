@@ -7,14 +7,26 @@ import { inherits } from 'util'
 interface SidebarProps {
   showSidebar: boolean
 }
+/*
+position: relative;
+min-width: 185px;
+background-color: ${gray.gray9};
+height: 100%;
+display: ${(props: SidebarProps) => (props.showSidebar ? 'flex' : 'none')};
+justify-content: center;
 
-export const SidebarContainer = styled('div')`
+${queries.small`
+  position: fixed;
+`}
+*/
+
+export const SidebarContainer = styled<'div', SidebarProps>('div')`
   position: relative;
   min-width: 185px;
   background-color: ${gray.gray9};
   height: 100%;
-  display: ${(props: SidebarProps) => (props.showSidebar ? 'flex' : 'none')};
   justify-content: center;
+  display: ${(props: SidebarProps) => (props.showSidebar ? 'flex' : 'none')};
 
   ${queries.small`
     position: fixed;
