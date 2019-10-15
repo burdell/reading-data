@@ -1,7 +1,6 @@
 import axios from 'axios'
 import parser from 'fast-xml-parser'
 import { addDays, endOfDay, isWithinInterval, format } from 'date-fns'
-import { writeFileSync } from 'fs'
 
 import { GoodreadsAPIReadEvent, BookWithoutId } from '../types'
 import { addToDb } from '../db'
@@ -27,6 +26,12 @@ function convertApiBook({
   read_at,
   body
 }: GoodreadsAPIReadEvent): BookWithoutId {
+  // account for isbns that start with 0
+  let isbn = book.isbn.toString()
+  while (isbn.length < 10) {
+    isbn = `0${isbn}`
+  }
+
   return {
     book_id: book.id,
     title: book.title,
@@ -35,7 +40,7 @@ function convertApiBook({
     number_of_pages: Number(book.num_pages),
     date_read: format(new Date(read_at), 'yyyy/MM/dd'),
     my_review: body,
-    isbn: `\=${book.isbn}`,
+    isbn: `=${isbn}`,
     isbn_13: `\=${book.isbn13 ? book.isbn13.toString() : ''}`
   }
 }
