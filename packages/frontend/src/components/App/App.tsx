@@ -19,7 +19,7 @@ export function App() {
   return (
     <AppContainer>
       <Header toggleSidebar={toggleSidebar} showToggle={!hasMatches} />
-      <BodyContainer id="body-container">
+      <BodyContainer>
         <Sidebar
           onFilter={updateFilter}
           stats={stats}

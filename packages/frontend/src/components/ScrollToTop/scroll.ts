@@ -1,7 +1,6 @@
 export function scroll() {
-  const container = document.getElementById('body-container')
+  const container = document.getElementById('book-list-container')
   if (!container) return
 
-  const parent = container.parentElement as any
-  parent.scroll({ top: 0, behavior: 'smooth' })
+  container.scrollIntoView({ behavior: 'smooth' })
 }
