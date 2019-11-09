@@ -44,7 +44,7 @@ export const CoverImage = styled('img')`
   width: 8rem;
   box-shadow: 0px 0px 5px 0px ${gray.gray3};
   max-height: 12rem;
-  margin: 0.2rem 0;
+  margin: 0.5rem 0;
   transition: box-shadow 0.3s ease-in-out;
 
   &:hover {
