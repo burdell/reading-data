@@ -7,9 +7,14 @@
     "build-server": "webpack && cp ./template.yml ./dist",
     "package-server": "aws cloudformation package --template-file ./dist/template.yml --output-template-file ./dist/serverless-output.yml --s3-bucket reading-data-server",
     "deploy-server": "aws cloudformation deploy --template-file ./dist/serverless-output.yml --stack-name ReadingData --capabilities CAPABILITY_IAM",
-    "deploy": "yarn build-server && yarn package-server && yarn deploy-server"
+    "deploy": "yarn build-server && yarn package-server && yarn deploy-server",
+    "elastic": "NODE_ENV=local ts-node ./src/db/elastic.ts",
+    "start": "NODE_ENV=local ts-node ./src/graphql"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "^7.4.0",
+    "@types/axios": "^0.14.0",
+    "apollo-server": "^2.9.9",
     "apollo-server-lambda": "^2.8.1",
     "aws-lambda": "^0.1.2",
     "aws-sdk": "^2.505.0",
