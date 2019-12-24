@@ -2,7 +2,6 @@ import styled from '@emotion/styled'
 
 import { queries } from '../../shared/breakpoints'
 import { gray, primary } from '../../design/colors'
-import { serif } from '../../design/fonts'
 
 interface SidebarProps {
   showSidebar: boolean
@@ -31,6 +30,7 @@ export const SidebarSection = styled('div')`
   font-weight: 100;
   width: 10.5rem;
   padding-left: 0.5rem;
+  color: ${gray.gray1};
 `
 
 export const SidebarHeader = styled('div')`
@@ -65,7 +65,7 @@ export const HowDoesThisWork = styled('div')`
   align-items: center;
 
   a {
-    margin-left: 0.1rem;
+    margin-left: 0.25rem;
     color: ${primary.primary3};
   }
 `

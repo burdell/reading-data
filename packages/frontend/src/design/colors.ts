@@ -47,9 +47,9 @@ export const white = {
 }
 
 export const gray = {
-  gray1: 'hsl(209, 15%, 28%)',
-  gray2: 'hsl(207, 12%, 43%)',
-  gray3: 'hsl(208, 12%, 58%)',
+  gray1: 'hsl(209, 10%, 32%)',
+  gray2: 'hsl(207, 15%, 52%)',
+  gray3: 'hsl(208, 15%, 58%)',
   gray4: 'hsl(210, 16%, 76%)',
   gray5: 'hsl(208, 21%, 88%)',
   gray6: 'hsl(209, 15%, 90%)',

@@ -16,23 +16,23 @@ export const BookDetails = styled('div')`
 
   ${queries.small`
     text-align: left;
-    padding-left: 0.3rem;
+    padding-left: 1rem;
     margin: 0;
   `}
 `
 export const Title = styled('div')`
   font-size: 1.2rem;
   color: ${primary.primary3};
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.2rem;
 
   ${queries.small`
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   `}
 `
 
 export const Author = styled('div')`
   font-size: 0.9rem;
-  color: ${gray.gray4};
+  color: ${gray.gray3};
 `
 
 export const ReadDate = styled('div')`
@@ -43,7 +43,7 @@ export const ReadDate = styled('div')`
 
 export const CoverImage = styled('img')`
   width: 8rem;
-  box-shadow: 0px 0px 4px 0px ${gray.gray3};
+  box-shadow: 0px 0px 4px 0px ${gray.gray4};
   max-height: 12rem;
   min-height: 12rem;
   margin: 0.2rem 0;
