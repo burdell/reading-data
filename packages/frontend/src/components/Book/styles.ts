@@ -44,8 +44,7 @@ export const ReadDate = styled('div')`
 export const CoverImage = styled('img')`
   width: 8rem;
   box-shadow: 0px 0px 4px 0px ${gray.gray4};
-  max-height: 12rem;
-  min-height: 12rem;
+  min-height: 10rem;
   margin: 0.2rem 0;
   transition: box-shadow 0.3s ease-in-out;
   background: rgb(2, 0, 36);
