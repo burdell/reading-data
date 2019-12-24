@@ -4,7 +4,8 @@ import { secondary } from '../../design/colors'
 export const StatsContainer = styled('div')`
   line-height: 1.3;
   font-size: 0.9rem;
-  margin-top: 0.3em;
+  margin-top: 0.3rem;
+  margin-left: -0.3rem;
 `
 
 export const StatNumber = styled('span')`

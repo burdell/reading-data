@@ -42,7 +42,7 @@ export function useData(): UseData {
     books: [],
     stats: null
   })
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   function updateFilter(newFilter: Partial<FilterOptions>) {
     setFilter({ ...filter, ...newFilter })

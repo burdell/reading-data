@@ -1,14 +1,14 @@
 import styled from '@emotion/styled'
 
 import { queries } from '../../shared/breakpoints'
-import { gray, primary, secondary } from '../../design/colors'
+import { gray, primary, secondary, white } from '../../design/colors'
 import { sanSerif, serif } from '../../design/fonts'
 
 export const BookStyles = styled('div')``
 
 export const BookDetails = styled('div')`
   font-family: ${serif};
-  margin: 0.3rem 0;
+  margin: 0.2rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,6 +23,7 @@ export const BookDetails = styled('div')`
 export const Title = styled('div')`
   font-size: 1.2rem;
   color: ${primary.primary3};
+  margin-bottom: 0.3rem;
 
   ${queries.small`
     font-size: 1.5rem;
@@ -42,13 +43,21 @@ export const ReadDate = styled('div')`
 
 export const CoverImage = styled('img')`
   width: 8rem;
-  box-shadow: 0px 0px 5px 0px ${gray.gray3};
+  box-shadow: 0px 0px 4px 0px ${gray.gray3};
   max-height: 12rem;
-  margin: 0.5rem 0;
+  min-height: 12rem;
+  margin: 0.2rem 0;
   transition: box-shadow 0.3s ease-in-out;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    165deg,
+    ${secondary.secondary8},
+    ${secondary.secondary9},
+    ${white.white9}
+  );
 
   &:hover {
-    box-shadow: 0px 0px 10px 0px ${secondary.secondary4};
+    box-shadow: 0px 0px 8px 0px ${secondary.secondary4};
   }
 
   ${queries.small`
