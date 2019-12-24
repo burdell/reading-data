@@ -60,7 +60,7 @@ export function Filter({ stats, onFilter, defaultFilters }: FilterProps) {
         />
       </FilterSection>
       <HowDoesThisWork>
-        <GitHub size={12} />
+        <span>🤔</span>
         <a href="https://github.com/burdell/reading-data" target="_blank">
           How does this work?
         </a>

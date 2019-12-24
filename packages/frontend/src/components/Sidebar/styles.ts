@@ -60,12 +60,13 @@ export const CloseAction = styled('div')`
 
 export const HowDoesThisWork = styled('div')`
   font-size: 0.7rem;
-  margin-top: 2rem;
+  margin-top: 1.7rem;
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-left: -1.7rem;
 
   a {
-    margin-left: 0.25rem;
     color: ${primary.primary3};
   }
 `
