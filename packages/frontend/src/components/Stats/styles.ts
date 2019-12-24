@@ -10,10 +10,13 @@ export const StatsContainer = styled('div')`
 
 export const StatNumber = styled('span')`
   color: ${secondary.secondary3};
+  margin-right: 0.15rem;
 `
 
 export const Stat = styled('div')`
   padding: 0.3rem;
+  display: flex;
+  align-items: center;
 
   svg {
     margin-right: 0.2rem;

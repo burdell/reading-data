@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import { GitHub } from 'react-feather'
 
 import { FilterOptions, Stats as IStats } from '../../../types'
 import FilterSection from './FilterSection'
@@ -6,7 +7,7 @@ import { possibleRatings, possibleYears } from './filters'
 import { CheckboxSelection } from '../../Elements/Checkbox'
 import CheckboxFilter from './CheckboxFilter/CheckboxFilter'
 import { ratingGenerator } from '../../Rating'
-import { SidebarSection } from '../styles'
+import { SidebarSection, HowDoesThisWork } from '../styles'
 import { Stats } from '../../Stats'
 
 interface FilterProps {
@@ -58,6 +59,12 @@ export function Filter({ stats, onFilter, defaultFilters }: FilterProps) {
           renderOption={(rating: string) => ratingGenerator(Number(rating))}
         />
       </FilterSection>
+      <HowDoesThisWork>
+        <GitHub size={12} />
+        <a href="https://github.com/burdell/reading-data" target="_blank">
+          How does this work?
+        </a>
+      </HowDoesThisWork>
     </SidebarSection>
   )
 }

@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
 
 import { queries } from '../../shared/breakpoints'
-import { gray } from '../../design/colors'
+import { gray, primary } from '../../design/colors'
+import { serif } from '../../design/fonts'
 
 interface SidebarProps {
   showSidebar: boolean
@@ -55,4 +56,16 @@ export const CloseAction = styled('div')`
   ${queries.small`
       display: inline-block;
   `}
+`
+
+export const HowDoesThisWork = styled('div')`
+  font-size: 0.7rem;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+
+  a {
+    margin-left: 0.1rem;
+    color: ${primary.primary3};
+  }
 `
