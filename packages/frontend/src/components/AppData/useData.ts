@@ -14,13 +14,7 @@ interface DataResults {
   stats: Stats | null
 }
 
-interface UseData {
-  data: DataResults
-  loading: boolean
-  updateFilter(o: Partial<FilterOptions>): void
-}
-
-export function useData(): UseData {
+export function useData() {
   const [result] = useQuery<{ books: Book[] }>({
     query: `{
           books { 
@@ -30,10 +24,8 @@ export function useData(): UseData {
             author
             my_rating
             number_of_pages
-            date_read
-            my_review
+            date_read 
             isbn
-            isbn_13
           } 
         }`
   })

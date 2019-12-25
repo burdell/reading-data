@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes, ReactNode } from 'react'
 
-import { StyledButton, ButtonIcon } from './styles'
+import { StyledButton } from './styles'
 
 interface ButtonProps {
   children: ReactNode

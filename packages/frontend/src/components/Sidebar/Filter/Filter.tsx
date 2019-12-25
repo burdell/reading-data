@@ -17,7 +17,7 @@ interface FilterProps {
 }
 
 export function Filter({ stats, onFilter, defaultFilters }: FilterProps) {
-  const filterOptions = useMemo<FilterOptions>(() => defaultFilters, [])
+  const filterOptions = useMemo(() => defaultFilters, [])
 
   function checkboxSelected({ field, value }: CheckboxSelection) {
     if (value === null) {
@@ -60,9 +60,8 @@ export function Filter({ stats, onFilter, defaultFilters }: FilterProps) {
         />
       </FilterSection>
       <HowDoesThisWork>
-        <span>🤔</span>
         <a href="https://github.com/burdell/reading-data" target="_blank">
-          How does this work?
+          View on Github <GitHub size={10} />
         </a>
       </HowDoesThisWork>
     </SidebarSection>

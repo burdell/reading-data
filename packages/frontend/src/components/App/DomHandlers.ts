@@ -5,12 +5,7 @@ import { scroll } from '../ScrollToTop/scroll'
 
 const mql = window.matchMedia(`(min-width: ${breakpoints.small}rem)`)
 
-export interface DOMInfo {
-  hasMatches: boolean
-  scrollToTop(): void
-}
-
-export function useDomHandlers(): DOMInfo {
+export function useDomHandlers() {
   const [hasMatches, setMatches] = useState(mql.matches)
   const mediaQueryChanged = () => setMatches(mql.matches)
   useEffect(() => {

@@ -8,7 +8,6 @@ export interface Book {
   date_read: string
   my_review: string
   isbn?: string
-  isbn_13?: string
 }
 
 export interface Stats {

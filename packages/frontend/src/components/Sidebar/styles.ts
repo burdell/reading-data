@@ -68,5 +68,11 @@ export const HowDoesThisWork = styled('div')`
 
   a {
     color: ${primary.primary3};
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-left: 0.1rem;
+    }
   }
 `

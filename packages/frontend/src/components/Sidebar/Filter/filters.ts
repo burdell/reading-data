@@ -17,11 +17,11 @@ export const possibleYears = Array.from({ length: yearCount }).map(
 export function defaultFilter(): FilterOptions {
   const currentMonth = new Date().getMonth()
   // don't show current year until February
-  const yearOffset = currentMonth > 0 ? 1 : 2
+  const monthOffset = currentMonth > 0 ? 1 : 2
 
   return {
     read: true,
-    year: [possibleYears[possibleYears.length - yearOffset]],
+    year: [possibleYears[possibleYears.length - monthOffset]],
     month: [],
     rating: []
   }
