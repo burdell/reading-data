@@ -99,6 +99,7 @@ interface GoodreadsAPIBook {
   authors: { author: Authors }
   published: string
   work: Work
+  read_count: number
 }
 
 interface Shelves {

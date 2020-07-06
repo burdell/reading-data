@@ -4,6 +4,7 @@
   "scripts": {
     "migrate": "ts-node ./src/migrate/migrate.ts",
     "goodreads-sync": "NODE_ENV=local ts-node ./src/goodreads",
+    "add-latest": "NODE_ENV=local ts-node ./src/goodreads/add_latest.ts",
     "build-server": "webpack && cp ./template.yml ./dist",
     "package-server": "aws cloudformation package --template-file ./dist/template.yml --output-template-file ./dist/serverless-output.yml --s3-bucket reading-data-server",
     "deploy-server": "aws cloudformation deploy --template-file ./dist/serverless-output.yml --stack-name ReadingData --capabilities CAPABILITY_IAM",

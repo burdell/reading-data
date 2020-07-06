@@ -4,23 +4,28 @@ import { addDays, endOfDay, isWithinInterval, format } from 'date-fns'
 
 import { GoodreadsAPIReadEvent, BookWithoutId } from '../types'
 import { addToDb } from '../db'
+import { formatReadDate } from './date'
+
+export async function getReadBooks(user: string, apiKey: string) {
+  const goodreadsApi = `https://www.goodreads.com/review/list/${user}.xml?key=${apiKey}&v=2&shelf=read&per_page=20&sort=date_read&page=1`
+  const { data } = await axios.get(goodreadsApi)
+
+  return parseBookData(data)
+}
 
 export async function syncGoodreads(
   apiKey: string,
   user: string
 ): Promise<number> {
-  const goodreadsApi = `https://www.goodreads.com/review/list/${user}.xml?key=${apiKey}&v=2&shelf=read&per_page=20&sort=date_read&page=1`
-  const { data } = await axios.get(goodreadsApi)
+  const books = await getReadBooks(user, apiKey)
 
-  const booksToAdd = parseBookData(data)
-    .filter(bookReadInLastDay)
-    .map(convertApiBook)
+  const booksToAdd = books.filter(bookReadInLastDay).map(convertApiBook)
 
   if (!booksToAdd.length) return 0
   return addToDb(booksToAdd)
 }
 
-function convertApiBook({
+export function convertApiBook({
   book,
   rating,
   read_at,
@@ -38,7 +43,7 @@ function convertApiBook({
     author: book.authors.author.name,
     my_rating: rating,
     number_of_pages: Number(book.num_pages),
-    date_read: format(new Date(read_at), 'yyyy/MM/dd'),
+    date_read: formatReadDate(new Date(read_at)),
     my_review: body,
     isbn: `=${isbn}`,
     isbn_13: `\=${book.isbn13 ? book.isbn13.toString() : ''}`

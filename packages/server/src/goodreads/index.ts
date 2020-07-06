@@ -1,12 +1,10 @@
 import { config } from 'dotenv'
 
 import { syncGoodreads } from './goodreads_sync'
+import { getEnv } from './env'
 
 export async function handler() {
-  const { GOODREADS_KEY, GOODREADS_USER } = process.env
-  if (!GOODREADS_KEY || !GOODREADS_USER) {
-    throw new Error('Proper env variables not set')
-  }
+  const { GOODREADS_KEY, GOODREADS_USER } = getEnv()
 
   try {
     const bookCount = await syncGoodreads(GOODREADS_KEY, GOODREADS_USER)
