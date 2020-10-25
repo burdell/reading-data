@@ -19,8 +19,8 @@ async function main() {
   const readDate = addDays(new Date(), -1)
   convertedBook.date_read = formatReadDate(readDate)
 
-  writeToFile(convertedBook, './', 'results.json')
-  // addToDb([convertedBook])
+  // writeToFile(convertedBook, './', 'results.json')
+  addToDb([convertedBook])
 }
 
 if (process.env.NODE_ENV === 'local') {

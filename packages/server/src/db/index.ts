@@ -6,7 +6,10 @@ import uuid from 'uuid/v1'
 import { BookWithoutId } from '../types'
 
 if (process.env.NODE_ENV === 'local') {
-  AWS.config.loadFromPath(resolve(__dirname, './aws_creds.json'))
+  const credentials = new AWS.SharedIniFileCredentials()
+  console.log(credentials)
+  AWS.config.credentials = credentials
+  AWS.config.update({ region: 'us-east-1' })
 }
 
 const db = new DynamoDB.DocumentClient()
@@ -16,12 +19,16 @@ export async function addToDb(books: BookWithoutId[]): Promise<number> {
 
   return new Promise((resolve, reject) => {
     chunks.forEach((chunk, index) => {
-      db.batchWrite(getDynamoInput(chunk), (err, { UnprocessedItems }) => {
+      db.batchWrite(getDynamoInput(chunk), (err, response) => {
         if (err) {
-          // TODO: store this somewhere?
-          console.error(`[GOODREADS SYNC] DB Write Error: ${chunk}`)
+          console.log(err)
+          // console.error(
+          //   `[GOODREADS SYNC] DB Write Error: ${chunk.map((c) => c)}`
+          // )
+          return
         }
 
+        const { UnprocessedItems } = response
         if (UnprocessedItems) {
           successfulBooks += chunk.length - Object.keys(UnprocessedItems).length
         }
@@ -51,7 +58,7 @@ function getDynamoInput(books: BookWithoutId[]): BatchWriteItemInput {
   const putRequests = books.map(getAttributeMap)
   return {
     RequestItems: {
-      Books: putRequests.map(request => ({
+      Books: putRequests.map((request) => ({
         PutRequest: {
           Item: request
         }
@@ -65,7 +72,7 @@ function getAttributeMap(book: BookWithoutId) {
     id: uuid()
   }
   const keys = Object.keys(book)
-  keys.forEach(key => {
+  keys.forEach((key) => {
     const dbValue = (book as any)[key]
     if (dbValue) {
       input[key] = dbValue.toString()
