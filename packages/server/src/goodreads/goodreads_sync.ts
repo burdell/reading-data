@@ -68,5 +68,5 @@ function bookReadInLastDay(book: GoodreadsAPIReadEvent) {
 
 function getJson(xmlData: any) {
   var tObj = parser.getTraversalObj(xmlData)
-  return parser.convertToJson(tObj)
+  return parser.convertToJson(tObj, {})
 }
