@@ -5,7 +5,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: graphql/index.handler
-      Runtime: nodejs8.10
+      Runtime: nodejs12.x
       Role: arn:aws:iam::435716529842:role/LambdaDynamo
       Events:
         AnyRequest:
@@ -22,7 +22,7 @@ Resources:
           GOODREADS_KEY: '{{resolve:secretsmanager:GoodreadsData:SecretString:GOODREADS_KEY}}'
           GOODREADS_USER: '38789987'
       Handler: goodreads/index.handler
-      Runtime: nodejs8.10
+      Runtime: nodejs12.x
       Role: arn:aws:iam::435716529842:role/LambdaDynamo
 
   GoodreadsEvent:
