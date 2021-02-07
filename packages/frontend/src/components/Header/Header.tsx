@@ -12,7 +12,7 @@ interface Props {
 export function Header({ toggleSidebar, showToggle }: Props) {
   return (
     <HeaderStyles>
-      <HeaderText>What Did Nathan Read?</HeaderText>
+      <HeaderText>What Did Nathan Read</HeaderText>
       {showToggle && <Button onClick={toggleSidebar}>Filter</Button>}
     </HeaderStyles>
   )
