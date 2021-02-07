@@ -7,7 +7,6 @@ import { BookWithoutId } from '../types'
 
 if (process.env.NODE_ENV === 'local') {
   const credentials = new AWS.SharedIniFileCredentials()
-  console.log(credentials)
   AWS.config.credentials = credentials
   AWS.config.update({ region: 'us-east-1' })
 }
